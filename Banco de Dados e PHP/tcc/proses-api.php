@@ -87,7 +87,7 @@
         'idTipo' => $data['idTipo']
       );
 
-      if($data['status']=='y'){
+      if($data['Status']=='y'){
         $result = json_encode(array('success'=>true, 'result'=>$datauser));
       }else{
         $result = json_encode(array('success'=>false, 'msg'=>'Usuário Inativo'));
