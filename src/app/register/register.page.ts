@@ -11,9 +11,9 @@ import { Storage } from '@ionic/Storage';
 })
 export class RegisterPage implements OnInit {
   
-  login: string = "";
-  senha: string = "";
-  confirma_senha: string = "";
+  username: string = "";
+  password: string = "";
+  confirm_password: string = "";
   constructor(
   	private router: Router,
   	private postPvdr: PostProvider,
@@ -26,19 +26,19 @@ export class RegisterPage implements OnInit {
 
   async prosesRegister(){
     // validation done
-    if(this.login==""){
+    if(this.username==""){
         const toast = await this.toastCtrl.create({
-          message: 'Login é obrigatrório',
+          message: 'Login Obrigatório',
           duration: 3000
         });
         toast.present();
-    }else if(this.senha==""){
+    }else if(this.password==""){
         const toast = await this.toastCtrl.create({
-          message: 'Senha é obrigatória',
+          message: 'Senha Obrigatória',
           duration: 3000
         });
         toast.present();
-    }else if(this.senha!=this.confirma_senha){
+    }else if(this.password!=this.confirm_password){
         const toast = await this.toastCtrl.create({
           message: 'Senha Inválida',
           duration: 3000
@@ -47,8 +47,8 @@ export class RegisterPage implements OnInit {
     }else{
 
       let body = {
-        login: this.login,
-        senha: this.senha,
+        username: this.username,
+        password: this.password,
         aksi: 'register'
       };
 
@@ -57,7 +57,7 @@ export class RegisterPage implements OnInit {
         if(data.success){
           this.router.navigate(['/login']);
           const toast = await this.toastCtrl.create({
-            message: 'Registrado com sucesso',
+            message: 'Registrado com Sucesso',
             duration: 3000
           });
           toast.present();

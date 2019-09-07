@@ -1,24 +1,45 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/Storage';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html'
 })
-export class AppComponent {
+export class AppComponent { 
+  public appPages = [
+    {
+      title: 'Home',
+      url: '/home',
+      icon: 'home'
+    },
+  ];
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private router: Router,
-    private storage: Storage
+    private storage: Storage,
+    public toastCtrl: ToastController
   ) {
     this.initializeApp();
+  }
+
+    
+  async prosesLogout(){
+    this.storage.clear();
+    this.router.navigate(['/login']);
+    const toast = await this.toastCtrl.create({
+        message: 'Deslogado com Sucesso',
+        duration: 3000
+      });
+    toast.present();
   }
 
   initializeApp() {
@@ -31,7 +52,7 @@ export class AppComponent {
       if(res == null){
         this.router.navigate(['/login']);
       }else{
-        this.router.navigate(['/customer']);
+        this.router.navigate(['/home']);
       }
     });
   }

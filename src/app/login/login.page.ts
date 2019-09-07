@@ -11,8 +11,8 @@ import { Storage } from '@ionic/Storage';
 })
 export class LoginPage implements OnInit {
   
-  login: string;
-  senha: string;
+  username: string;
+  password: string;
 
   constructor(
   	private router: Router,
@@ -25,41 +25,41 @@ export class LoginPage implements OnInit {
   }
 
   async prosesLogin(){
-    if(this.login != "" && this.login != ""){
-      let body = {
-        login: this.login,
-        senha: this.senha,
-        aksi: 'login'
-      };
-
-      this.postPvdr.postData(body, 'proses-api.php').subscribe(async data =>{
-        var alertpesan = data.msg;
-        if(data.success){
-          this.storage.set('session_storage', data.result);
-          this.router.navigate(['/customer']);
-          const toast = await this.toastCtrl.create({
-		    message: 'Logado com Sucesso',
-		  	duration: 2000
-		  });
-		  toast.present();
-		  this.login = "";
-		  this.senha = "";
-          console.log(data);
-        }else{
-          const toast = await this.toastCtrl.create({
-		    message: alertpesan,
-		    duration: 2000
-		  });
-    	  toast.present();
-        }
-      });
-
-    }else{
+    if(this.username == "" || this.password == ""){
       const toast = await this.toastCtrl.create({
-		message: 'Login ou Senha Incorretos',
-		duration: 2000
-	  });
-	  toast.present();
+        message: 'Login ou Senha inválidos.',
+        duration: 2000
+        });
+        toast.present();    
+    }else{
+    let body = {
+      username: this.username,
+      password: this.password,
+      aksi: 'login'
+    };
+
+    this.postPvdr.postData(body, 'proses-api.php').subscribe(async data =>{
+      var alertpesan = data.msg;
+      if(data.success){
+        this.storage.set('session_storage', data.result);
+        this.router.navigate(['/home']);
+        const toast = await this.toastCtrl.create({
+      message: 'Logado com Sucesso.',
+      duration: 2000
+    });
+    toast.present();
+    this.username = "";
+    this.password = "";
+        console.log(data);
+      }else{
+        const toast = await this.toastCtrl.create({
+      message: alertpesan,
+      duration: 2000
+    });
+      toast.present();
+      }
+    });
+
     }
   }
 

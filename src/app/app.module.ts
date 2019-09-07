@@ -31,4 +31,5 @@ import { IonicStorageModule } from '@ionic/Storage';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+}
