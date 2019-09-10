@@ -75,7 +75,7 @@
 
   elseif($postjson['aksi']=="login"){
     $password = md5($postjson['password']);
-    $query = mysqli_query($mysqli, "SELECT * FROM usuario WHERE login='$postjson[username]' AND senha='$password'");
+    $query = mysqli_query($mysqli, "SELECT * FROM usuario WHERE (login='$postjson[username]' AND senha='$password') OR (email='$postjson[username]' AND senha='$password')");
     $check = mysqli_num_rows($query);
 
     if($check>0){
@@ -84,6 +84,8 @@
         'idUsuario' => $data['idUsuario'],
         'Login' => $data['Login'],
         'Senha' => $data['Senha'],
+        'Nome' => $data['Nome'],
+        'Email' => $data ['Email'],
         'idTipo' => $data['idTipo']
       );
 
@@ -102,15 +104,30 @@
 
   elseif($postjson['aksi']=="register"){
     $password = md5($postjson['password']);
+    $query = mysqli_query($mysqli, "SELECT * FROM usuario WHERE login='$postjson[username]' OR senha='$password' OR email='$postjson[email]' OR cpf='$postjson[cpf]'");
+    $check = mysqli_num_rows($query);
+
+    if($check==0){
+    $password = md5($postjson['password']);
     $query = mysqli_query($mysqli, "INSERT INTO usuario SET
       Login = '$postjson[username]',
       Senha = '$password',
       idTipo = '1',
+      nome = '$postjson[nome]',
+      email = '$postjson[email]',
+      cpf =  '$postjson[cpf]',
+      celular =  '$postjson[celular]',
+      telefone =  '$postjson[telefone]',
+      SecunContat =  '$postjson[celular2]',
       status   = 'y'
     ");
 
     if($query) $result = json_encode(array('success'=>true));
     else $result = json_encode(array('success'=>false, 'msg'=>'Erro! Por favor tente novamente'));
+  }
+    else {
+      $result = json_encode(array('success'=>false, 'msg'=>'Usuário já Cadastrado'));
+    }
 
     echo $result;
   }
