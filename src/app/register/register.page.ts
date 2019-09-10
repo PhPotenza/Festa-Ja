@@ -14,6 +14,13 @@ export class RegisterPage implements OnInit {
   username: string = "";
   password: string = "";
   confirm_password: string = "";
+  nome: string = "";
+  email: string = "";
+  cpf: string = "";
+  celular: string = "";
+  telefone: string = "";
+  celular2: string = "";
+
   constructor(
   	private router: Router,
   	private postPvdr: PostProvider,
@@ -38,7 +45,34 @@ export class RegisterPage implements OnInit {
           duration: 3000
         });
         toast.present();
-    }else if(this.password!=this.confirm_password){
+    }else if(this.nome==""){
+      const toast = await this.toastCtrl.create({
+        message: 'Nome Obrigatório',
+        duration: 3000
+      });
+      toast.present();
+    }else if(this.email==""){
+      const toast = await this.toastCtrl.create({
+        message: 'Email Obrigatório',
+        duration: 3000
+      });
+      toast.present();
+    }
+    else if(this.cpf==""){
+      const toast = await this.toastCtrl.create({
+        message: 'CPF Obrigatório',
+        duration: 3000
+      });
+      toast.present();
+    }
+    else if(this.celular==""){
+      const toast = await this.toastCtrl.create({
+        message: 'Celular Obrigatório',
+        duration: 3000
+      });
+      toast.present();
+    }
+    else if(this.password!=this.confirm_password){
         const toast = await this.toastCtrl.create({
           message: 'Senha Inválida',
           duration: 3000
@@ -49,6 +83,12 @@ export class RegisterPage implements OnInit {
       let body = {
         username: this.username,
         password: this.password,
+        nome: this.nome,
+        email: this.email,
+        cpf: this.cpf,
+        celular: this.celular,
+        telefone: this.telefone,
+        celular2: this.celular2,
         aksi: 'register'
       };
 
