@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+    <ion-title>Cadastrar Serviço</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding="true" scroll="false">
+  <h4 style="color:#000000;">Dados do serviço</h4>
+ <ion-list>
+    <ion-item>
+      <ion-label>Nome</ion-label>
+        <ion-input type="text" placeholder=""></ion-input>
+    </ion-item>
+    <ion-item>
+    	<ion-label>Descrição</ion-label>
+    	<ion-input type="text" placeholder=""></ion-input>
+    </ion-item>
+  	<ion-item>
+    	<ion-label>Tipo</ion-label>
+    	<ion-select multiple="false" cancelText="Cancelar" okText="Selecionar">
+	      	<ion-select-option value="buffet">Buffet</ion-select-option>
+      		<ion-select-option value="bebidas">Bebidas</ion-select-option>
+      		<ion-select-option value="entrtenimento">Entretenimento</ion-select-option>
+      		<ion-select-option value="seguranca">Segurança</ion-select-option>
+      		<ion-select-option value="limpeza">Limpeza</ion-select-option>
+    	</ion-select>
+  	</ion-item>
+   </ion-list>
+<ion-button expand="block" padding color="light" (click)="goToPerfilServico()"> Cadastrar</ion-button>
+</ion-content>
