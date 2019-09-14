@@ -18,6 +18,11 @@ export class AppComponent {
       url: '/home',
       icon: 'home'
     },
+    {
+      title: 'Cadastrar Serviços',
+      url: '/cadastrar-servico',
+      icon: 'add'
+    }
   ];
 
   constructor(

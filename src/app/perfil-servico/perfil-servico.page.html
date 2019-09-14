@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar color="light">
+    <ion-title>Perfil Serviço</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding="true">
+      <ion-item  ui-sref="menu.editarPerfil()">
+        <img src="img/WJwsZjkQjM7qHmUJ2xfg_logo.jpg">
+        <h2>Nome do serviço</h2>
+        <p style="white-space:normal;">Descrição do serviço</p>
+        <i class="icon ion-android-add icon-accessory"></i>
+      </ion-item>
+      <h4 id="perfilServiO-heading8" style="color:#000000;text-align:center;">Portifólio</h4>
+      <ion-slides disable-side-menu-drag="" options="{'loop': true}" slider="slider2" delegate-handle="slider2" id="perfilServiO-slider2" style="width:100%;height:200px;">
+        <ion-slide-page id="perfilServiO-slide211" style="background:url(&quot;img/avfsZwJT9WGsBj982ul1_kitten1.jpg&quot;) no-repeat center;background-size:cover;"></ion-slide-page>
+        <ion-slide-page id="perfilServiO-slide212" style="background:url(&quot;img/gHd5vedGQJu4s4qsPQvr_kitten2.jpg&quot;) no-repeat center;background-size:cover;"></ion-slide-page>
+        <ion-slide-page id="perfilServiO-slide213" style="background:url(&quot;img/WE6rB9dZRTiIWQlP5qsA_kitten3.jpg&quot;) no-repeat center;background-size:cover;"></ion-slide-page>
+      </ion-slides>
+    <ion-button expand="block" padding color="light" (click)="prosesLogin()">Adicionar ao evento . . . </ion-button>
+    <form>
+      <h4 id="perfilServiO-heading25" style="color:#000000;text-align:center;">Avaliações e Comentários</h4>
+      <label>Deixe seu comentário</label>
+        <input type="text" placeholder=""></input>
+      <div class="spacer" style="width: 300px; height: 11px;"></div>
+      <ion-button expand="block" padding color="light" >Enviar</ion-button>
+</ion-content>
+
