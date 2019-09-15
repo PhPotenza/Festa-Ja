@@ -1,0 +1,28 @@
+<ion-header>
+    <ion-toolbar color="light">
+      <ion-title>Recuperar Senha</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content>
+
+    <ion-list class="ion-padding-horizontal">
+        <ion-text>
+            <h5>Informe o código enviado ao e-mail cadastrado</h5>
+        </ion-text>
+
+        <ion-item>
+          <ion-label position="floating">Código</ion-label>
+          <ion-input type="text" [(ngModel)]="Codigo"></ion-input>
+        </ion-item>
+    </ion-list>
+
+    
+
+</ion-content>
+
+<ion-footer class="ion-padding-bottom">
+    <div class="ion-padding-bottom">
+        <ion-button expand="block" padding color="light" (click)="formAlterarSenha()">Proximo</ion-button>
+    </div>
+</ion-footer>

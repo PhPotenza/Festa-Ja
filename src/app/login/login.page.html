@@ -16,8 +16,11 @@
 	    <ion-label position="floating">Senha</ion-label>
 	    <ion-input type="password" [(ngModel)]="password"></ion-input>
 	  </ion-item>
+	
 
 	</ion-list>
+
+	<ion-label color="light" (click)="formRecuperarSenha()" class="ion-padding-horizontal">Esqueceu sua senha?</ion-label>
 
 	<div>
 	  <ion-button expand="block" padding color="light" (click)="prosesLogin()">Entrar</ion-button>
