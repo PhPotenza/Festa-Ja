@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'recuperar-senha', loadChildren: './recuperar-senha/recuperar-senha.module#RecuperarSenhaPageModule' },
   { path: 'insirir-codigo', loadChildren: './insirir-codigo/insirir-codigo.module#InsirirCodigoPageModule' },
   { path: 'alterar-senha', loadChildren: './alterar-senha/alterar-senha.module#AlterarSenhaPageModule' },
+  { path: 'perfil-cliente', loadChildren: './perfil-cliente/perfil-cliente.module#PerfilClientePageModule' },
 
 ];
 
