@@ -4,12 +4,13 @@ import { PostProvider } from '../../providers/post-provider';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/Storage';
 
+
 @Component({
-  selector: 'app-perfil-cliente',
-  templateUrl: './perfil-cliente.page.html',
-  styleUrls: ['./perfil-cliente.page.scss'],
+  selector: 'app-editar-perfil',
+  templateUrl: './editar-perfil.page.html',
+  styleUrls: ['./editar-perfil.page.scss'],
 })
-export class PerfilClientePage implements OnInit {
+export class EditarPerfilPage implements OnInit {
 
   constructor(
   	private router: Router,
@@ -20,12 +21,8 @@ export class PerfilClientePage implements OnInit {
   ngOnInit() {
   }
 
- formEditarPerfil(){
-    this.router.navigate(['/editar-perfil']);
-  }
-
-  formAlterarSenha(){
-  	this.router.navigate(['/alterar-senha']);
+ formPerfilCliente(){
+    this.router.navigate(['/perfil-cliente']);
   }
 
 }

@@ -1,6 +1,11 @@
 <ion-header>
   <ion-toolbar color="light">
     <ion-title>Perfil Cliente</ion-title>
+    <ion-buttons slot="primary">
+          <ion-button (click)="formEditarPerfil()">
+            <ion-icon slot="icon-only" name="create"></ion-icon>
+          </ion-button>
+        </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -9,7 +14,7 @@
 <ion-card>
 <ion-list no-lines>
 
-	<ion-item>
+	<ion-item lines="none">
           <ion-avatar slot="start">
             <img src="./assets/avatar-luke.png">
           </ion-avatar>
@@ -41,7 +46,7 @@
 	    <ion-label>Telefone</ion-label>
 	  </ion-item>
 	
-	  <ion-item>
+	  <ion-item lines="none">
 	    <ion-label>Contato Secundário</ion-label>
 	  </ion-item>
 
