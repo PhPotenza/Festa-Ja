@@ -7,7 +7,16 @@ const routes: Routes = [
   { path: 'register', loadChildren: './register/register.module#RegisterPageModule' },
   { path: 'home', loadChildren: './home/home.module#HomePageModule' },  { path: 'cadastrar-servico', loadChildren: './cadastrar-servico/cadastrar-servico.module#CadastrarServicoPageModule' },
   { path: 'perfil-servico', loadChildren: './perfil-servico/perfil-servico.module#PerfilServicoPageModule' },
+<<<<<<< HEAD
   { path: 'adicionar-evento', loadChildren: './adicionar-evento/adicionar-evento.module#AdicionarEventoPageModule' },
+=======
+  { path: 'recuperar-senha', loadChildren: './recuperar-senha/recuperar-senha.module#RecuperarSenhaPageModule' },
+  { path: 'insirir-codigo', loadChildren: './insirir-codigo/insirir-codigo.module#InsirirCodigoPageModule' },
+  { path: 'alterar-senha', loadChildren: './alterar-senha/alterar-senha.module#AlterarSenhaPageModule' },
+  { path: 'perfil-cliente', loadChildren: './perfil-cliente/perfil-cliente.module#PerfilClientePageModule' },
+  { path: 'editar-perfil', loadChildren: './editar-perfil/editar-perfil.module#EditarPerfilPageModule' },
+  { path: 'buffet', loadChildren: './buffet/buffet.module#BuffetPageModule' },
+>>>>>>> 0a3cbdba968dd5e158416de76bf6d0eb8782e503
 
 ];
 

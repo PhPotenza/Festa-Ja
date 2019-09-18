@@ -67,4 +67,8 @@ export class LoginPage implements OnInit {
   	this.router.navigate(['/register']);
   }
 
+  formRecuperarSenha(){
+    this.router.navigate(['/recuperar-senha']);
+  } 
+
 }
