@@ -22,6 +22,11 @@ export class AppComponent {
       title: 'Cadastrar Serviços',
       url: '/cadastrar-servico',
       icon: 'add'
+    },
+    {
+      title: 'Adicionar Evento',
+      url: '/adicionar-evento',
+      icon: 'add'
     }
   ];
 
