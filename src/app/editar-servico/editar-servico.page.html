@@ -1,16 +1,17 @@
 <ion-header>
     <ion-toolbar color="light">
-      <ion-buttons slot="start">
-            <ion-menu-button></ion-menu-button>
-          </ion-buttons>
-      <ion-title>Cadastrar Serviço</ion-title>
+      <ion-title>Editar Serviço</ion-title>
     </ion-toolbar>
   </ion-header>
   
-  <ion-content padding="true" scroll="false">
-    <h4 style="color:#000000;">Dados do serviço</h4>
-   <ion-list>
-      <ion-item>
+  <ion-content scroll="false">
+        
+        <ion-list>
+        <ion-item lines="none">
+        <h4 style="color:#000000;">Dados do serviço</h4>
+        </ion-item>
+        
+        <ion-item>    
         <ion-label>Nome</ion-label>
           <ion-input type="text" [(ngModel)]="nome_servico"></ion-input>
       </ion-item>
@@ -28,8 +29,10 @@
             <ion-select-option value="limpeza">Limpeza</ion-select-option>
         </ion-select>
       </ion-item>
+    
      </ion-list>
-  </ion-content>
-  <ion-footer class="ion-padding-bottom">
-  <ion-button class="ion-button" expand="block" padding color="light" (click)="goToPerfilServico()">Cadastrar</ion-button>
-  </ion-footer>  
+  
+    </ion-content>
+    <ion-footer class="ion-padding-bottom">
+  <ion-button class="ion-button" expand="block" padding color="light" (click)="alteracaoPerfilServico()">Salvar</ion-button>
+  </ion-footer>

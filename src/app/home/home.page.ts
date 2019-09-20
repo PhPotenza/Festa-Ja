@@ -15,6 +15,8 @@ export class HomePage implements OnInit {
   anggota: any;
   eventos: any = [];
   idUsuario: number;
+  limit: number = 13;
+  start: number = 0;
 
   constructor(
     private router: Router,
@@ -35,6 +37,7 @@ export class HomePage implements OnInit {
       console.log(res);
     });
     this.eventos = [];
+    this.start = 0;
   	this.loadEvento();
   }
 
@@ -55,6 +58,8 @@ export class HomePage implements OnInit {
         this.idUsuario = this.anggota.idUsuario;
         let body = {
           idUsuario: this.idUsuario,
+          limit : this.limit,
+  			  start : this.start,
           aksi : 'getevento',
         };
   
@@ -70,6 +75,7 @@ export class HomePage implements OnInit {
   }
 
   loadData(event:any){
+    this.start += this.limit;
   	setTimeout(() =>{
   	this.loadEvento().then(()=>{
   		event.target.complete();
@@ -88,5 +94,8 @@ export class HomePage implements OnInit {
   	this.router.navigate(['/adicionar-evento']);
   }
 
+  pagePerfilEvento(){
+  	this.router.navigate(['/perfil-evento']);
+  }
 
 }

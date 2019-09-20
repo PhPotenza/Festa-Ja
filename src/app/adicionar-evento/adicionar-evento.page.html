@@ -7,6 +7,25 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
+  <h4><b>Dados do Evento</b></h4>
 
+  <ion-list no-lines>
+
+	  <ion-item>
+	    <ion-label position="floating" class="item">Nome</ion-label>
+	    <ion-input type="text" [(ngModel)]="nome"></ion-input>
+	  </ion-item>
+
+	  <ion-item>
+	    <ion-label position="floating">Tipo</ion-label>
+	    <ion-input type="text" [(ngModel)]="tipo"></ion-input>
+    </ion-item>
+    
+  </ion-list>
+  
+  <div>
+	  <ion-button expand="block" class="ion-button" padding color="light" (click)="addEvento()">Adicionar</ion-button>
+  </div>
+  
 </ion-content>

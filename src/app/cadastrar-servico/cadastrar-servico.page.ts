@@ -9,18 +9,22 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['./cadastrar-servico.page.scss'],
 })
 export class CadastrarServicoPage implements OnInit {
-
-   constructor(
-  	private router: Router,
-  	private storage: Storage,
-  	public toastCtrl: ToastController
-  ) { }
+  
+  nome_servico: string = "";
+  descricao_servico: string = "";
+  tipo_servico: string = "";
+  
+  constructor (
+      private router: Router,
+      private storage: Storage,
+      public toastCtrl: ToastController
+  ){}
 
   ngOnInit() {
   }
 
   goToPerfilServico(){
-  		this.router.navigate(['/perfil-servico.page']);
+  		this.router.navigate(['/perfil-servico']);
   }
 
 }

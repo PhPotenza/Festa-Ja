@@ -1,28 +1,120 @@
 <ion-header>
-  <ion-toolbar color="light">
-    <ion-title>Perfil Serviço</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content padding="true">
-      <ion-item  ui-sref="menu.editarPerfil()">
-        <img src="img/WJwsZjkQjM7qHmUJ2xfg_logo.jpg">
-        <h2>Nome do serviço</h2>
-        <p style="white-space:normal;">Descrição do serviço</p>
-        <i class="icon ion-android-add icon-accessory"></i>
+    <ion-toolbar color="light">
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+          </ion-buttons>
+      <ion-title>Perfil Serviço</ion-title>
+      <ion-buttons slot="primary">
+        <ion-button (click)="goToEditarServico()">
+        <ion-icon slot="icon-only" name="create"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content padding="true">
+    <ion-card>
+      <ion-item>
+        <ion-avatar slot="start">
+        <img src="./assets/avatar-luke.png">
+        </ion-avatar>
+        <h2>{{ nome_servico }} Animaiszinhos Fodidos de Fofos</h2>
       </ion-item>
-      <h4 id="perfilServiO-heading8" style="color:#000000;text-align:center;">Portifólio</h4>
-      <ion-slides disable-side-menu-drag="" options="{'loop': true}" slider="slider2" delegate-handle="slider2" id="perfilServiO-slider2" style="width:100%;height:200px;">
-        <ion-slide-page id="perfilServiO-slide211" style="background:url(&quot;img/avfsZwJT9WGsBj982ul1_kitten1.jpg&quot;) no-repeat center;background-size:cover;"></ion-slide-page>
-        <ion-slide-page id="perfilServiO-slide212" style="background:url(&quot;img/gHd5vedGQJu4s4qsPQvr_kitten2.jpg&quot;) no-repeat center;background-size:cover;"></ion-slide-page>
-        <ion-slide-page id="perfilServiO-slide213" style="background:url(&quot;img/WE6rB9dZRTiIWQlP5qsA_kitten3.jpg&quot;) no-repeat center;background-size:cover;"></ion-slide-page>
+      <ion-slides pager style="width:100%;height:300px;">
+        <ion-slide  style="background-color: green">
+          <h2>Slide 1</h2>
+        </ion-slide>
+        <ion-slide style="background-color: blue">
+          <h2>Slide 2</h2>
+        </ion-slide>
+        <ion-slide style="background-color: red">
+          <h2>Slide 3</h2>
+        </ion-slide>
       </ion-slides>
-    <ion-button expand="block" padding color="light" (click)="prosesLogin()">Adicionar ao evento . . . </ion-button>
-    <form>
-      <h4 id="perfilServiO-heading25" style="color:#000000;text-align:center;">Avaliações e Comentários</h4>
-      <label>Deixe seu comentário</label>
-        <input type="text" placeholder=""></input>
-      <div class="spacer" style="width: 300px; height: 11px;"></div>
-      <ion-button expand="block" padding color="light" >Enviar</ion-button>
-</ion-content>
-
+      <ion-card-content>
+        <p>temos um grande arsenal de fotos de animaizinhos fodidos de fofos, para ter acesso a essas fofuras deixe o seu email nos comentarios que estaremos enviando uma copia. lembre-se todos os direito autorais reservados a mim somente</p>
+      </ion-card-content>
+    </ion-card>
+  <!--<ion-slide style="background:url(assets\imagens\perfil.jpg) no-repeat center;background-size:cover;"></ion-slide>-->
+    <ion-button class="ion-button" expand="block" padding color="light">Adicionar ao evento...</ion-button>
+    <br>
+      <ion-card padding="true">
+        <ion-item>
+          <ion-label position="floating">Deixe seu comentario</ion-label>
+          <ion-textarea></ion-textarea>
+        </ion-item>
+        <ion-row>
+          <ion-button class="ion-button" padding color="light" align="right">Enviar</ion-button>
+        </ion-row>
+      </ion-card>
+      <h4 style="color:#000000;text-align:center;"><b>Comentários</b></h4>
+      <ion-card><!--*ngFor=""-->
+        <ion-item>
+          <ion-avatar slot="start">
+            <img src="./assets/avatar-luke.png">
+          </ion-avatar>
+          <h6>{{ nome_usuario }} Nome</h6>
+          <!--<p>{{ data_comentario}} 11, nov, 2002</p>-->
+        </ion-item>
+        <ion-card-content>
+          <p>{{ comentarios }} muito bom!</p>
+        </ion-card-content>
+      </ion-card>
+  </ion-content>
+  
+  <!--<ion-card>
+  
+    <ion-item>
+      <ion-avatar item-start>
+        <img src="img/marty-avatar.png">
+      </ion-avatar>
+      <h2>Marty McFly</h2>
+      <p>November 5, 1955</p>
+    </ion-item>
+  
+    <img src="img/advance-card-bttf.png">
+  
+    <ion-card-content>
+      <p>Wait a minute. Wait a minute, Doc. Uhhh... Are you telling me that you built a time machine... out of a DeLorean?! Whoa. This is heavy.</p>
+    </ion-card-content>
+  
+    <ion-row>
+      <ion-col>
+        <button ion-button icon-start clear small>
+          <ion-icon name="thumbs-up"></ion-icon>
+          <div>12 Likes</div>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button icon-start clear small>
+          <ion-icon name="text"></ion-icon>
+          <div>4 Comments</div>
+        </button>
+      </ion-col>
+      <ion-col align-self-center text-center>
+        <ion-note>
+          11h ago
+        </ion-note>
+      </ion-col>
+    </ion-row>
+  
+  </ion-card>-->
+  
+  <ion-card>
+    <ion-row>
+      <ion-col>
+        <button ion-button icon-start clear small>
+          <ion-icon name="thumbs-up"></ion-icon>
+          <div>12 Likes</div>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button icon-start clear small>
+          <ion-icon name="text"></ion-icon>
+          <div>4 Comments</div>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+  
+  

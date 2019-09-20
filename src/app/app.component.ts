@@ -24,11 +24,11 @@ export class AppComponent {
       icon: 'add'
     },
     {
-<<<<<<< HEAD
       title: 'Adicionar Evento',
       url: '/adicionar-evento',
       icon: 'add'
-=======
+    },
+    {
       title: 'Perfil',
       url: '/perfil-cliente',
       icon: 'person'
@@ -37,7 +37,6 @@ export class AppComponent {
       title: 'Buffet',
       url: '/buffet',
       icon: 'restaurant'
->>>>>>> 0a3cbdba968dd5e158416de76bf6d0eb8782e503
     }
   ];
 

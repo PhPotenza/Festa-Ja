@@ -23,12 +23,12 @@
 
   <h4><b>Seus Eventos...</b></h4>
 <ion-list>
-  <ion-item-sliding *ngFor="let evento of eventos">
+  <ion-item-sliding  (click)="pagePerfilEvento()" *ngFor="let evento of eventos">
       <ion-item lines="none">
         <ion-label>{{evento.NomeEvento}}</ion-label>
       </ion-item>
       <ion-item >
-        <ion-label>Tipo: {{evento.TipoEvento}}</ion-label>
+        <ion-label>{{evento.TipoEvento}}</ion-label>
       </ion-item>
   </ion-item-sliding>
 </ion-list>
