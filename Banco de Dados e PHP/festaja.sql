@@ -60,7 +60,7 @@ DROP TABLE IF EXISTS `evento`;
 CREATE TABLE `evento` (
   `idEvento` int(11) NOT NULL auto_increment,
   `idUsuario` int(11) NOT NULL,
-  `Nome` varchar(100) default NULL,
+  `NomeEvento` varchar(100) default NULL,
   `Tipo` varchar(100) default NULL,
   `Data` datetime default NULL,
   `CEP` varchar(100) default NULL,
