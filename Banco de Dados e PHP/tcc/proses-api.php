@@ -54,13 +54,14 @@
     $query = mysqli_query($mysqli, "INSERT INTO usuario SET
       Login = '$postjson[username]',
       Senha = '$password',
-      idTipo = '1',
+      idTipo = '$postjson[userTipo]',
       nome = '$postjson[nome]',
       email = '$postjson[email]',
       cpf =  '$postjson[cpf]',
       celular =  '$postjson[celular]',
       telefone =  '$postjson[telefone]',
       SecunContat =  '$postjson[celular2]',
+      DataNasc = '$postjson[DataNasc]',
       status   = 'y'
     ");
 
