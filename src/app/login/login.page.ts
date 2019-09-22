@@ -11,8 +11,8 @@ import { Storage } from '@ionic/Storage';
 })
 export class LoginPage implements OnInit {
   
-  username: string;
-  password: string;
+  username: string = "";
+  password: string = "";
 
   constructor(
   	private router: Router,
