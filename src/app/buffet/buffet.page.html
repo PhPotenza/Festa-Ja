@@ -126,9 +126,70 @@
           </ion-row>
           <!-- fim da lista-->
 
+          <!--inicio dos Doces: titulo-->
+          <ion-row>
+            <ion-col size="6">
+                <div align="center"><b>Doces</b></div>
+              </ion-col>
+              <ion-col>
+                <div align="center"><b>Quantidade</b></div>
+              </ion-col>
+            </ion-row>
+
+            <!-- lista de doces-->
+          <ion-row class="ion-align-items-center">
+            <ion-col size="6">
+              <div align="center">Brigadeiro</div>
+            </ion-col>
+            <ion-col no-padding>
+              <div align="right">40</div>
+            </ion-col>
+            <ion-col no-padding>
+              <div>Unid.</div>
+            </ion-col>
+            <ion-col no-padding>
+              <div align="center"><ion-checkbox color="light"></ion-checkbox></div>
+            </ion-col>
+          </ion-row>
+
+          <ion-row class="ion-align-items-center">
+            <ion-col size="6">
+              <div align="center">Bicho-de-pé</div>
+            </ion-col>
+            <ion-col no-padding>
+              <div align="right">30</div>
+            </ion-col>
+            <ion-col no-padding>
+              <div>Unid.</div>
+            </ion-col>
+            <ion-col no-padding>
+              <div align="center"><ion-checkbox color="light"></ion-checkbox></div>
+            </ion-col>
+          </ion-row>
+
+          <ion-row class="ion-align-items-center">
+            <ion-col size="6">
+              <div align="center">Beijinho</div>
+            </ion-col>
+            <ion-col no-padding>
+              <div align="right">20</div>
+            </ion-col>
+            <ion-col no-padding>
+              <div>Unid.</div>
+            </ion-col>
+            <ion-col no-padding>
+              <div align="center"><ion-checkbox color="light"></ion-checkbox></div>
+            </ion-col>
+          </ion-row>
 
 
 
       </ion-grid>
 
 </ion-content>
+
+<ion-footer class="ion-padding-bottom">
+	<div class="ion-padding-bottom">
+	  <ion-button expand="block" padding color="light" (click)="formAdicionarBuffet()">Adicionar</ion-button>
+	</div>
+</ion-footer>

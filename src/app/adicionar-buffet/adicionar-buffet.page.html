@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+    <ion-title>Adicionar Buffet</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding="true">
+ <ion-list>
+    <ion-item>
+      <ion-label>Nome</ion-label>
+        <ion-input type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Tipo</ion-label>
+      <ion-select multiple="false" cancelText="Cancelar" okText="Selecionar">
+          <ion-select-option value="buffet">Alimento</ion-select-option>
+          <ion-select-option value="bebidas">Bebida</ion-select-option>
+          <ion-select-option value="entrtenimento">Doce</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Quantidade</ion-label>
+        <ion-input type="number" inputmode="numeric"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Unidade</ion-label>
+      <ion-select multiple="false" cancelText="Cancelar" okText="Selecionar">
+          <ion-select-option value="unidade">Unidades</ion-select-option>
+          <ion-select-option value="kg">Kilogramas</ion-select-option>
+          <ion-select-option value="g">gramas</ion-select-option>
+          <ion-select-option value="l">Litros</ion-select-option>
+          <ion-select-option value="ml">Mililitros</ion-select-option>
+      </ion-select>
+    </ion-item>
+   </ion-list>
+</ion-content>
+<ion-footer class="ion-padding-bottom">
+<ion-button class="ion-button" expand="block" padding color="light" (click)="formBuffet()">Adicionar</ion-button>
+</ion-footer>  
