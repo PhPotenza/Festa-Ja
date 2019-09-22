@@ -11,7 +11,7 @@
   $postjson = json_decode(file_get_contents('php://input'), true);
   $today    = date('Y-m-d');
 
-
+//Método Login
   if($postjson['aksi']=="login"){
     $password = md5($postjson['password']);
     $query = mysqli_query($mysqli, "SELECT * FROM usuario WHERE (login='$postjson[username]' AND senha='$password') OR (email='$postjson[username]' AND senha='$password')");
@@ -41,13 +41,16 @@
     echo $result;
   }
 
+//método registrar
   elseif($postjson['aksi']=="register"){
     $password = md5($postjson['password']);
+    //select para não permitir usuários iguais
     $query = mysqli_query($mysqli, "SELECT * FROM usuario WHERE login='$postjson[username]' OR senha='$password' OR email='$postjson[email]' OR cpf='$postjson[cpf]'");
     $check = mysqli_num_rows($query);
 
     if($check==0){
     $password = md5($postjson['password']);
+    //Insert para inserir usuários no DB
     $query = mysqli_query($mysqli, "INSERT INTO usuario SET
       Login = '$postjson[username]',
       Senha = '$password',
@@ -71,9 +74,10 @@
     echo $result;
   }
 
+//método de selecionar evento para o home
   elseif($postjson['aksi']=='getevento'){
     $data = array();
-    $query = mysqli_query($mysqli, "SELECT * FROM evento where idUsuario='$postjson[idUsuario]' ORDER BY idEvento");
+    $query = mysqli_query($mysqli, "SELECT * FROM evento where idUsuario='$postjson[idUsuario]' ORDER BY idEvento DESC LIMIT $postjson[start],$postjson[limit]");
 
     while($row = mysqli_fetch_array($query)){
 
@@ -90,6 +94,49 @@
     echo $result;
 
   }
+
+//método para adicionar evento
+  elseif($postjson['aksi']=='addEvento'){
+    $data = array();
+    $query = mysqli_query($mysqli, "INSERT INTO evento SET
+      NomeEvento = '$postjson[nome]',
+      Tipo = '$postjson[tipo]',
+      idUsuario = '$postjson[IdUsuario]'
+    ");
+
+    if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
+    else $result = json_encode(array('success'=>false, 'msg'=>'Erro! Por favor tente novamente'));
+
+    echo $result;
+
+  }
+
+//método para deletar evento
+  elseif($postjson['aksi']=='delEvento'){
+    $query = mysqli_query($mysqli, "DELETE FROM evento WHERE idEvento='$postjson[idEvento]'");
+
+    if($query) $result = json_encode(array('success'=>true, 'result'=>'success', 'msg'=>'Deletado com sucesso'));
+    else $result = json_encode(array('success'=>false, 'result'=>'error', 'msg'=>'Erro ao deletar'));
+
+    echo $result;
+
+
+  }
+
+  elseif($postjson['aksi']=='selectEvento'){
+    $data = array();
+    $query = mysqli_query($mysqli, "SELECT * FROM evento where idEvento='$postjson[idEvento]'");
+
+    $data = mysqli_fetch_array($query);
+    $datauser = array(
+      'idEvento' => $data['idEvento'],
+      'NomeEvento' => $data['NomeEvento'],
+      'Tipo' => $data['Tipo']
+    );
+    $result = json_encode(array('success'=>true, 'result'=>$datauser));
+    echo $result;
+  }
+
 
 
 ?>
