@@ -27,7 +27,7 @@
       <ion-card>
         <ion-item>
         <ion-card-title (click)="perfilEvento(evento.idEvento, evento.NomeEvento, evento.TipoEvento)">{{evento.NomeEvento}}</ion-card-title>
-        <ion-icon (click)="confirmar(evento.idEvento, evento.NomeEvento)" color="light" name="close" slot="end"></ion-icon>
+        <ion-icon (click)="confirmar(evento.idEvento, evento.NomeEvento)" color="light" name="trash" slot="end"></ion-icon>
       </ion-item>
         <br>
         <ion-card-content (click)="perfilEvento(evento.idEvento, evento.NomeEvento, evento.TipoEvento)">{{evento.TipoEvento}}</ion-card-content>
