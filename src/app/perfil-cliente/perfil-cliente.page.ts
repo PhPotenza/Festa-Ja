@@ -11,6 +11,15 @@ import { Storage } from '@ionic/Storage';
 })
 export class PerfilClientePage implements OnInit {
 
+  nome: string = "";
+  email: string ="";
+  cpf: string = "";
+  celular: string = "";
+  telefone: string = "";
+  contato_secundario: string = "";
+  anggota: any;
+
+
   constructor(
   	private router: Router,
   	private postPvdr: PostProvider,
@@ -26,6 +35,19 @@ export class PerfilClientePage implements OnInit {
 
   formAlterarSenha(){
   	this.router.navigate(['/alterar-senha']);
+  }
+
+  ionViewWillEnter(){
+    this.storage.get('session_storage').then((res)=>{
+      this.anggota = res;
+      this.nome = this.anggota.Nome;
+      this.email = this.anggota.Email;
+      this.cpf = this.anggota.CPF;
+      this.celular = this.anggota.Celular;
+      this.telefone = this.anggota.Telefone;
+      this.contato_secundario = this.anggota.SecunContat;
+      console.log(res);
+    });
   }
 
 }

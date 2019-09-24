@@ -25,7 +25,11 @@
         'Senha' => $data['Senha'],
         'Nome' => $data['Nome'],
         'Email' => $data ['Email'],
-        'idTipo' => $data['idTipo']
+        'idTipo' => $data['idTipo'],
+        'CPF' => $data['CPF'],
+        'Celular' => $data['Celular'],
+        'Telefone' => $data['Telefone'],
+        'SecunContat'=> $data['SecunContat']
       );
 
       if($data['Status']=='y'){
@@ -98,14 +102,14 @@
 
 //método para adicionar evento
   elseif($postjson['aksi']=='addEvento'){
-    $data = array();
     $query = mysqli_query($mysqli, "INSERT INTO evento SET
       NomeEvento = '$postjson[nome]',
       Tipo = '$postjson[tipo]',
+      CEP = '$postjson[cep]',
       idUsuario = '$postjson[IdUsuario]'
     ");
 
-    if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
+    if($query) $result = json_encode(array('success'=>true));
     else $result = json_encode(array('success'=>false, 'msg'=>'Erro! Por favor tente novamente'));
 
     echo $result;

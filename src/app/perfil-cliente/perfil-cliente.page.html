@@ -18,39 +18,33 @@
 <ion-list no-lines>
 
 	<ion-item lines="none">
-          <ion-avatar slot="start">
-            <img src="./assets/avatar-luke.png">
-          </ion-avatar>
           <ion-label>
-            <h2>Luke</h2>
-            <h3>sei la, quis colocar um exemplo assim</h3>
-            <p>e assim tambem.....</p>
+            <h2>{{nome}}</h2>
           </ion-label>
         </ion-item>
 
 	  <ion-item>
-	    <ion-label>Nome</ion-label>
+	    <ion-label>{{nome}}</ion-label>
 	  </ion-item>
 
 	  <ion-item>
-	    <ion-label>E-mail</ion-label>
-	    
+	    <ion-label>{{email}}</ion-label>
 	  </ion-item>
 
 	  <ion-item>
-	    <ion-label>CPF</ion-label>
+	    <ion-label>{{cpf}}</ion-label>
 	  </ion-item>
 
 	  <ion-item>
-	    <ion-label>Celular</ion-label>
+	    <ion-label>{{celular}}</ion-label>
 	  </ion-item>
 
 	  <ion-item>
-	    <ion-label>Telefone</ion-label>
+	    <ion-label>{{telefone}}</ion-label>
 	  </ion-item>
 	
 	  <ion-item lines="none">
-	    <ion-label>Contato Secundário</ion-label>
+	    <ion-label>{{contato_secundario}}</ion-label>
 	  </ion-item>
 
 	</ion-list>
@@ -60,6 +54,6 @@
 
 <ion-footer class="ion-padding-bottom">
 	<div class="ion-padding-bottom">
-	  <ion-button expand="block" padding color="light" (click)="formAlterarSenha()">Alterar Senha</ion-button>
+	  <ion-button expand="block" padding color="light">Alterar Senha</ion-button>
 	</div>
 </ion-footer>
