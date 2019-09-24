@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar color="light">
+    <ion-title>Adicionar Convidados</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding="true" scroll="false">
+  <form>
+    <label>Nome</label>
+    <ion-input type="text" [(ngModel)]="nome_convidados">
+    <div class="spacer" style="height: 10px;"></div>
+    <ion-radio>Homem</ion-radio>
+    <ion-radio>Mulher</ion-radio>
+    <ion-radio>Criança</ion-radio>
+  </form>
+  <ion-button class="ion-button" expand="block" padding color="light" (click)="goToConvidados()">Adicionar</ion-button>
+</ion-content>

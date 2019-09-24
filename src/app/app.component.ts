@@ -21,7 +21,7 @@ export class AppComponent {
     {
       title: 'Cadastrar Serviços',
       url: '/cadastrar-servico',
-      icon: 'add'
+      icon: 'briefcase'
     },
     {
       title: 'Adicionar Evento',
@@ -37,6 +37,11 @@ export class AppComponent {
       title: 'Buffet',
       url: '/buffet',
       icon: 'restaurant'
+    },
+    {
+      title: 'Convidados',
+      url: '/convidados',
+      icon: 'people'
     }
   ];
 

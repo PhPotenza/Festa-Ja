@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>divulgar-evento</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding="true" class="has-header">
+  <h4 style="color:#000000;text-align:center;">Escolha um tipo de convite</h4>
+  <div>
+    <style>
+      input[type="radio"] {
+              visibility: hidden;
+      }
+          
+      label {
+          display: block;
+          border: 4px solid #FFF;
+          width: 100%;
+      }
+      
+      input[type="radio"]:checked+label {
+          border-color: #ff6600;
+      }
+      img {
+        height: 100%;
+      }
+    </style>
+      <input type="radio" name="imagem">
+      <label for="i1">
+        <img src="http://vkontakte.ru/images/gifts/256/81.jpg" alt="">
+      </label>
+      <input type="radio" name="imagem">
+      <label for="i2">
+        <img src="http://vkontakte.ru/images/gifts/256/82.jpg" alt="">
+      </label>
+      <input type="radio" name="imagem">
+      <label for="i3">
+        <img src="http://vkontakte.ru/images/gifts/256/83.jpg" alt="">
+      </label>
+  </div>
+  <ion-button></ion-button>
+  <ion-button></ion-button>
+</ion-content>

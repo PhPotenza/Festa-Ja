@@ -91,5 +91,20 @@
 
   }
 
+  //método para cadastrar servico
+  elseif($postjson['aksi']=='cadastrarServico'){//criando função
+    $query = mysqli_query($mysqli, "INSERT INTO service SET
+    idUsuario = '$postjson[idUsuario]',
+    Nome = '$postjson[nome_servico]',
+    Tipo = '$postjson[tipo_servico]',
+    Descricao = '$postjson[descricao_servico]'
+    ");
+
+    if($query) $result = json_encode(array('success'=>true, 'msg'=>'Serviço cadstrado com sucesso!'));
+    else($query) $result = json_encode(array('success'=>false, 'msg'=>'Erro! Por favor tente novamente!'));
+
+    echo $result;
+  }
+
 
 ?>
