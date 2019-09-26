@@ -4,13 +4,12 @@ import { PostProvider } from '../../providers/post-provider';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/Storage';
 
-
 @Component({
-  selector: 'app-buffet',
-  templateUrl: './buffet.page.html',
-  styleUrls: ['./buffet.page.scss'],
+  selector: 'app-adicionar-buffet',
+  templateUrl: './adicionar-buffet.page.html',
+  styleUrls: ['./adicionar-buffet.page.scss'],
 })
-export class BuffetPage implements OnInit {
+export class AdicionarBuffetPage implements OnInit {
 
   constructor(
   	private router: Router,
@@ -21,8 +20,8 @@ export class BuffetPage implements OnInit {
   ngOnInit() {
   }
 
- formAdicionarBuffet(){
-    this.router.navigate(['/adicionar-buffet']);
+ formBuffet(){
+    this.router.navigate(['/buffet']);
   }
 
 }

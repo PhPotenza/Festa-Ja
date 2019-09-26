@@ -1,15 +1,18 @@
 <ion-header>
   <ion-toolbar color="light">
+      <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
     <ion-title>Buffet</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-	<ion-grid no-padding>
+	<ion-grid  no-padding>
         
         <!-- inicio dos salgados: titulo-->
         <ion-row>
-          <ion-col size="7">
+          <ion-col size="6">
             <div align="center"><b>Alimento</b></div>
           </ion-col>
           <ion-col>
@@ -20,8 +23,8 @@
 
         <!-- lista dos salgados -->
         <ion-row class="ion-align-items-center">
-          <ion-col size="7">
-            <div>Bolinha de Queijo</div>
+          <ion-col size="6">
+            <div align="center">Bolinha de Queijo</div>
           </ion-col>
           <ion-col no-padding>
             <div align="right">100</div>
@@ -35,8 +38,8 @@
         </ion-row>
 
         <ion-row class="ion-align-items-center">
-          <ion-col size="7">
-            <div>Coxinha de frango</div>
+          <ion-col size="6">
+            <div align="center">Coxinha de frango</div>
           </ion-col>
           <ion-col no-padding>
             <div align="right">120</div>
@@ -50,8 +53,8 @@
         </ion-row>
 
         <ion-row class="ion-align-items-center">
-          <ion-col size="7">
-            <div>Empanada</div>
+          <ion-col size="6">
+            <div align="center">Empanada</div>
           </ion-col>
           <ion-col no-padding>
             <div align="right">40</div>
@@ -68,7 +71,7 @@
 
         <!--inicio dos Bebidas: titulo-->
         <ion-row>
-        <ion-col size="7">
+        <ion-col size="6">
             <div align="center"><b>Bebidas</b></div>
           </ion-col>
           <ion-col>
@@ -78,8 +81,8 @@
 
         <!-- lista de bebidas-->
         <ion-row class="ion-align-items-center">
-            <ion-col size="7">
-              <div>Coca</div>
+            <ion-col size="6">
+              <div align="center">Coca</div>
             </ion-col>
             <ion-col no-padding>
               <div align="right">5</div>
@@ -93,8 +96,8 @@
           </ion-row>
   
           <ion-row class="ion-align-items-center">
-            <ion-col size="7">
-              <div>Guarana</div>
+            <ion-col size="6">
+              <div align="center">Guarana</div>
             </ion-col>
             <ion-col no-padding>
               <div align="right">10</div>
@@ -108,8 +111,8 @@
           </ion-row>
   
           <ion-row class="ion-align-items-center">
-            <ion-col size="7">
-              <div>Catuaba</div>
+            <ion-col size="6">
+              <div align="center">Catuaba</div>
             </ion-col>
             <ion-col no-padding>
               <div align="right">900</div>
@@ -123,9 +126,70 @@
           </ion-row>
           <!-- fim da lista-->
 
+          <!--inicio dos Doces: titulo-->
+          <ion-row>
+            <ion-col size="6">
+                <div align="center"><b>Doces</b></div>
+              </ion-col>
+              <ion-col>
+                <div align="center"><b>Quantidade</b></div>
+              </ion-col>
+            </ion-row>
+
+            <!-- lista de doces-->
+          <ion-row class="ion-align-items-center">
+            <ion-col size="6">
+              <div align="center">Brigadeiro</div>
+            </ion-col>
+            <ion-col no-padding>
+              <div align="right">40</div>
+            </ion-col>
+            <ion-col no-padding>
+              <div>Unid.</div>
+            </ion-col>
+            <ion-col no-padding>
+              <div align="center"><ion-checkbox color="light"></ion-checkbox></div>
+            </ion-col>
+          </ion-row>
+
+          <ion-row class="ion-align-items-center">
+            <ion-col size="6">
+              <div align="center">Bicho-de-pé</div>
+            </ion-col>
+            <ion-col no-padding>
+              <div align="right">30</div>
+            </ion-col>
+            <ion-col no-padding>
+              <div>Unid.</div>
+            </ion-col>
+            <ion-col no-padding>
+              <div align="center"><ion-checkbox color="light"></ion-checkbox></div>
+            </ion-col>
+          </ion-row>
+
+          <ion-row class="ion-align-items-center">
+            <ion-col size="6">
+              <div align="center">Beijinho</div>
+            </ion-col>
+            <ion-col no-padding>
+              <div align="right">20</div>
+            </ion-col>
+            <ion-col no-padding>
+              <div>Unid.</div>
+            </ion-col>
+            <ion-col no-padding>
+              <div align="center"><ion-checkbox color="light"></ion-checkbox></div>
+            </ion-col>
+          </ion-row>
 
 
 
       </ion-grid>
 
 </ion-content>
+
+<ion-footer class="ion-padding-bottom">
+	<div class="ion-padding-bottom">
+	  <ion-button expand="block" padding color="light" (click)="formAdicionarBuffet()">Adicionar</ion-button>
+	</div>
+</ion-footer>

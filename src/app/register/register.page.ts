@@ -20,6 +20,9 @@ export class RegisterPage implements OnInit {
   celular: string = "";
   telefone: string = "";
   celular2: string = "";
+  toggle: boolean = false;
+  DataNasc: string = "";
+  userTipo: number = 0;
 
   constructor(
   	private router: Router,
@@ -79,6 +82,12 @@ export class RegisterPage implements OnInit {
         });
         toast.present();
     }else{
+        if(this.toggle==false){
+            this.userTipo=1;
+        }
+        else{
+          this.userTipo=2;
+        }
 
       let body = {
         username: this.username,
@@ -89,6 +98,9 @@ export class RegisterPage implements OnInit {
         celular: this.celular,
         telefone: this.telefone,
         celular2: this.celular2,
+        userTipo: this.userTipo,
+        DataNasc: this.DataNasc,
+
         aksi: 'register'
       };
 

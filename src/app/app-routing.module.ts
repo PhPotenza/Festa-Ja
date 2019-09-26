@@ -16,9 +16,13 @@ const routes: Routes = [
   { path: 'editar-perfil', loadChildren: './editar-perfil/editar-perfil.module#EditarPerfilPageModule' },
   { path: 'buffet', loadChildren: './buffet/buffet.module#BuffetPageModule' },
   { path: 'perfil-evento', loadChildren: './perfil-evento/perfil-evento.module#PerfilEventoPageModule' },
-  { path: 'editar-servico', loadChildren: './editar-servico/editar-servico.module#EditarServicoPageModule' },  { path: 'convidados', loadChildren: './convidados/convidados.module#ConvidadosPageModule' },
+  { path: 'editar-servico', loadChildren: './editar-servico/editar-servico.module#EditarServicoPageModule' },
+  { path: 'convidados', loadChildren: './convidados/convidados.module#ConvidadosPageModule' },
   { path: 'adicionar-convidados', loadChildren: './adicionar-convidados/adicionar-convidados.module#AdicionarConvidadosPageModule' },
   { path: 'divulgar-evento', loadChildren: './divulgar-evento/divulgar-evento.module#DivulgarEventoPageModule' },
+  { path: 'perfil-evento/:id/:nome/:tipo', loadChildren: './perfil-evento/perfil-evento.module#PerfilEventoPageModule' },
+  { path: 'editar-servico', loadChildren: './editar-servico/editar-servico.module#EditarServicoPageModule' },
+  { path: 'adicionar-buffet', loadChildren: './adicionar-buffet/adicionar-buffet.module#AdicionarBuffetPageModule' },
 
 
 
