@@ -110,7 +110,7 @@
     ");
 
     if($query) $result = json_encode(array('success'=>true, 'msg'=>'Serviço cadstrado com sucesso!'));
-    else($query) $result = json_encode(array('success'=>false, 'msg'=>'Erro! Por favor tente novamente!'));
+    else $result = json_encode(array('success'=>false, 'msg'=>'Erro! Por favor tente novamente!'));
 
     echo $result;
   }
