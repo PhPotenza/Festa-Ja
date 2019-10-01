@@ -73,9 +73,12 @@ export class CalculadoraAPage implements OnInit {
   	}, 500);
   }
 
-
-  perfilEvento(id,nome,tipo){
-  	this.router.navigate(['/perfil-evento/' + id + '/' + nome + '/' + tipo]);
+formCalculadorab(){
+    this.router.navigate(['/calculadora-b']);
   }
 
-}
+
+  }
+
+
+

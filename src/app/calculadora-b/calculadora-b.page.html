@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar color="light">
+      <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+    <ion-title>Calculadora</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="ion-padding">
+	
+	<h4>Informe os convidados</h4>
+
+	<ion-list no-lines>
+
+	  <ion-item>
+	    <ion-label position="floating" class="item">Login</ion-label>
+	    <ion-input type="text" [(ngModel)]="username"></ion-input>
+	  </ion-item>
+
+	  <ion-item>
+	    <ion-label position="floating">Senha</ion-label>
+	    <ion-input type="password" [(ngModel)]="password"></ion-input>
+	  </ion-item>
+
+	  <ion-item>
+	    <ion-label position="floating">Confirmar Senha</ion-label>
+	    <ion-input type="password" [(ngModel)]="confirm_password"></ion-input>
+	  </ion-item>
+
+	  <ion-item>
+	    <ion-label>Deseja ser um fornecedor?</ion-label>
+		<ion-toggle slot="end" class="ion-toggle" [(ngModel)]="toggle"></ion-toggle>
+	  </ion-item>
+
+	</ion-list>
+
+</ion-content>
