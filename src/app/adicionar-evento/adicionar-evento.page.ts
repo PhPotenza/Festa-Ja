@@ -13,7 +13,16 @@ import { Storage } from '@ionic/Storage';
 export class AdicionarEventoPage implements OnInit {
 
   nome: string = "";
+  cep: string="";
   tipo: string = "";
+  uf: string="";
+  cidade: string="";
+  bairro: string="";
+  endereco: string ="";
+  numero: number;
+  complemento: string="";
+  date1: string="";
+  time1: string="";
   idUsuario: number= 0;
   anggota: any;
 
@@ -46,12 +55,28 @@ export class AdicionarEventoPage implements OnInit {
           duration: 3000
         });
         toast.present();
-    }else{
+    }else if(this.cep==""){
+      const toast = await this.toastCtrl.create({
+        message: 'CEP Obrigatório',
+        duration: 3000
+      });
+      toast.present();
+  }
+    else{
 
       let body = {
         nome: this.nome,
         tipo: this.tipo,
+        cep: this.cep,
+        estado: this.uf,
+        cidade: this.cidade,
+        bairro: this.bairro,
+        endereco: this.endereco,
+        numero: this.numero,
         IdUsuario: this.idUsuario,
+        complemento: this.complemento,
+        date1: this.date1,
+        time1: this.time1,
         aksi: 'addEvento'
       };
 

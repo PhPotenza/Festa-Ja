@@ -39,6 +39,11 @@ export class AppComponent {
       icon: 'restaurant'
     },
     {
+      title: 'Calculadora',
+      url: '/calculadora-a',
+      icon: 'calculator'
+    },
+    {
       title: 'Convidados',
       url: '/convidados',
       icon: 'people'

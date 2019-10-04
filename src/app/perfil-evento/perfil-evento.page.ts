@@ -12,7 +12,16 @@ export class PerfilEventoPage implements OnInit {
 
   idEvento: number;
   NomeEvento: string;
-  Tipo: string;
+  TipoEvento: string;
+  CEP: string;
+  Cidade: string;
+  Estado: string;
+  Bairro: string;
+  Endereco: string;
+  Numero: number;
+  Complemento: string;
+  date1: string;
+  time1: string;
   anggota: any;
   constructor(
     private router: Router,
@@ -24,11 +33,30 @@ export class PerfilEventoPage implements OnInit {
   ngOnInit() {
     this.actRoute.params.subscribe((data: any) =>{
       this.idEvento = data.id;
-      this.NomeEvento = data.nome;
-      this.Tipo = data.tipo;
-      console.log(data);
       this.selectEvento();
   	});
+  }
+
+  ionViewWillEnter(){
+    this.actRoute.params.subscribe((data: any) =>{
+      this.idEvento = data.id;
+      this.selectEvento();
+  	});
+    this.storage.get('session_storage2').then((res)=>{
+      this.anggota = res;
+      this.NomeEvento = this.anggota.NomeEvento;
+      this.TipoEvento = this.anggota.Tipo;
+      this.CEP = this.anggota.CEP;
+      this.Estado = this.anggota.Estado;
+      this.Cidade = this.anggota.Cidade;
+      this.Endereco = this.anggota.Endereco;
+      this.Bairro = this.anggota.Bairro;
+      this.Numero = this.anggota.Numero;
+      this.Complemento = this.anggota.Complemento;
+      this.date1 = this.anggota.Data_Inicio;
+      this.time1 = this.anggota.Hora_Inicio;
+      console.log(res);
+    });
   }
 
   selectEvento(){
@@ -37,7 +65,9 @@ export class PerfilEventoPage implements OnInit {
           aksi : 'selectEvento',
         };
         this.postPvdr.postData(body, 'proses-api.php').subscribe(data => {
-
+          if(data.success){
+            this.storage.set('session_storage2', data.result);
+          }
         });
       
   }
