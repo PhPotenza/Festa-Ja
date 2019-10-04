@@ -24,7 +24,8 @@ const routes: Routes = [
   { path: 'editar-servico', loadChildren: './editar-servico/editar-servico.module#EditarServicoPageModule' },
   { path: 'adicionar-buffet', loadChildren: './adicionar-buffet/adicionar-buffet.module#AdicionarBuffetPageModule' },
   { path: 'calculadora-a', loadChildren: './calculadora-a/calculadora-a.module#CalculadoraAPageModule' },
-  { path: 'calculadora-b', loadChildren: './calculadora-b/calculadora-b.module#CalculadoraBPageModule' },
+  { path: 'calculadora-b', loadChildren: './calculadora-b/calculadora-b.module#CalculadoraBPageModule' },  { path: 'calculadora-c', loadChildren: './calculadora-c/calculadora-c.module#CalculadoraCPageModule' },
+
 
 ];
 

@@ -10,30 +10,35 @@
 
 <ion-content class="ion-padding">
 	
-	<h4>Informe os convidados</h4>
+	<h4>Informe a quantidade de convidados</h4>
 
 	<ion-list no-lines>
 
 	  <ion-item>
-	    <ion-label position="floating" class="item">Login</ion-label>
-	    <ion-input type="text" [(ngModel)]="username"></ion-input>
+	    <ion-label>Homens</ion-label>
+        <ion-input type="number" inputmode="numeric"></ion-input>
 	  </ion-item>
 
 	  <ion-item>
-	    <ion-label position="floating">Senha</ion-label>
-	    <ion-input type="password" [(ngModel)]="password"></ion-input>
+	     <ion-label>Mulheres</ion-label>
+        <ion-input type="number" inputmode="numeric"></ion-input>
 	  </ion-item>
 
 	  <ion-item>
-	    <ion-label position="floating">Confirmar Senha</ion-label>
-	    <ion-input type="password" [(ngModel)]="confirm_password"></ion-input>
+	     <ion-label>Crianças</ion-label>
+        <ion-input type="number" inputmode="numeric"></ion-input>
 	  </ion-item>
 
+	  <p text align="center">OU</p>
+
 	  <ion-item>
-	    <ion-label>Deseja ser um fornecedor?</ion-label>
+	    <ion-label>Deseja usar lista de convidados?</ion-label>
 		<ion-toggle slot="end" class="ion-toggle" [(ngModel)]="toggle"></ion-toggle>
 	  </ion-item>
 
 	</ion-list>
+	<ion-footer class="ion-padding-bottom">
+<ion-button class="ion-button" expand="block" padding color="light" (click)="formCalculadorac()">Continuar</ion-button>
+</ion-footer>  
 
 </ion-content>
