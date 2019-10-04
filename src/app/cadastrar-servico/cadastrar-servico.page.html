@@ -20,7 +20,7 @@
       </ion-item>
       <ion-item>
         <ion-label>Tipo</ion-label>
-        <ion-select multiple="false" cancelText="Cancelar" okText="Selecionar">
+        <ion-select [(ngModel)]="tipo_servico" multiple="false" cancelText="Cancelar" okText="Selecionar">
             <ion-select-option value="buffet">Buffet</ion-select-option>
             <ion-select-option value="bebidas">Bebidas</ion-select-option>
             <ion-select-option value="entrtenimento">Entretenimento</ion-select-option>
@@ -31,5 +31,5 @@
      </ion-list>
   </ion-content>
   <ion-footer>
-  <ion-button class="ion-button" expand="block" color="light" (click)="goToPerfilServico()">Cadastrar</ion-button>
+  <ion-button class="ion-button" expand="block" color="light" (click)="cadastrarServico()">Cadastrar</ion-button>
   </ion-footer>  

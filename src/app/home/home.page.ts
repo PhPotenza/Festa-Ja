@@ -151,8 +151,8 @@ export class HomePage implements OnInit {
     await alert.present();
   }
 
-  perfilEvento(id,nome,tipo){
-  	this.router.navigate(['/perfil-evento/' + id + '/' + nome + '/' + tipo]);
+  perfilEvento(id){
+  	this.router.navigate(['/perfil-evento/' + id]);
   }
 
 }

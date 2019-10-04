@@ -22,11 +22,9 @@ const routes: Routes = [
   { path: 'divulgar-evento', loadChildren: './divulgar-evento/divulgar-evento.module#DivulgarEventoPageModule' },
   { path: 'perfil-evento/:id/:nome/:tipo', loadChildren: './perfil-evento/perfil-evento.module#PerfilEventoPageModule' },
   { path: 'editar-servico', loadChildren: './editar-servico/editar-servico.module#EditarServicoPageModule' },
-  { path: 'adicionar-buffet', loadChildren: './adicionar-buffet/adicionar-buffet.module#AdicionarBuffetPageModule' },  { path: 'calculadora-a', loadChildren: './calculadora-a/calculadora-a.module#CalculadoraAPageModule' },
+  { path: 'adicionar-buffet', loadChildren: './adicionar-buffet/adicionar-buffet.module#AdicionarBuffetPageModule' },
+  { path: 'calculadora-a', loadChildren: './calculadora-a/calculadora-a.module#CalculadoraAPageModule' },
   { path: 'calculadora-b', loadChildren: './calculadora-b/calculadora-b.module#CalculadoraBPageModule' },
-
-
-
 
 ];
 

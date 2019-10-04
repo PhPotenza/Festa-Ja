@@ -26,11 +26,12 @@
   <ion-item-sliding *ngFor="let evento of eventos">
       <ion-card>
         <ion-item>
-        <ion-card-title (click)="perfilEvento(evento.idEvento, evento.NomeEvento, evento.TipoEvento)">{{evento.NomeEvento}}</ion-card-title>
+        <ion-card-title (click)="perfilEvento(evento.idEvento)">{{evento.NomeEvento}}</ion-card-title>
         <ion-icon (click)="confirmar(evento.idEvento, evento.NomeEvento)" color="light" name="trash" slot="end"></ion-icon>
       </ion-item>
-        <br>
-        <ion-card-content (click)="perfilEvento(evento.idEvento, evento.NomeEvento, evento.TipoEvento)">{{evento.TipoEvento}}</ion-card-content>
+        
+        <ion-card-content (click)="perfilEvento(evento.idEvento)">{{evento.TipoEvento}}</ion-card-content>
+        <ion-card-content (click)="perfilEvento(evento.idEvento)">{{evento.CEP}}</ion-card-content>
       </ion-card>
   </ion-item-sliding>
 </ion-list>

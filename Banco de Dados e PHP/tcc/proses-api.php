@@ -89,7 +89,8 @@
       $data[] = array(
         'idEvento' => $row['idEvento'],
         'NomeEvento' => $row['NomeEvento'],
-        'TipoEvento' => $row['Tipo']
+        'TipoEvento' => $row['Tipo'],
+        'CEP' => $row['CEP'],
       );
     }
 
@@ -100,28 +101,21 @@
 
   }
 
-  //método para cadastrar servico
-  elseif($postjson['aksi']=='cadastrarServico'){//criando função
-    $query = mysqli_query($mysqli, "INSERT INTO service SET
-    idUsuario = '$postjson[idUsuario]',
-    Nome = '$postjson[nome_servico]',
-    Tipo = '$postjson[tipo_servico]',
-    Descricao = '$postjson[descricao_servico]'
-    ");
-
-    if($query) $result = json_encode(array('success'=>true, 'msg'=>'Serviço cadstrado com sucesso!'));
-    else $result = json_encode(array('success'=>false, 'msg'=>'Erro! Por favor tente novamente!'));
-
-    echo $result;
-  }
-
 //método para adicionar evento
   elseif($postjson['aksi']=='addEvento'){
     $query = mysqli_query($mysqli, "INSERT INTO evento SET
       NomeEvento = '$postjson[nome]',
       Tipo = '$postjson[tipo]',
       CEP = '$postjson[cep]',
-      idUsuario = '$postjson[IdUsuario]'
+      Estado = '$postjson[estado]',
+      idUsuario = '$postjson[IdUsuario]',
+      Bairro = '$postjson[bairro]',
+      Cidade = '$postjson[cidade]',
+      Endereco = '$postjson[endereco]',
+      Numero = '$postjson[numero]',
+      Complemento = '$postjson[complemento]',
+      Data_Inicio = '$postjson[date1]',
+      Hora_Inicio = '$postjson[time1]'
     ");
 
     if($query) $result = json_encode(array('success'=>true));
@@ -151,11 +145,49 @@
     $datauser = array(
       'idEvento' => $data['idEvento'],
       'NomeEvento' => $data['NomeEvento'],
-      'Tipo' => $data['Tipo']
+      'Tipo' => $data['Tipo'],
+      'CEP' => $data['CEP'],
+      'Estado' => $data['Estado'],
+      'Bairro' => $data['Bairro'],
+      'Cidade' => $data['Cidade'],
+      'Endereco' => $data['Endereco'],
+      'Numero' => $data['Numero'],
+      'Complemento' => $data['Complemento'],
+      'Data_Inicio' => $data['Data_Inicio'],
+      'Hora_Inicio' => $data['Hora_Inicio'],
     );
     $result = json_encode(array('success'=>true, 'result'=>$datauser));
     echo $result;
   }
+
+  //método para cadastrar servico
+    elseif($postjson['aksi']=='cadastrarServico'){
+      $query = mysqli_query($mysqli, "INSERT INTO service SET
+        idUsuario = '$postjson[IdUsuario]'
+      ");
+
+      if($query) $result = json_encode(array('success'=>true));
+      else $result = json_encode(array('success'=>false, 'msg'=>'Erro! Por favor tente novamente'));
+
+      echo $result;
+    }
+
+    //Update do perfil cliente (editar perfil)
+    elseif($postjson['aksi']=='updatePerfil'){
+      $query = mysqli_query($mysqli, "UPDATE usuario SET
+        nome = '$postjson[nome]',
+        email = '$postjson[email]',
+        cpf =  '$postjson[cpf]',
+        celular =  '$postjson[celular]',
+        telefone =  '$postjson[telefone]',
+        SecunContat =  '$postjson[contato_secundario]',
+      ");
+
+      if($query) $result = json_encode(array('success'=>true, 'msg'=>'Atualizado com sucesso'));
+      else $result = json_encode(array('success'=>false, 'msg'=>'Erro! Por favor tente novamente'));
+
+      echo $result;
+    }
 
 
 

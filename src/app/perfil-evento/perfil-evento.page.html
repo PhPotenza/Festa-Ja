@@ -4,6 +4,11 @@
           <ion-menu-button></ion-menu-button>
         </ion-buttons>
     <ion-title>Evento</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button>
+      <ion-icon slot="icon-only" name="create"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -13,7 +18,28 @@
     <ion-card-title >{{NomeEvento}}</ion-card-title>
     <ion-icon color="light" name="trash" slot="end"></ion-icon>
   </ion-item>
+  <ion-item lines="none">
+    <h5>Informações do(a) {{TipoEvento}}</h5>
+  </ion-item>
     <br>
-    <ion-card-content>{{Tipo}}</ion-card-content>
+    <br>
+    <ion-item lines="none">
+      <h5>Local</h5>
+    </ion-item>
+    <ion-card-content>
+    {{CEP}}
+    <br>
+    {{Cidade}} - {{Estado}}
+    <br>
+    {{Bairro}}
+    <br>
+    {{Endereco}}, {{Numero}}
+    <br>
+    {{Complemento}}
+    <br>
+    {{date1}}
+    <br>
+    {{time1}}
+  </ion-card-content>
   </ion-card>
 </ion-content>
