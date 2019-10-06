@@ -12,6 +12,23 @@ import { AlertController } from '@ionic/angular';
 })
 export class CalculadoraGPage implements OnInit {
 
+  doces = [
+    { name: 'Brigadeiro', isChecked: false },
+    { name: 'Beijinho', isChecked: false },
+    { name: 'Bicho de Pé', isChecked: false },
+    { name: 'Bem Casado', isChecked: false },
+    { name: 'Brigadeiro de Colher', isChecked: false },
+    { name: 'Bolo', isChecked: false },
+    { name: 'Torta', isChecked: false },
+    { name: 'Palha Italiana', isChecked: false },
+    { name: 'Maçã do Amor', isChecked: false },
+    { name: 'Quindim', isChecked: false },
+    { name: 'Pudim', isChecked: false },
+    { name: 'Petit Gateau', isChecked: false },
+    { name: 'Donuts', isChecked: false },
+    { name: 'Cupcake', isChecked: false },
+  ];
+  
   constructor(
     private router: Router,
   	private postPvdr: PostProvider,
@@ -26,5 +43,6 @@ export class CalculadoraGPage implements OnInit {
 
   formCalculadorah(){
     this.router.navigate(['/calculadora-h']);
+    console.log(this.doces);
     }
 }

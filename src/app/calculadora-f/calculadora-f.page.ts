@@ -12,6 +12,15 @@ import { AlertController } from '@ionic/angular';
 })
 export class CalculadoraFPage implements OnInit {
 
+  bebidas = [
+    { name: 'Cerveja', isChecked: false },
+    { name: 'Refrigerante', isChecked: false },
+    { name: 'Suco', isChecked: false },
+    { name: 'Água', isChecked: false },
+    { name: 'Cachaça', isChecked: false },
+    { name: 'Vodka', isChecked: false },
+  ];
+
   constructor(
     private router: Router,
   	private postPvdr: PostProvider,
@@ -26,5 +35,6 @@ export class CalculadoraFPage implements OnInit {
 
   formCalculadorag(){
     this.router.navigate(['/calculadora-g']);
+    console.log(this.bebidas);
     }
 }

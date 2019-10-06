@@ -13,54 +13,10 @@
 
 	<ion-list no-lines>
 
-		<ion-item>
-			<div>Coxinha de frango</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
-		</ion-item>
-		<ion-item>
-			<div>Bolinha de Queijo</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
-		</ion-item>
-		<ion-item>
-			<div>Mini Quibe Frito</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
-		</ion-item>
-		<ion-item>
-			<div>Croquete</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
-		</ion-item>
-		<ion-item>
-			<div>Enroladinho de Salsicha</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
-		</ion-item>
-		<ion-item>
-			<div>Enroladinho de Presunto e Queijo</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
-		</ion-item>
-		<ion-item>
-			<div>Pão de Queijo</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
-		</ion-item>
-		<ion-item>
-			<div>Risole de Queijo e Presunto</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
-		</ion-item>
-		<ion-item>
-			<div>Risole de Camarão</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
-		</ion-item>
-		<ion-item>
-			<div>Pastel</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
-		</ion-item>
-		<ion-item>
-			<div>Empadinha</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
-		</ion-item>
-		<ion-item>
-			<div>Nuggets de Frango</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
-		</ion-item>
-		<ion-item>
-			<div>Croissant</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
-		</ion-item>
-		<ion-item>
-			<div>Trouxinhas</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
-		</ion-item>
-		<ion-item>
-			<div>Esfiha</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
-		</ion-item>
-		<ion-item>
-			<div>Mini Pizza</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
-		</ion-item>
+		<ion-item *ngFor="let festa of festas">
+			<ion-label>{{festa.name}}</ion-label>
+			<ion-checkbox slot="end" [(ngModel)]="festa.isChecked"></ion-checkbox>
+		  </ion-item>
 	</ion-list>
 </ion-content>
 

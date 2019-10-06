@@ -13,48 +13,11 @@
   
     <ion-list no-lines>
   
-      <ion-item>
-        <div>Brigadeiro</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
+      <ion-item *ngFor="let doce of doces">
+        <ion-label>{{doce.name}}</ion-label>
+        <ion-checkbox slot="end" [(ngModel)]="doce.isChecked"></ion-checkbox>
       </ion-item>
-      <ion-item>
-        <div>Beijinho</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
-      </ion-item>
-      <ion-item>
-        <div>Bicho de Pé</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
-      </ion-item>
-      <ion-item>
-        <div>Bem Casado</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
-      </ion-item>
-      <ion-item>
-        <div>Brigadeiro de Colher</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
-      </ion-item>
-      <ion-item>
-        <div>Bolo</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
-      </ion-item>
-      <ion-item>
-        <div>Torta</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
-      </ion-item>
-      <ion-item>
-        <div>Palha Italiana</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
-      </ion-item>
-      <ion-item>
-        <div>Maçã do Amor</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
-      </ion-item>
-      <ion-item>
-        <div>Quindim</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
-      </ion-item>
-      <ion-item>
-        <div>Pudim</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
-      </ion-item>
-      <ion-item>
-        <div>Petit Gateau</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
-      </ion-item>
-      <ion-item>
-        <div>Donuts</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
-      </ion-item>
-      <ion-item>
-        <div>Cupcake</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
-      </ion-item>
+
     </ion-list>
   </ion-content>
   

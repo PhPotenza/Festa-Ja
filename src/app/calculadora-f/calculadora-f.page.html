@@ -13,24 +13,11 @@
   
     <ion-list no-lines>
   
-      <ion-item>
-        <div>Cerveja</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
+      <ion-item *ngFor="let bebida of bebidas">
+        <ion-label>{{bebida.name}}</ion-label>
+        <ion-checkbox slot="end" [(ngModel)]="bebida.isChecked"></ion-checkbox>
       </ion-item>
-      <ion-item>
-        <div>Refrigerante</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
-      </ion-item>
-      <ion-item>
-        <div>Suco</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
-      </ion-item>
-      <ion-item>
-        <div>Água</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
-      </ion-item>
-      <ion-item>
-        <div>Cachaça</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
-      </ion-item>
-      <ion-item>
-        <div>Vodka</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
-      </ion-item>
+
     </ion-list>
   </ion-content>
   

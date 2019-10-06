@@ -14,72 +14,32 @@
   
        <h4>Boi</h4>
 
-      <ion-item>
-        <div>Alcatra</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
-      </ion-item>
-      <ion-item>
-        <div>Maminha</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
-      </ion-item>
-      <ion-item>
-        <div>Picanha</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
-      </ion-item>
-      <ion-item>
-        <div>Contrafilé</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
-      </ion-item>
-      <ion-item>
-        <div>Fraldinha</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
-      </ion-item>
-
+      <ion-item *ngFor="let Churras_boi of Churras_bois">
+			  <ion-label>{{Churras_boi.name}}</ion-label>
+			  <ion-checkbox slot="end" [(ngModel)]="Churras_boi.isChecked"></ion-checkbox>
+		  </ion-item>
+      
       <h4>Porco</h4>
 
-      <ion-item>
-        <div>Pernil</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
-      </ion-item>
-      <ion-item>
-        <div>Picanha Suína</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
-      </ion-item>
-      <ion-item>
-        <div>Lombo</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
-      </ion-item>
-      <ion-item>
-        <div>Costelinha</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
-      </ion-item>
-      <ion-item>
-        <div>Panceta</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
-      </ion-item>
+      <ion-item *ngFor="let Churras_porco of Churras_porcos">
+			  <ion-label>{{Churras_porco.name}}</ion-label>
+			  <ion-checkbox slot="end" [(ngModel)]="Churras_porco.isChecked"></ion-checkbox>
+		  </ion-item>
 
       <h4>Frango</h4>
 
-      <ion-item>
-        <div>Coxinha da asa</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
-      </ion-item>
-      <ion-item>
-        <div>Asinha</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
-      </ion-item>
-      <ion-item>
-        <div>Coração</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
-      </ion-item>
+      <ion-item *ngFor="let Churras_frango of Churras_frangos">
+			  <ion-label>{{Churras_frango.name}}</ion-label>
+			  <ion-checkbox slot="end" [(ngModel)]="Churras_frango.isChecked"></ion-checkbox>
+		  </ion-item>
 
       <h4>Outros</h4>
 
-      <ion-item>
-        <div>Linguiça para Churrasco</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
+      <ion-item *ngFor="let Churras_outro of Churras_outros">
+			  <ion-label>{{Churras_outro.name}}</ion-label>
+			  <ion-checkbox slot="end" [(ngModel)]="Churras_outro.isChecked"></ion-checkbox>
       </ion-item>
-      <ion-item>
-        <div>Salsichão</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
-      </ion-item>
-      <ion-item>
-        <div>Linguiça Toscana</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
-      </ion-item>
-      <ion-item>
-        <div>Pão de Alho</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
-      </ion-item>
-      <ion-item>
-        <div>Queijo Coalho</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
-      </ion-item>
-      <ion-item>
-        <div>Sal Grosso</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
-      </ion-item>
+      
     </ion-list>
   </ion-content>
 
