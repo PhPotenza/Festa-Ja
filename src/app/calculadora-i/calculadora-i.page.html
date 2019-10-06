@@ -1,31 +1,84 @@
 <ion-header>
-  <ion-toolbar color="light">
-      <ion-buttons slot="start">
-          <ion-menu-button></ion-menu-button>
+    <ion-toolbar color="light">
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
         </ion-buttons>
-    <ion-title>Buffet</ion-title>
-  </ion-toolbar>
-</ion-header>
+      <ion-title>Calculadora</ion-title>
+    </ion-toolbar>
+  </ion-header>
 
 <ion-content class="ion-padding">
+  
+    <h4><b>Resultado</b></h4>
     <ion-grid  no-padding>     
         
+      <ion-row>
+          <ion-col size="7">
+            <div align="start"><ion-text color="light"><b>Festa</b></ion-text></div>
+          </ion-col>
+          <ion-col>
+            <div align="start"><ion-text color="light"><b>Quant.</b></ion-text></div>
+          </ion-col>
+        </ion-row>
+
+
+        <ion-row class="ion-align-items-center">
+          <ion-col size="6">
+            <div>Bolinha de Queijo</div>
+          </ion-col>
+          <ion-col no-padding>
+            <div align="right">100</div>
+          </ion-col>
+          <ion-col no-padding>
+            <div>Unid.</div>
+          </ion-col>
+          <ion-col no-padding>
+            <div align="center"><ion-checkbox color="light"></ion-checkbox></div>
+          </ion-col>
+        </ion-row>
+
+        <!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
         <ion-row>
-            <ion-col size="7">
-              <div align="start"><ion-text color="light"><b>Festa</b></ion-text></div>
-            </ion-col>
-            <ion-col>
-              <div align="start"><ion-text color="light"><b>Quant.</b></ion-text></div>
-            </ion-col>
-          </ion-row>
-  
-  
-          <ion-row class="ion-align-items-center">
+        <ion-col size="7">
+            <div><ion-text color="light"><b>Churrasco</b></ion-text></div>
+          </ion-col>
+          <ion-col>
+            <div><ion-text color="light"><b>Quant.</b></ion-text></div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="ion-align-items-center">
             <ion-col size="6">
-              <div>Bolinha de Queijo</div>
+              <div>Coca</div>
             </ion-col>
             <ion-col no-padding>
-              <div align="right">100</div>
+              <div align="right">5</div>
+            </ion-col>
+            <ion-col no-padding>
+              <div>L</div>
+            </ion-col>
+            <ion-col no-padding>
+              <div align="center"><ion-checkbox color="light"></ion-checkbox></div>
+            </ion-col>
+          </ion-row>
+
+          <!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+          <ion-row>
+            <ion-col size="7">
+                <div><ion-text color="light"><b>Porções</b></ion-text></div>
+              </ion-col>
+              <ion-col>
+                <div><ion-text color="light"><b>Quant.</b></ion-text></div>
+              </ion-col>
+            </ion-row>
+
+
+          <ion-row class="ion-align-items-center">
+            <ion-col size="6">
+              <div>Brigadeiro</div>
+            </ion-col>
+            <ion-col no-padding>
+              <div align="right">40</div>
             </ion-col>
             <ion-col no-padding>
               <div>Unid.</div>
@@ -34,36 +87,11 @@
               <div align="center"><ion-checkbox color="light"></ion-checkbox></div>
             </ion-col>
           </ion-row>
-  
+
           <!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
           <ion-row>
-          <ion-col size="7">
-              <div><ion-text color="light"><b>Churrasco</b></ion-text></div>
-            </ion-col>
-            <ion-col>
-              <div><ion-text color="light"><b>Quant.</b></ion-text></div>
-            </ion-col>
-          </ion-row>
-  
-          <ion-row class="ion-align-items-center">
-              <ion-col size="6">
-                <div>Coca</div>
-              </ion-col>
-              <ion-col no-padding>
-                <div align="right">5</div>
-              </ion-col>
-              <ion-col no-padding>
-                <div>L</div>
-              </ion-col>
-              <ion-col no-padding>
-                <div align="center"><ion-checkbox color="light"></ion-checkbox></div>
-              </ion-col>
-            </ion-row>
-  
-            <!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
-            <ion-row>
               <ion-col size="7">
-                  <div><ion-text color="light"><b>Porções</b></ion-text></div>
+                  <div><ion-text color="light"><b>Bebidas</b></ion-text></div>
                 </ion-col>
                 <ion-col>
                   <div><ion-text color="light"><b>Quant.</b></ion-text></div>
@@ -89,7 +117,7 @@
             <!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
             <ion-row>
                 <ion-col size="7">
-                    <div><ion-text color="light"><b>Bebidas</b></ion-text></div>
+                    <div><ion-text color="light"><b>Doces</b></ion-text></div>
                   </ion-col>
                   <ion-col>
                     <div><ion-text color="light"><b>Quant.</b></ion-text></div>
@@ -111,11 +139,11 @@
                   <div align="center"><ion-checkbox color="light"></ion-checkbox></div>
                 </ion-col>
               </ion-row>
-    
+
               <!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
               <ion-row>
                   <ion-col size="7">
-                      <div><ion-text color="light"><b>Doces</b></ion-text></div>
+                      <div><ion-text color="light"><b>Suprimentos</b></ion-text></div>
                     </ion-col>
                     <ion-col>
                       <div><ion-text color="light"><b>Quant.</b></ion-text></div>
@@ -137,40 +165,8 @@
                     <div align="center"><ion-checkbox color="light"></ion-checkbox></div>
                   </ion-col>
                 </ion-row>
-  
+      
                 <!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
-                <ion-row>
-                    <ion-col size="7">
-                        <div><ion-text color="light"><b>Suprimentos</b></ion-text></div>
-                      </ion-col>
-                      <ion-col>
-                        <div><ion-text color="light"><b>Quant.</b></ion-text></div>
-                      </ion-col>
-                    </ion-row>
-        
-        
-                  <ion-row class="ion-align-items-center">
-                    <ion-col size="6">
-                      <div>Brigadeiro</div>
-                    </ion-col>
-                    <ion-col no-padding>
-                      <div align="right">40</div>
-                    </ion-col>
-                    <ion-col no-padding>
-                      <div>Unid.</div>
-                    </ion-col>
-                    <ion-col no-padding>
-                      <div align="center"><ion-checkbox color="light"></ion-checkbox></div>
-                    </ion-col>
-                  </ion-row>
-        
-                  <!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
-      </ion-grid>
+    </ion-grid>
 
 </ion-content>
-
-<ion-footer class="ion-padding-bottom">
-	<div class="ion-padding-bottom">
-	  <ion-button expand="block" padding color="light" (click)="formAdicionarBuffet()">Adicionar</ion-button>
-	</div>
-</ion-footer>

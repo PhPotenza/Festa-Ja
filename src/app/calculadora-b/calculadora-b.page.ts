@@ -23,7 +23,8 @@ export class CalculadoraBPage implements OnInit {
 
   ngOnInit() {
   }
-formCalculadorac(){
+
+  formCalculadorac(){
     this.router.navigate(['/calculadora-c']);
     }
 }

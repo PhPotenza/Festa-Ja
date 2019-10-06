@@ -25,6 +25,12 @@ const routes: Routes = [
   { path: 'adicionar-buffet', loadChildren: './adicionar-buffet/adicionar-buffet.module#AdicionarBuffetPageModule' },
   { path: 'calculadora-a', loadChildren: './calculadora-a/calculadora-a.module#CalculadoraAPageModule' },
   { path: 'calculadora-b', loadChildren: './calculadora-b/calculadora-b.module#CalculadoraBPageModule' },  { path: 'calculadora-c', loadChildren: './calculadora-c/calculadora-c.module#CalculadoraCPageModule' },
+  { path: 'calculadora-d', loadChildren: './calculadora-d/calculadora-d.module#CalculadoraDPageModule' },
+  { path: 'calculadora-e', loadChildren: './calculadora-e/calculadora-e.module#CalculadoraEPageModule' },
+  { path: 'calculadora-f', loadChildren: './calculadora-f/calculadora-f.module#CalculadoraFPageModule' },
+  { path: 'calculadora-g', loadChildren: './calculadora-g/calculadora-g.module#CalculadoraGPageModule' },
+  { path: 'calculadora-h', loadChildren: './calculadora-h/calculadora-h.module#CalculadoraHPageModule' },
+  { path: 'calculadora-i', loadChildren: './calculadora-i/calculadora-i.module#CalculadoraIPageModule' },
 
 
 ];

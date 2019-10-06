@@ -1,33 +1,69 @@
 <ion-header>
   <ion-toolbar color="light">
       <ion-buttons slot="start">
-          <ion-menu-button></ion-menu-button>
-        </ion-buttons>
+		<ion-back-button icon="md-arrow-back" ></ion-back-button>
+    </ion-buttons>
     <ion-title>Calculadora</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
 	
-	<h4>Comidas de festa</h4>
+	<h4><b>Comidas de festa</b></h4>
 
 	<ion-list no-lines>
 
 		<ion-item>
-		<ion-checkbox color="dark"></ion-checkbox>
+			<div>Coxinha de frango</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
 		</ion-item>
 		<ion-item>
-		<ion-checkbox color="dark"></ion-checkbox>
+			<div>Bolinha de Queijo</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
 		</ion-item>
-
-		<ion-checkbox color="dark"></ion-checkbox>
-		<ion-checkbox color="dark"></ion-checkbox>
-		<ion-checkbox color="dark"></ion-checkbox>
-
-
+		<ion-item>
+			<div>Mini Quibe Frito</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
+		</ion-item>
+		<ion-item>
+			<div>Croquete</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
+		</ion-item>
+		<ion-item>
+			<div>Enroladinho de Salsicha</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
+		</ion-item>
+		<ion-item>
+			<div>Enroladinho de Presunto e Queijo</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
+		</ion-item>
+		<ion-item>
+			<div>Pão de Queijo</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
+		</ion-item>
+		<ion-item>
+			<div>Risole de Queijo e Presunto</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
+		</ion-item>
+		<ion-item>
+			<div>Risole de Camarão</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
+		</ion-item>
+		<ion-item>
+			<div>Pastel</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
+		</ion-item>
+		<ion-item>
+			<div>Empadinha</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
+		</ion-item>
+		<ion-item>
+			<div>Nuggets de Frango</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
+		</ion-item>
+		<ion-item>
+			<div>Croissant</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
+		</ion-item>
+		<ion-item>
+			<div>Trouxinhas</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
+		</ion-item>
+		<ion-item>
+			<div>Esfiha</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
+		</ion-item>
+		<ion-item>
+			<div>Mini Pizza</div><ion-checkbox color="light"  slot="end"></ion-checkbox>
+		</ion-item>
 	</ion-list>
-	<ion-footer class="ion-padding-bottom">
-<ion-button class="ion-button" expand="block" padding color="light" (click)="formCalculadorad()">Continuar</ion-button>
-</ion-footer>  
-
 </ion-content>
+
+<ion-footer class="ion-padding-bottom">
+			<ion-button class="ion-button" expand="block" color="light" (click)="formCalculadorad()">Continuar</ion-button>
+	</ion-footer>  

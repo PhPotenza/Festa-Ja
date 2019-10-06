@@ -6,11 +6,11 @@ import { Storage } from '@ionic/Storage';
 import { AlertController } from '@ionic/angular';
 
 @Component({
-  selector: 'app-calculadora-c',
-  templateUrl: './calculadora-c.page.html',
-  styleUrls: ['./calculadora-c.page.scss'],
+  selector: 'app-calculadora-d',
+  templateUrl: './calculadora-d.page.html',
+  styleUrls: ['./calculadora-d.page.scss'],
 })
-export class CalculadoraCPage implements OnInit {
+export class CalculadoraDPage implements OnInit {
 
   constructor(
     private router: Router,
@@ -24,9 +24,8 @@ export class CalculadoraCPage implements OnInit {
   ngOnInit() {
   }
 
-  formCalculadorad(){
-    this.router.navigate(['/calculadora-d']);
+  formCalculadorae(){
+    this.router.navigate(['/calculadora-e']);
     }
 }
-
 
