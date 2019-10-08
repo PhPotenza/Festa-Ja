@@ -3,18 +3,14 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
-import { ReactiveFormsModule } from '@angular/forms';
-
 import { IonicModule } from '@ionic/angular';
 
-import { RegisterPage } from './register.page';
-
-import { BrMaskerModule } from 'br-mask';
+import { ContratarServicosPage } from './contratar-servicos.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: RegisterPage
+    component: ContratarServicosPage
   }
 ];
 
@@ -23,10 +19,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    BrMaskerModule,
-    ReactiveFormsModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [RegisterPage]
+  declarations: [ContratarServicosPage]
 })
-export class RegisterPageModule {}
+export class ContratarServicosPageModule {}

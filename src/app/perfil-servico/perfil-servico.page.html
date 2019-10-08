@@ -1,68 +1,111 @@
 <ion-header>
-    <ion-toolbar color="light">
-        <ion-buttons slot="start">
-            <ion-menu-button></ion-menu-button>
-          </ion-buttons>
-      <ion-title>Perfil Serviço</ion-title>
-      <ion-buttons slot="primary">
-        <ion-button (click)="goToEditarServico()">
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Perfil Serviço</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="goToEditarServico()">
         <ion-icon slot="icon-only" name="create"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </ion-toolbar>
-  </ion-header>
-  
-  <ion-content padding="true">
-    <ion-card>
-      <ion-item>
-        <ion-avatar slot="start">
-        <img src="./assets/avatar-luke.png">
-        </ion-avatar>
-        <h2>{{ nome_servico }} Animaiszinhos Fodidos de Fofos</h2>
-      </ion-item>
-      <ion-slides pager style="width:100%;height:300px;">
-        <ion-slide  style="background-color: green">
-          <h2>Slide 1</h2>
-        </ion-slide>
-        <ion-slide style="background-color: blue">
-          <h2>Slide 2</h2>
-        </ion-slide>
-        <ion-slide style="background-color: red">
-          <h2>Slide 3</h2>
-        </ion-slide>
-      </ion-slides>
-      <ion-card-content>
-        <p>temos um grande arsenal de fotos de animaizinhos fodidos de fofos, para ter acesso a essas fofuras deixe o seu email nos comentarios que estaremos enviando uma copia. lembre-se todos os direito autorais reservados a mim somente</p>
-      </ion-card-content>
-    </ion-card>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding="true">
+  <ion-card>
+    <ion-item>
+      <h4>{{ nome_servico }} Animaiszinhos Fodidos de Fofos</h4>
+    </ion-item>
+    <ion-slides pager style="width:100%;height:300px;">
+      <ion-slide style="background-color: orange">
+      </ion-slide>
+      <ion-slide style="background-color: blue">
+      </ion-slide>
+      <ion-slide style="background-color: red">
+      </ion-slide>
+    </ion-slides>
+    <ion-card-content>
+      <p>{{ descricao_servico }}temos um grande arsenal de fotos de animaizinhos fodidos de fofos, para ter acesso a
+        essas fofuras deixe o seu email nos comentarios que estaremos enviando uma copia. lembre-se todos os direito
+        autorais reservados a mim somente</p>
+    </ion-card-content>
+    <ion-item>
+      <label>{{ cidade_servico }}Cidade - {{ uf_servico }}UF</label>
+    </ion-item>
+    <ion-item>
+      <label>{{ telefone_servico }}Telefone</label>
+    </ion-item>
+    <ion-item>
+      <label>{{ celular_servico }}Celular</label>
+    </ion-item>
+    <ion-item>
+      <label>{{ email_servico }}E-mail</label>
+    </ion-item>
+  </ion-card>
   <!--<ion-slide style="background:url(assets\imagens\perfil.jpg) no-repeat center;background-size:cover;"></ion-slide>-->
-    <ion-button class="ion-button" expand="block" padding color="light">Adicionar ao evento...</ion-button>
-    <br>
-      <ion-card padding="true">
-        <ion-item>
-          <ion-label position="floating">Deixe seu comentario</ion-label>
-          <ion-textarea></ion-textarea>
-        </ion-item>
-        <ion-row>
-          <ion-button class="ion-button" padding color="light" align="right">Enviar</ion-button>
-        </ion-row>
-      </ion-card>
-      <h4 style="color:#000000;text-align:center;"><b>Comentários</b></h4>
-      <ion-card><!--*ngFor=""-->
-        <ion-item>
-          <ion-avatar slot="start">
-            <img src="./assets/avatar-luke.png">
-          </ion-avatar>
-          <h6>{{ nome_usuario }} Nome</h6>
-          <!--<p>{{ data_comentario}} 11, nov, 2002</p>-->
-        </ion-item>
-        <ion-card-content>
-          <p>{{ comentarios }} muito bom!</p>
-        </ion-card-content>
-      </ion-card>
-  </ion-content>
+  <ion-button class="ion-button" expand="block" padding color="light">Adicionar ao evento...</ion-button>
+  <br>
+  <ion-card padding="true">
+    <ion-item>
+      <ion-label position="floating">Deixe seu comentario</ion-label>
+      <ion-textarea></ion-textarea>
+    </ion-item>
+    <ion-row>
+      <ion-button class="ion-button" padding color="light" slot="end">Enviar</ion-button>
+    </ion-row>
+  </ion-card>
+  <h3 style="color:#ff6600;text-align:center;"><b>Comentários</b></h3>
+  <ion-card>
+    <!--*ngFor=""-->
+    <ion-item>
+      <h6>{{ nome_usuario }} Nome</h6>
+    </ion-item>
+    <ion-card-content>
+      <p>{{ comentarios }} muito bom!</p>
+    </ion-card-content>
+  </ion-card>
   
-  <!--<ion-card>
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+    <ion-fab-button color="light">
+      <ion-icon name="arrow-dropleft"></ion-icon>
+    <!--</ion-fab-button>
+    <ion-fab-list side="start">
+      <ion-fab-button color="light">
+        <ion-icon name="text"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="light">
+        <ion-icon name="star"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="light">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>-->
+  </ion-fab>
+
+  <script>
+    const controller = document.querySelector('ion-action-sheet-controller');
+    const button = document.querySelector('ion-fab');
+    button.addEventListener('click', handleButtonClick);
+    function handleButtonClick() {
+      controller.create({
+        header: 'Albums',
+        buttons: [
+          { text: 'Delete', role: 'destructive' },
+          { text: 'Share' },
+          { text: 'Play' },
+          { text: 'Favorite' },
+          { text: 'Cancel', role: 'cancel' }
+        ]
+      }).then(actionSheet => {
+        actionSheet.present();
+      });
+    }
+  </script>
+
+</ion-content>
+
+<!--<ion-card>
   
     <ion-item>
       <ion-avatar item-start>
@@ -99,22 +142,3 @@
     </ion-row>
   
   </ion-card>-->
-  
-  <ion-card>
-    <ion-row>
-      <ion-col>
-        <button ion-button icon-start clear small>
-          <ion-icon name="thumbs-up"></ion-icon>
-          <div>12 Likes</div>
-        </button>
-      </ion-col>
-      <ion-col>
-        <button ion-button icon-start clear small>
-          <ion-icon name="text"></ion-icon>
-          <div>4 Comments</div>
-        </button>
-      </ion-col>
-    </ion-row>
-  </ion-card>
-  
-  

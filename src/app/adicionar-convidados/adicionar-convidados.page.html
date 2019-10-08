@@ -4,14 +4,20 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding="true" scroll="false">
-  <ion-card>
-    <label>Nome</label>
-    <ion-input type="text" [(ngModel)]="nome_convidados">
-    <div class="spacer" style="height: 10px;"></div>
-    <ion-radio>Homem</ion-radio>
-    <ion-radio>Mulher</ion-radio>
-    <ion-radio>Criança</ion-radio>
-  <ion-card>
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-label>Nome</ion-label>
+      <ion-input type="text" position="floating" [(ngModel)]="nome_convidados"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label>Categoria</ion-label>
+      <ion-select multiple="false" cancelText="Cancelar" okText="Selecionar" [(ngModel)]="categoria_convidados">
+        <ion-select-option value="homem">Homem</ion-select-option>
+        <ion-select-option value="mulher">Mulher</ion-select-option>
+        <ion-select-option value="crianca">Criança</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
   <ion-button class="ion-button" expand="block" padding color="light" (click)="goToConvidados()">Adicionar</ion-button>
 </ion-content>

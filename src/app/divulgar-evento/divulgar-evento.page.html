@@ -1,43 +1,49 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>divulgar-evento</ion-title>
+  <ion-toolbar color="light">
+    <ion-title>Divulgar evento</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding="true" class="has-header">
+<ion-content padding="true">
   <h4 style="color:#000000;text-align:center;">Escolha um tipo de convite</h4>
-  <div>
-    <style>
-      input[type="radio"] {
-              visibility: hidden;
-      }
-          
-      label {
-          display: block;
-          border: 4px solid #FFF;
-          width: 100%;
-      }
-      
-      input[type="radio"]:checked+label {
-          border-color: #ff6600;
-      }
-      img {
-        height: 100%;
-      }
-    </style>
-      <input type="radio" name="imagem">
-      <label for="i1">
-        <img src="http://vkontakte.ru/images/gifts/256/81.jpg" alt="">
-      </label>
-      <input type="radio" name="imagem">
-      <label for="i2">
-        <img src="http://vkontakte.ru/images/gifts/256/82.jpg" alt="">
-      </label>
-      <input type="radio" name="imagem">
-      <label for="i3">
-        <img src="http://vkontakte.ru/images/gifts/256/83.jpg" alt="">
-      </label>
-  </div>
-  <ion-button></ion-button>
-  <ion-button></ion-button>
+  <ion-radio-group>
+    <input type="radio" name="imagem" id="i1">
+    <label for="i1">
+      <img src="http://vkontakte.ru/images/gifts/256/81.jpg" alt="">
+    </label>
+    <input type="radio" name="imagem" id="i2">
+    <label for="i2">
+      <img src="http://vkontakte.ru/images/gifts/256/82.jpg" alt="">
+    </label>
+    <input type="radio" name="imagem" id="i3">
+
+  </ion-radio-group>
+  <ion-button class="ion-button" expand="block" padding color="light">
+    <ion-icon name="logo-whatsapp"></ion-icon>
+  </ion-button>
+  <ion-button class="ion-button" expand="block" padding color="light">
+    <ion-icon name="logo-facebook"></ion-icon> Compartilhar com o Facebbok
+  </ion-button>
 </ion-content>
+
+
+<style>
+  input[type="radio"] {
+    visibility: hidden;
+  }
+
+  label {
+    display: block;
+    border: 4px solid #FFF;
+    width: 100%;
+  }
+
+  input[type="radio"]:checked+label {
+    border-color: #ff6600;
+  }
+
+  img {
+    height: 100%;
+    position: center;
+  }
+</style>

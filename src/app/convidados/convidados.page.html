@@ -7,24 +7,30 @@
 <ion-content padding>
   <form>
     <ion-searchbar placeholder="Pesquisar convidado..." cancelButtonText="Cancelar" animated></ion-searchbar>
-    <ion-button class="ion-button" expand="block" color="light" >Pesquisar</ion-button>
+    <ion-button class="ion-button" expand="block" color="light">Pesquisar</ion-button>
   </form>
-  <ion-list >
-    <ion-item >{{ nome_convidado }} convidado 1
-      <ion-icon  slot="end" color="light" name="trash"></ion-icon>
+  <ion-list>
+    <ion-item>{{ nome_convidado }} 
+      <ion-icon slot="end" color="light" name="trash"></ion-icon>
+      <ion-checkbox slot="end" color="light" border-color="light"></ion-checkbox>
     </ion-item>
-    <ion-item >{{ nome_convidado }} convidado 1
-      <ion-icon  slot="end" color="light" name="trash"></ion-icon>
+    <ion-item>{{ nome_convidado }} convidado 1
+      <ion-icon slot="end" color="light" name="trash"></ion-icon>
+      <ion-checkbox slot="end" color="light" border-color="light"></ion-checkbox>
     </ion-item>
-    <ion-item >{{ nome_convidado }} convidado 1
-      <ion-icon  slot="end" color="light" name="trash"></ion-icon>
+    <ion-item>{{ nome_convidado }} convidado 1
+      <ion-icon slot="end" color="light" name="trash"></ion-icon>
+      <ion-checkbox slot="end" color="light" border-color="light"></ion-checkbox>
     </ion-item>
-    <ion-item >{{ nome_convidado }} convidado 1
-      <ion-icon  slot="end" color="light" name="trash"></ion-icon>
-      <ion-checkbox slot="end"color="light" border-color="light"></ion-checkbox>
+    <ion-item>{{ nome_convidado }} convidado 1
+      <ion-icon slot="end" color="light" name="trash"></ion-icon>
+      <ion-checkbox slot="end" color="light" border-color="light"></ion-checkbox>
     </ion-item>
   </ion-list>
 </ion-content>
-<ion-footer>
-  <ion-button class="ion-button" expand="block" color="light" (click)="goToAdicionarConvidados()">Adicionar</ion-button>
+<ion-footer class="ion-padding-bottom">
+  <div class="ion-padding-bottom">
+    <ion-button class="ion-button" expand="block" padding color="light" (click)="goToAdicionarConvidados()">Adicionar
+    </ion-button>
+  </div>
 </ion-footer>

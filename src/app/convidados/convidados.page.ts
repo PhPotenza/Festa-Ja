@@ -11,6 +11,7 @@ import { ToastController } from '@ionic/angular';
 export class ConvidadosPage implements OnInit {
 
   nome_convidado: string = "";
+  tipo_convidado: string = "";
 
   constructor (
     private router: Router,
