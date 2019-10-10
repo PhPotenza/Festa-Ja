@@ -47,6 +47,11 @@ export class AppComponent {
       title: 'Convidados',
       url: '/convidados',
       icon: 'people'
+    },
+    {
+      title: 'Pesquisar Serviço',
+      url: '/pesquisar-servico',
+      icon: 'search'
     }
   ];
 

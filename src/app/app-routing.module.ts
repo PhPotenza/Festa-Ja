@@ -32,6 +32,8 @@ const routes: Routes = [
   { path: 'calculadora-h', loadChildren: './calculadora-h/calculadora-h.module#CalculadoraHPageModule' },
   { path: 'calculadora-i', loadChildren: './calculadora-i/calculadora-i.module#CalculadoraIPageModule' },
   { path: 'contratar-servicos', loadChildren: './contratar-servicos/contratar-servicos.module#ContratarServicosPageModule' },
+  { path: 'pesquisar-servico', loadChildren: './pesquisar-servico/pesquisar-servico.module#PesquisarServicoPageModule' },
+  { path: 'editar-evento', loadChildren: './editar-evento/editar-evento.module#EditarEventoPageModule' },
 
 
 ];

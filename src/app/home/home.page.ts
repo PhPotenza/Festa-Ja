@@ -4,6 +4,7 @@ import { PostProvider } from '../../providers/post-provider';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Storage } from '@ionic/Storage';
 import { AlertController } from '@ionic/angular';
+import {  MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -25,7 +26,8 @@ export class HomePage implements OnInit {
     private storage: Storage,
     public toastCtrl: ToastController,
     private actRoute: ActivatedRoute,
-    public alertController: AlertController
+    public alertController: AlertController,
+    public menuCtrl: MenuController
   ) { }
 
   ngOnInit() {
@@ -33,6 +35,7 @@ export class HomePage implements OnInit {
   }
 
   ionViewWillEnter(){
+    this.menuCtrl.enable(true);
     this.storage.get('session_storage').then((res)=>{
       this.anggota = res;
       this.idUsuario = this.anggota.idUsuario;

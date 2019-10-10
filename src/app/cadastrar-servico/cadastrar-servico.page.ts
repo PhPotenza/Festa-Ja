@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/Storage';
 import { ToastController } from '@ionic/angular';
-import { async } from 'q';
 import { PostProvider } from 'src/providers/post-provider';
 
 @Component({

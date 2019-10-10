@@ -7,10 +7,20 @@
   </ion-toolbar>
 </ion-header>
 <ion-content class="ion-padding background">
-  <form>
-  <ion-searchbar class="ion-button" placeholder="Pesquisar Serviços" cancelButtonText="Cancelar" animated></ion-searchbar>
-  <ion-button class="ion-button" expand="block" color="light">Pesquisar</ion-button>
-  </form>
+    <ion-searchbar [(ngModel)]="pesquisar" class="ion-button" placeholder="Pesquisar por Serviços" cancelButtonText="Cancelar" animated></ion-searchbar>
+    <ion-item lines="none">
+      <ion-label>Pesquisar por</ion-label>
+        <ion-select [(ngModel)]="tipo" multiple="false" value="todos" cancelText="Cancelar" okText="Selecionar">
+            <ion-select-option value="buffet">Buffet</ion-select-option>
+            <ion-select-option value="bebidas">Bebidas</ion-select-option>
+            <ion-select-option value="entrtenimento">Entretenimento</ion-select-option>
+            <ion-select-option value="seguranca">Segurança</ion-select-option>
+            <ion-select-option value="limpeza">Limpeza</ion-select-option>
+            <ion-select-option value="todos">Todos</ion-select-option>
+        </ion-select>
+    </ion-item>
+    <ion-button class="ion-button" expand="block" color="light">Pesquisar</ion-button>
+
 
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content
