@@ -52,6 +52,11 @@ export class AppComponent {
       title: 'Pesquisar Serviço',
       url: '/pesquisar-servico',
       icon: 'search'
+    },
+    {
+      title: 'Meus Serviços',
+      url: '/lista-servicos',
+      icon: 'people'
     }
   ];
 
