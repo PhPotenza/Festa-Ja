@@ -19,7 +19,7 @@ export class LoginPage implements OnInit {
   	private router: Router,
   	private postPvdr: PostProvider,
   	private storage: Storage,
-  	public toastCtrl: ToastController,
+    public toastCtrl: ToastController,
     public menuCtrl: MenuController
   ) { }
 
@@ -70,7 +70,7 @@ export class LoginPage implements OnInit {
   }
 
   formRegister(){
-  	this.router.navigate(['/register']);
+    this.router.navigate(['/register']);
     this.username="";
     this.password="";
   }

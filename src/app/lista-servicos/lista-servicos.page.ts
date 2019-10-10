@@ -15,6 +15,9 @@ export class ListaServicosPage implements OnInit {
   nome_servico: string = "";
   tipo_servico: string = "";
   anggota: any;
+  servicos: any = [];
+  limit: number = 13;
+  start: number = 0;
 
   constructor (
       private router: Router,

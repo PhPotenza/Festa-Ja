@@ -1,71 +1,72 @@
 <ion-header>
-  <ion-toolbar color="light">
-    <ion-title>Registrar</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content class="ion-padding">
-<ion-list no-lines>
-
-	  <ion-item>
-	    <ion-label position="floating" class="item">Login</ion-label>
-	    <ion-input required="true" type="text" [(ngModel)]="username"></ion-input>
-	  </ion-item>
-
-	  <ion-item>
-	    <ion-label position="floating">Senha</ion-label>
-	    <ion-input required="true" type="password" [(ngModel)]="password"></ion-input>
-	  </ion-item>
-
-	  <ion-item>
-	    <ion-label position="floating">Confirmar Senha</ion-label>
-	    <ion-input required="true" type="password" [(ngModel)]="confirm_password"></ion-input>
-	  </ion-item>
-
-	  <ion-item>
-	    <ion-label position="floating">Nome</ion-label>
-	    <ion-input required="true" type="text" [(ngModel)]="nome"></ion-input>
-	  </ion-item>
-
-	  <ion-item>
-	    <ion-label position="floating">E-mail</ion-label>
-	    <ion-input required="true" type="email" [(ngModel)]="email"></ion-input>
-	  </ion-item>
-
-	  <ion-item>
-	    <ion-label position="floating">CPF</ion-label>
-	    <ion-input required="true" type="text" name="cpf" [(ngModel)]="cpf"></ion-input>
-	  </ion-item>
-
-	  <ion-item>
-	    <ion-label position="floating">Celular</ion-label>
-	    <ion-input required="true" type="text" [(ngModel)]="celular"></ion-input>
-	  </ion-item>
-
-	  <ion-item>
-	    <ion-label position="floating">Telefone</ion-label>
-	    <ion-input type="text" [(ngModel)]="telefone"></ion-input>
-	  </ion-item>
-	
-	  <ion-item>
-	    <ion-label position="floating">Contato Secundário</ion-label>
-	    <ion-input type="text" [(ngModel)]="celular2"></ion-input>
-	  </ion-item>
-
-	  <ion-item>
-	    <ion-label class="ion-text-wrap">Data de Nascimento</ion-label>
-	    <ion-input required="true" slot="end" type="date" [(ngModel)]="DataNasc"></ion-input>
-	  </ion-item>
-
-	  <ion-item>
-	    <ion-label>Deseja ser um fornecedor?</ion-label>
-		<ion-toggle slot="end" class="ion-toggle" [(ngModel)]="toggle"></ion-toggle>
-	  </ion-item>
-
-	</ion-list>
-
-	<div>
-	  <ion-button expand="block" class="ion-button" padding color="light" (click)="prosesRegister()">Registrar</ion-button>
-	  <ion-button expand="block" class="ion-button" padding color="light" fill="outline" (click)="formLogin()">Entrar</ion-button>
-	</div>
-</ion-content>
+	<ion-toolbar color="light">
+	  <ion-title>Registrar</ion-title>
+	</ion-toolbar>
+  </ion-header>
+  
+  <ion-content class="ion-padding">
+  <ion-list no-lines>
+  
+		<ion-item>
+		  <ion-label position="floating" class="item">Login</ion-label>
+		  <ion-input required="true" type="text" [(ngModel)]="username"></ion-input>
+		</ion-item>
+  
+		<ion-item>
+		  <ion-label position="floating">Senha</ion-label>
+		  <ion-input required="true" type="password" [(ngModel)]="password"></ion-input>
+		</ion-item>
+  
+		<ion-item>
+		  <ion-label position="floating">Confirmar Senha</ion-label>
+		  <ion-input required="true" type="password" [(ngModel)]="confirm_password"></ion-input>
+		</ion-item>
+  
+		<ion-item>
+		  <ion-label position="floating">Nome</ion-label>
+		  <ion-input required="true" type="text" [(ngModel)]="nome"></ion-input>
+		</ion-item>
+  
+		<ion-item>
+		  <ion-label position="floating">E-mail</ion-label>
+		  <ion-input required="true" type="email" [(ngModel)]="email"></ion-input>
+		</ion-item>
+  
+		<ion-item>
+		  <ion-label position="floating">CPF</ion-label>
+		  <ion-input required="true" type="text" [(ngModel)]="cpf"></ion-input>
+		</ion-item>
+  
+		<ion-item>
+		  <ion-label position="floating">Celular</ion-label>
+		  <ion-input required="true" type="text" [(ngModel)]="celular"></ion-input>
+		</ion-item>
+  
+		<ion-item>
+		  <ion-label position="floating">Telefone</ion-label>
+		  <ion-input type="text" [(ngModel)]="telefone"></ion-input>
+		</ion-item>
+	  
+		<ion-item>
+		  <ion-label position="floating">Contato Secundário</ion-label>
+		  <ion-input type="text" [(ngModel)]="celular2"></ion-input>
+		</ion-item>
+  
+		<ion-item>
+		  <ion-label class="ion-text-wrap">Data de Nascimento</ion-label>
+		  <ion-input required="true" slot="end" type="date" [(ngModel)]="DataNasc"></ion-input>
+		</ion-item>
+  
+		<ion-item>
+		  <ion-label>Deseja ser um fornecedor?</ion-label>
+		  <ion-toggle slot="end" class="ion-toggle" [(ngModel)]="toggle"></ion-toggle>
+		</ion-item>
+  
+	  </ion-list>
+  
+	  <div>
+		<ion-button expand="block" class="ion-button" padding color="light" (click)="prosesRegister()">Registrar</ion-button>
+		<ion-button expand="block" class="ion-button" padding color="light" fill="outline" (click)="formLogin()">Entrar</ion-button>
+	  </div>
+  </ion-content>
+  

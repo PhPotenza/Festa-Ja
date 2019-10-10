@@ -5,6 +5,7 @@ import { Storage } from '@ionic/Storage';
 import { ToastController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 
+
 @Component({
   selector: 'app-perfil-evento',
   templateUrl: './perfil-evento.page.html',
@@ -114,20 +115,19 @@ export class PerfilEventoPage implements OnInit {
     });
   }
 
+  EditarEvento(){
+    this.router.navigate(['/editar-evento']);
+  }
 
-    EditarEvento(){
-      this.router.navigate(['/editar-evento']);
-    }
+  async delEvento(){
 
-    async delEvento(){
-
-      let body = {
-        aksi : 'delEvento',
-        idEvento : this.idEvento
-      };
+  	let body = {
+  			aksi : 'delEvento',
+  			idEvento : this.idEvento
+  		};
 
   		this.postPvdr.postData(body, 'proses-api.php').subscribe(async data => {
-
+        
         var alertpesan = data.msg;
         if(data.success){
         const toast = await this.toastCtrl.create({

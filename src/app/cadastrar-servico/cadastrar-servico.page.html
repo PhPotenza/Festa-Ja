@@ -6,27 +6,30 @@
     <ion-title>Cadastrar Serviço</ion-title>
   </ion-toolbar>
 </ion-header>
-  
-<ion-content padding scroll="false">
-  <ion-list>
+
+<ion-content padding="true" scroll="false">
+  <h4 style="color:#000000;">Dados do serviço</h4>
+ <ion-list>
     <ion-item>
-      <ion-label>Nome</ion-label>
-        <ion-input type="text" position="floating" [(ngModel)]="nome_servico"></ion-input>
+      <ion-label position="floating">Nome</ion-label>
+        <ion-input type="text" [(ngModel)]="nome"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label>Descrição</ion-label>
-      <ion-input type="text" position="floating" [(ngModel)]="descricao_servico"></ion-input>
+      <ion-label position="floating">Descrição</ion-label>
+      <ion-input type="text" [(ngModel)]="descricao"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Tipo</ion-label>
-      <ion-select multiple="false" cancelText="Cancelar" okText="Selecionar" [(ngModel)]="tipo_servico">
+      <ion-select [(ngModel)]="tipo" multiple="false" cancelText="Cancelar" okText="Selecionar">
           <ion-select-option value="buffet">Buffet</ion-select-option>
           <ion-select-option value="bebidas">Bebidas</ion-select-option>
-          <ion-select-option value="entretenimento">Entretenimento</ion-select-option>
+          <ion-select-option value="entrtenimento">Entretenimento</ion-select-option>
           <ion-select-option value="seguranca">Segurança</ion-select-option>
           <ion-select-option value="limpeza">Limpeza</ion-select-option>
       </ion-select>
     </ion-item>
-    </ion-list>
-    <ion-button class="ion-button" expand="block" padding color="light" (click)="cadastrarServico()">Cadastrar</ion-button>
+   </ion-list>
 </ion-content>
+<ion-footer>
+<ion-button class="ion-button" expand="block" color="light" (click)="cadastrarServico()">Cadastrar</ion-button>
+</ion-footer>  

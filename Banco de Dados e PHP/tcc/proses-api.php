@@ -196,6 +196,26 @@
 
       echo $result;
     }
+    elseif($postjson['aksi']=='updateEvento'){
+      $query = mysqli_query($mysqli, "UPDATE Evento SET
+        NomeEvento = '$postjson[nome]',
+        Tipo = '$postjson[tipo]',
+        CEP = '$postjson[cep]',
+        Estado = '$postjson[estado]',
+        Bairro = '$postjson[bairro]',
+        Cidade = '$postjson[cidade]',
+        Endereco = '$postjson[endereco]',
+        Numero = '$postjson[numero]',
+        Complemento = '$postjson[complemento]',
+        Data_Inicio = '$postjson[date1]',
+        Hora_Inicio = '$postjson[time1]' WHERE idEvento='$postjson[idEvento]'");
+
+      if($query) $result = json_encode(array('success'=>true, 'result'=>'success'));
+      else $result = json_encode(array('success'=>false, 'result'=>'error'));
+
+      echo $result;
+
+    }
 
 
 
