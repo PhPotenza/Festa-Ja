@@ -3,6 +3,7 @@ import { ToastController } from '@ionic/angular';
 import { PostProvider } from '../../providers/post-provider';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/Storage';
+import {  MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -18,11 +19,16 @@ export class LoginPage implements OnInit {
   	private router: Router,
   	private postPvdr: PostProvider,
   	private storage: Storage,
-  	public toastCtrl: ToastController
+    public toastCtrl: ToastController,
+    public menuCtrl: MenuController
   ) { }
 
   ngOnInit() {
   }
+
+  ionViewWillEnter() {
+    this.menuCtrl.enable(false);
+   }
 
   async prosesLogin(){
     if(this.username == "" || this.password == ""){
@@ -37,7 +43,7 @@ export class LoginPage implements OnInit {
       password: this.password,
       aksi: 'login'
     };
-
+    this.password="";
     this.postPvdr.postData(body, 'proses-api.php').subscribe(async data =>{
       var alertpesan = data.msg;
       if(data.success){
@@ -64,7 +70,9 @@ export class LoginPage implements OnInit {
   }
 
   formRegister(){
-  	this.router.navigate(['/register']);
+    this.router.navigate(['/register']);
+    this.username="";
+    this.password="";
   }
 
   formRecuperarSenha(){

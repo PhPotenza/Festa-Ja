@@ -41,7 +41,8 @@ export class EditarServicoPage implements OnInit {
     return new Promise(resolve=> {
       this.storage.get('session_storage').then(async (res)=>{
         this.anggota = res;
-
+        //this.idService = this.anggota.idService;
+        
       if(this.nome_servico==""){
         const toast = await this.toastCtrl.create({
           message: 'Dê um nome ao seu serviço!',

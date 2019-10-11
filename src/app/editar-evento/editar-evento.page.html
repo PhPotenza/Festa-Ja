@@ -1,9 +1,9 @@
 <ion-header>
   <ion-toolbar color="light">
       <ion-buttons slot="start">
-          <ion-menu-button></ion-menu-button>
+          <ion-back-button></ion-back-button>
         </ion-buttons>
-    <ion-title>Adicionar Evento</ion-title>
+    <ion-title>Editar Evento</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -14,22 +14,22 @@
 
 	  <ion-item>
 	    <ion-label position="floating" class="item">Nome</ion-label>
-	    <ion-input type="text" [(ngModel)]="nome"></ion-input>
+	    <ion-input type="text" [(ngModel)]="NomeEvento"></ion-input>
 	  </ion-item>
 
 	  <ion-item>
 	    <ion-label position="floating">Tipo</ion-label>
-	    <ion-input type="text" [(ngModel)]="tipo"></ion-input>
+	    <ion-input type="text" [(ngModel)]="TipoEvento"></ion-input>
     </ion-item>
 
     <ion-item>
 	    <ion-label position="floating">CEP</ion-label>
-	    <ion-input type="text" [(ngModel)]="cep"></ion-input>
+	    <ion-input type="text" [(ngModel)]="CEP"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label>Estado</ion-label>
-      <ion-select multiple="false" [(ngModel)]="uf" cancelText="Cancelar" okText="Selecionar">
+      <ion-select multiple="false" [(ngModel)]="Estado" cancelText="Cancelar" okText="Selecionar">
         <ion-select-option value="AC">Acre</ion-select-option>
         <ion-select-option value="AL">Alagoas</ion-select-option>
         <ion-select-option value="AP">Amapá</ion-select-option>
@@ -62,27 +62,27 @@
 
     <ion-item>
         <ion-label position="floating">Cidade</ion-label>
-        <ion-input type="text" [(ngModel)]="cidade"></ion-input>
+        <ion-input type="text" [(ngModel)]="Cidade"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Bairro</ion-label>
-      <ion-input type="text" [(ngModel)]="bairro"></ion-input>
+      <ion-input type="text" [(ngModel)]="Bairro"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Endereço</ion-label>
-      <ion-input type="text" [(ngModel)]="endereco"></ion-input>
+      <ion-input type="text" [(ngModel)]="Endereco"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Número</ion-label>
-      <ion-input type="number" [(ngModel)]="numero"></ion-input>
+      <ion-input type="number" [(ngModel)]="Numero"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Complemento</ion-label>
-      <ion-input type="text" [(ngModel)]="complemento"></ion-input>
+      <ion-input type="text" [(ngModel)]="Complemento"></ion-input>
     </ion-item>
 
     <ion-item>
@@ -98,7 +98,7 @@
   </ion-list>
   
   <div>
-	  <ion-button expand="block" class="ion-button" padding color="light" (click)="addEvento()">Adicionar</ion-button>
+	  <ion-button expand="block" class="ion-button" padding color="light" (click)="updateEvento()">Salvar</ion-button>
   </div>
   
 </ion-content>

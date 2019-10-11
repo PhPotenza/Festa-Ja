@@ -20,11 +20,12 @@ const routes: Routes = [
   { path: 'convidados', loadChildren: './convidados/convidados.module#ConvidadosPageModule' },
   { path: 'adicionar-convidados', loadChildren: './adicionar-convidados/adicionar-convidados.module#AdicionarConvidadosPageModule' },
   { path: 'divulgar-evento', loadChildren: './divulgar-evento/divulgar-evento.module#DivulgarEventoPageModule' },
-  { path: 'perfil-evento/:id/:nome/:tipo', loadChildren: './perfil-evento/perfil-evento.module#PerfilEventoPageModule' },
+  { path: 'perfil-evento/:id', loadChildren: './perfil-evento/perfil-evento.module#PerfilEventoPageModule' },
   { path: 'editar-servico', loadChildren: './editar-servico/editar-servico.module#EditarServicoPageModule' },
   { path: 'adicionar-buffet', loadChildren: './adicionar-buffet/adicionar-buffet.module#AdicionarBuffetPageModule' },
   { path: 'calculadora-a', loadChildren: './calculadora-a/calculadora-a.module#CalculadoraAPageModule' },
-  { path: 'calculadora-b', loadChildren: './calculadora-b/calculadora-b.module#CalculadoraBPageModule' },  { path: 'calculadora-c', loadChildren: './calculadora-c/calculadora-c.module#CalculadoraCPageModule' },
+  { path: 'calculadora-b', loadChildren: './calculadora-b/calculadora-b.module#CalculadoraBPageModule' },
+  { path: 'calculadora-c', loadChildren: './calculadora-c/calculadora-c.module#CalculadoraCPageModule' },
   { path: 'calculadora-d', loadChildren: './calculadora-d/calculadora-d.module#CalculadoraDPageModule' },
   { path: 'calculadora-e', loadChildren: './calculadora-e/calculadora-e.module#CalculadoraEPageModule' },
   { path: 'calculadora-f', loadChildren: './calculadora-f/calculadora-f.module#CalculadoraFPageModule' },
@@ -32,6 +33,9 @@ const routes: Routes = [
   { path: 'calculadora-h', loadChildren: './calculadora-h/calculadora-h.module#CalculadoraHPageModule' },
   { path: 'calculadora-i', loadChildren: './calculadora-i/calculadora-i.module#CalculadoraIPageModule' },
   { path: 'contratar-servicos', loadChildren: './contratar-servicos/contratar-servicos.module#ContratarServicosPageModule' },
+  { path: 'pesquisar-servico', loadChildren: './pesquisar-servico/pesquisar-servico.module#PesquisarServicoPageModule' },
+  { path: 'editar-evento', loadChildren: './editar-evento/editar-evento.module#EditarEventoPageModule' },
+  { path: 'lista-servicos', loadChildren: './lista-servicos/lista-servicos.module#ListaServicosPageModule' },
 
 
 ];

@@ -12,9 +12,9 @@ import { ActionSheetController } from '@ionic/angular';
 })
 export class PerfilServicoPage implements OnInit {
   
+    id_servico: number=0;
     nome_servico: string = "";
     descricao_servico: string = "";
-    foto_perfil_servico: string = "";
     comentarios: string = "";
     
     constructor( 

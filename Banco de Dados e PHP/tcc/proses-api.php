@@ -49,7 +49,7 @@
   elseif($postjson['aksi']=="register"){
     $password = md5($postjson['password']);
     //select para não permitir usuários iguais
-    $query = mysqli_query($mysqli, "SELECT * FROM usuario WHERE login='$postjson[username]' OR senha='$password' OR email='$postjson[email]' OR cpf='$postjson[cpf]'");
+    $query = mysqli_query($mysqli, "SELECT * FROM usuario WHERE login='$postjson[username]' OR email='$postjson[email]' OR cpf='$postjson[cpf]'");
     $check = mysqli_num_rows($query);
 
     if($check==0){
@@ -139,7 +139,7 @@
 
   elseif($postjson['aksi']=='selectEvento'){
     $data = array();
-    $query = mysqli_query($mysqli, "SELECT * FROM evento where idEvento='$postjson[idEvento]'");
+    $query = mysqli_query($mysqli, "SELECT *, year(Data_Inicio), month(Data_Inicio), day(Data_Inicio), minute(Hora_Inicio), hour(Hora_Inicio) FROM evento where idEvento='$postjson[idEvento]'");
 
     $data = mysqli_fetch_array($query);
     $datauser = array(
@@ -155,6 +155,11 @@
       'Complemento' => $data['Complemento'],
       'Data_Inicio' => $data['Data_Inicio'],
       'Hora_Inicio' => $data['Hora_Inicio'],
+      'year1' => $data['year(Data_Inicio)'],
+      'day1' => $data['day(Data_Inicio)'],
+      'month1' => $data['month(Data_Inicio)'],
+      'minute1' => $data['minute(Hora_Inicio)'],
+      'hour1' => $data['hour(Hora_Inicio)'],
     );
     $result = json_encode(array('success'=>true, 'result'=>$datauser));
     echo $result;
@@ -163,7 +168,10 @@
   //método para cadastrar servico
     elseif($postjson['aksi']=='cadastrarServico'){
       $query = mysqli_query($mysqli, "INSERT INTO service SET
-        idUsuario = '$postjson[IdUsuario]'
+        idUsuario = '$postjson[IdUsuario]',
+        Nome = '$postjson[nome]',
+        Descricao = '$postjson[descricao]',
+        Tipo = '$postjson[tipo]'
       ");
 
       if($query) $result = json_encode(array('success'=>true));
@@ -187,6 +195,26 @@
       else $result = json_encode(array('success'=>false, 'msg'=>'Erro! Por favor tente novamente'));
 
       echo $result;
+    }
+    elseif($postjson['aksi']=='updateEvento'){
+      $query = mysqli_query($mysqli, "UPDATE Evento SET
+        NomeEvento = '$postjson[nome]',
+        Tipo = '$postjson[tipo]',
+        CEP = '$postjson[cep]',
+        Estado = '$postjson[estado]',
+        Bairro = '$postjson[bairro]',
+        Cidade = '$postjson[cidade]',
+        Endereco = '$postjson[endereco]',
+        Numero = '$postjson[numero]',
+        Complemento = '$postjson[complemento]',
+        Data_Inicio = '$postjson[date1]',
+        Hora_Inicio = '$postjson[time1]' WHERE idEvento='$postjson[idEvento]'");
+
+      if($query) $result = json_encode(array('success'=>true, 'result'=>'success'));
+      else $result = json_encode(array('success'=>false, 'result'=>'error'));
+
+      echo $result;
+
     }
 
 

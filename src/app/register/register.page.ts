@@ -3,7 +3,6 @@ import { ToastController } from '@ionic/angular';
 import { PostProvider } from '../../providers/post-provider';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/Storage';
-import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-register',

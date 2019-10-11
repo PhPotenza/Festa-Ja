@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/Storage';
 import { ToastController } from '@ionic/angular';
-import { async } from 'q';
 import { PostProvider } from 'src/providers/post-provider';
 
 @Component({
@@ -13,56 +12,64 @@ import { PostProvider } from 'src/providers/post-provider';
 export class CadastrarServicoPage implements OnInit {
   
   idUsuario: number=0;
-  nome_servico: string = "";
-  descricao_servico: string = "";
-  tipo_servico: string = "";
+  nome: string = "";
+  descricao: string = "";
+  tipo: string = "";
   anggota: any;
   
   constructor (
       private router: Router,
       private storage: Storage,
       public toastCtrl: ToastController,
-      private postPvdr: PostProvider
+      private postPvdr: PostProvider,
   ){}
 
   ngOnInit() {
   }
 
+  goToPerfilServico(){
+  		this.router.navigate(['/perfil-servico']);
+  }
+
   async cadastrarServico(){
-    return new Promise(resolve=> {
+    return new Promise(resolve => {
       this.storage.get('session_storage').then(async (res)=>{
         this.anggota = res;
         this.idUsuario = this.anggota.idUsuario;
-
-      if(this.nome_servico==""){
+    if(this.nome==""){
         const toast = await this.toastCtrl.create({
-          message: 'Dê um nome ao seu serviço!',
+          message: 'Nome Obrigatório',
           duration: 3000
         });
         toast.present();
-      }else if(this.tipo_servico==""){
-        const toast = await this.toastCtrl.create({
-          message: 'Selecione um tipo para seu serviço!'
-        });
-      }else if(this.descricao_servico==""){
-        const toast = await this.toastCtrl.create({
-          message: 'Inclua uma descrição ao seu serviço!'
-        });
-      }else{
-        let body = {
-          Nome: this.nome_servico,
-          Tipo: this.tipo_servico,
-          Descricao: this.descricao_servico,
-          aski: 'cadastrarServico'
-        }
-      
+    }else if(this.descricao==""){
+      const toast = await this.toastCtrl.create({
+        message: 'Descrição Obrigatória',
+        duration: 3000
+      });
+      toast.present();
+    }else if(this.tipo==""){
+      const toast = await this.toastCtrl.create({
+        message: 'Tipo de Serviço Obrigatório',
+        duration: 3000
+      });
+      toast.present();
+    }else{
+
+      let body = {
+        IdUsuario: this.idUsuario,
+        nome: this.nome,
+        descricao: this.descricao,
+        tipo: this.tipo,
+        aksi: 'cadastrarServico'
+      };
 
       this.postPvdr.postData(body, 'proses-api.php').subscribe(async data =>{
         var alertpesan = data.msg;
         if(data.success){
-          this.router.navigate(['/perfil-servico']);
+          this.router.navigate(['/home']);
           const toast = await this.toastCtrl.create({
-            message: 'Adicionado com sucesso!',
+            message: 'Adicionado com Sucesso',
             duration: 3000
           });
           toast.present();
@@ -74,12 +81,9 @@ export class CadastrarServicoPage implements OnInit {
           toast.present();
         }
       });
-    }
-      })
-    })
-  }
 
-  goToPerfilServico(){
-    this.router.navigate(['/perfil-servico']);
+    }
+  });
+});
   }
 }
