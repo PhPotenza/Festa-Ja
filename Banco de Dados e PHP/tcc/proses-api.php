@@ -188,14 +188,15 @@
         cpf =  '$postjson[cpf]',
         celular =  '$postjson[celular]',
         telefone =  '$postjson[telefone]',
-        SecunContat =  '$postjson[contato_secundario]',
-      ");
+        SecunContat =  '$postjson[contato_secundario]' WHERE idUsuario='$postjson[idUsuario]'");
 
-      if($query) $result = json_encode(array('success'=>true, 'msg'=>'Atualizado com sucesso'));
-      else $result = json_encode(array('success'=>false, 'msg'=>'Erro! Por favor tente novamente'));
+      if($query) $result = json_encode(array('success'=>true, 'result'=>'success'));
+      else $result = json_encode(array('success'=>false, 'result'=>'error'));
 
       echo $result;
     }
+
+    //Update do Evento
     elseif($postjson['aksi']=='updateEvento'){
       $query = mysqli_query($mysqli, "UPDATE Evento SET
         NomeEvento = '$postjson[nome]',

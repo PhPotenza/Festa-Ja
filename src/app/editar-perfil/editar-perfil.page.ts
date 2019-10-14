@@ -11,12 +11,13 @@ import { Storage } from '@ionic/Storage';
 })
 export class EditarPerfilPage implements OnInit {
 
+  idUsuario: number;
   nome: string = "";
   email: string ="";
-  cpf: string = "";
-  celular: string = "";
-  telefone: string = "";
-  contato_secundario: string = "";
+  cpf: string ="";
+  celular: number;
+  telefone: number;
+  contato_secundario: number;
   anggota: any;
 
   constructor(
@@ -37,7 +38,52 @@ export class EditarPerfilPage implements OnInit {
       this.celular = this.anggota.Celular;
       this.telefone = this.anggota.Telefone;
       this.contato_secundario = this.anggota.SecunContat;
-      console.log(res);
+    });
+  }
+
+  async updatePerfil(){
+    return new Promise(resolve => {
+      this.storage.get('session_storage').then(async (res)=>{
+        this.anggota = res;
+        this.idUsuario = this.anggota.idUsuario;
+    if(this.nome==""){
+      const toast = await this.toastCtrl.create({
+        message: 'Nome Obrigátorio',
+        duration: 3000
+      });
+      toast.present();
+    }
+    else{
+
+      let body = {
+        nome: this.nome,
+        email: this.email,
+        cpf: this.cpf,
+        celular: this.celular,
+        telefone: this.telefone,
+        contato_secundario: this.contato_secundario,
+        aksi: 'updatePerfil'
+      };
+
+      this.postPvdr.postData(body, 'proses-api.php').subscribe(async data =>{
+        var alertpesan = data. msg;
+        if(data.success){
+          this.router.navigate(['/perfil-cliente']);
+          const toast = await this.toastCtrl.create({
+            message: 'Alterado com Sucesso',
+            duration: 3000
+          });
+          toast.present();
+        }else{
+          const toast = await this.toastCtrl.create({
+            message: alertpesan,
+            duration: 3000
+          });
+          toast.present();
+        }
+      });
+    }
+      });
     });
   }
 
