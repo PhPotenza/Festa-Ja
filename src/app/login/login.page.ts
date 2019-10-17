@@ -54,8 +54,6 @@ export class LoginPage implements OnInit {
       duration: 2000
     });
     toast.present();
-    this.username = "";
-    this.password = "";
         console.log(data);
       }else{
         const toast = await this.toastCtrl.create({

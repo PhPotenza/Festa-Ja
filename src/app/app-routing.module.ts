@@ -36,8 +36,8 @@ const routes: Routes = [
   { path: 'pesquisar-servico', loadChildren: './pesquisar-servico/pesquisar-servico.module#PesquisarServicoPageModule' },
   { path: 'editar-evento', loadChildren: './editar-evento/editar-evento.module#EditarEventoPageModule' },
   { path: 'lista-servicos', loadChildren: './lista-servicos/lista-servicos.module#ListaServicosPageModule' },
-
-
+  { path: 'pesquisa/:pesquisar/:tipo', loadChildren: './pesquisa/pesquisa.module#PesquisaPageModule' },
+  { path: 'pesquisa', loadChildren: './pesquisa/pesquisa.module#PesquisaPageModule' },
 ];
 
 @NgModule({
