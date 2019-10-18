@@ -70,7 +70,7 @@
     ");
 
     if($query) $result = json_encode(array('success'=>true));
-    else $result = json_encode(array('success'=>false, 'msg'=>'Erro 001! Por favor tente novamente'));
+    else $result = json_encode(array('success'=>false, 'msg'=>'Erro! Por favor tente novamente'));
   }
     else {
       $result = json_encode(array('success'=>false, 'msg'=>'Usuário já Cadastrado'));
@@ -119,7 +119,7 @@
     ");
 
     if($query) $result = json_encode(array('success'=>true));
-    else $result = json_encode(array('success'=>false, 'msg'=>'Erro 002! Por favor tente novamente'));
+    else $result = json_encode(array('success'=>false, 'msg'=>'Erro! Por favor tente novamente'));
 
     echo $result;
 
@@ -175,7 +175,7 @@
       ");
 
       if($query) $result = json_encode(array('success'=>true));
-      else $result = json_encode(array('success'=>false, 'msg'=>'Erro 003! Por favor tente novamente'));
+      else $result = json_encode(array('success'=>false, 'msg'=>'Erro! Por favor tente novamente'));
 
       echo $result;
     }
