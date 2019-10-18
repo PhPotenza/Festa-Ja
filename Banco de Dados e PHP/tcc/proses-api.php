@@ -70,7 +70,7 @@
     ");
 
     if($query) $result = json_encode(array('success'=>true));
-    else $result = json_encode(array('success'=>false, 'msg'=>'Erro! Por favor tente novamente'));
+    else $result = json_encode(array('success'=>false, 'msg'=>'Erro 001! Por favor tente novamente'));
   }
     else {
       $result = json_encode(array('success'=>false, 'msg'=>'Usuário já Cadastrado'));
@@ -119,7 +119,7 @@
     ");
 
     if($query) $result = json_encode(array('success'=>true));
-    else $result = json_encode(array('success'=>false, 'msg'=>'Erro! Por favor tente novamente'));
+    else $result = json_encode(array('success'=>false, 'msg'=>'Erro 002! Por favor tente novamente'));
 
     echo $result;
 
@@ -175,7 +175,7 @@
       ");
 
       if($query) $result = json_encode(array('success'=>true));
-      else $result = json_encode(array('success'=>false, 'msg'=>'Erro! Por favor tente novamente'));
+      else $result = json_encode(array('success'=>false, 'msg'=>'Erro 003! Por favor tente novamente'));
 
       echo $result;
     }
@@ -183,15 +183,15 @@
     //Update do perfil cliente (editar perfil)
     elseif($postjson['aksi']=='updatePerfil'){
       $query = mysqli_query($mysqli, "UPDATE usuario SET
-        nome = '$postjson[nome]',
-        email = '$postjson[email]',
-        cpf =  '$postjson[cpf]',
-        celular =  '$postjson[celular]',
-        telefone =  '$postjson[telefone]',
+        Nome = '$postjson[nome]',
+        Email = '$postjson[email]',
+        CPF =  '$postjson[cpf]',
+        Celular =  '$postjson[celular]',
+        Telefone =  '$postjson[telefone]',
         SecunContat =  '$postjson[contato_secundario]' WHERE idUsuario='$postjson[idUsuario]'");
 
       if($query) $result = json_encode(array('success'=>true, 'result'=>'success'));
-      else $result = json_encode(array('success'=>false, 'result'=>'error'));
+      else $result = json_encode(array('success'=>false, 'result'=>'error', 'msg'=>'error2'));
 
       echo $result;
     }

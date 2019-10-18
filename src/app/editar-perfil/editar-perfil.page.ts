@@ -19,6 +19,8 @@ export class EditarPerfilPage implements OnInit {
   telefone: number;
   contato_secundario: number;
   anggota: any;
+  password: string;
+  username: string;
 
   constructor(
   	private router: Router,
@@ -46,6 +48,8 @@ export class EditarPerfilPage implements OnInit {
       this.storage.get('session_storage').then(async (res)=>{
         this.anggota = res;
         this.idUsuario = this.anggota.idUsuario;
+        this.password = this.anggota.Senha;
+        this.username = this.anggota.Login;
     if(this.nome==""){
       const toast = await this.toastCtrl.create({
         message: 'Nome Obrigátorio',
@@ -62,18 +66,41 @@ export class EditarPerfilPage implements OnInit {
         celular: this.celular,
         telefone: this.telefone,
         contato_secundario: this.contato_secundario,
+        idUsuario: this.idUsuario,
         aksi: 'updatePerfil'
       };
 
       this.postPvdr.postData(body, 'proses-api.php').subscribe(async data =>{
-        var alertpesan = data. msg;
+        let alertpesan = data.msg;
+        console.log(data);
         if(data.success){
-          this.router.navigate(['/perfil-cliente']);
+          this.router.navigate(['/perfil-cliente'])
           const toast = await this.toastCtrl.create({
             message: 'Alterado com Sucesso',
             duration: 3000
           });
           toast.present();
+/*
+                    let body = {
+      username: this.username,
+      password: this.password,
+      aksi: 'login'
+    };
+    this.postPvdr.postData(body, 'proses-api.php').subscribe(async data =>{
+      var alertpesan = data.msg;
+      if(data.success){
+        this.storage.set('session_storage', data.result);
+         this.router.navigate(['/perfil-cliente']);
+      }
+      else{
+         const toast = await this.toastCtrl.create({
+            message: alertpesan,
+            duration: 3000
+          });
+          toast.present();
+      }
+    });
+*/
         }else{
           const toast = await this.toastCtrl.create({
             message: alertpesan,
