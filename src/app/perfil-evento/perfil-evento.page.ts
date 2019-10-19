@@ -44,14 +44,14 @@ export class PerfilEventoPage implements OnInit {
     public toastCtrl: ToastController,
     public alertController: AlertController,
   ) { }
-
+ 
   ngOnInit() {
     this.actRoute.params.subscribe((data: any) =>{
       this.idEvento = data.id;
       let body = {
         idEvento: this.idEvento,
         aksi : 'selectEvento',
-      };
+      }; 
       this.postPvdr.postData(body, 'proses-api.php').subscribe(data => {
         if(data.success){
           this.storage.set('session_storage2', data.result);

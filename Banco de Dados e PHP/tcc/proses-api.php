@@ -165,21 +165,6 @@
     echo $result;
   }
 
-  //método para cadastrar servico
-    elseif($postjson['aksi']=='cadastrarServico'){
-      $query = mysqli_query($mysqli, "INSERT INTO service SET
-        idUsuario = '$postjson[IdUsuario]',
-        Nome = '$postjson[nome]',
-        Descricao = '$postjson[descricao]',
-        Tipo = '$postjson[tipo]'
-      ");
-
-      if($query) $result = json_encode(array('success'=>true));
-      else $result = json_encode(array('success'=>false, 'msg'=>'Erro! Por favor tente novamente'));
-
-      echo $result;
-    }
-
     //Update do perfil cliente (editar perfil)
     elseif($postjson['aksi']=='updatePerfil'){
       $query = mysqli_query($mysqli, "UPDATE usuario SET
@@ -218,6 +203,68 @@
 
     }
 
+    //método para cadastrar servico
+    elseif($postjson['aksi']=='cadastrarServico'){
+      $query = mysqli_query($mysqli, "INSERT INTO service SET
+        idUsuario = '$postjson[IdUsuario]',
+        Nome = '$postjson[nome]',
+        Descricao = '$postjson[descricao]',
+        Tipo = '$postjson[tipo]'
+      ");
 
+      if($query) $result = json_encode(array('success'=>true));
+      else $result = json_encode(array('success'=>false, 'msg'=>'Erro! Por favor tente novamente'));
 
+      echo $result;
+    }
+
+    //metodo alterar serviço
+    elseif($postjson['aksi']=='updateServico'){
+      $query = mysqli_query($mysqli, "UPDATE servico SET
+        Nome = '$postjson[nome_servico]',
+        Descricao = '$postjson[descricao_servico]',
+        Tipo =  '$postjson[tipo_servico]' WHERE idService='$postjson[id_servico]'");
+
+      if($query) $result = json_encode(array('success'=>true, 'msg'=>'Atualizado com sucesso'));
+      else $result = json_encode(array('success'=>false, 'msg'=>'Erro! Por favor tente novamente'));
+
+      echo $result;
+    }
+
+    //método de selecionar serviço para meus serviços
+  elseif($postjson['aksi']=='getservico'){
+    $data = array();
+    $query = mysqli_query($mysqli, "SELECT * FROM service where idService='$postjson[id_servico]' ORDER BY idService DESC LIMIT $postjson[start],$postjson[limit]");
+
+    while($row = mysqli_fetch_array($query)){
+
+      $data[] = array(
+        'id_servico' => $row['idService'],
+        'nome_servico' => $row['Nome'],
+        'tipo_servico' => $row['Tipo'],
+        'descricao_servico' => $row['Descricao'],
+      );
+    }
+
+    if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
+    else $result = json_encode(array('success'=>false));
+
+    echo $result;
+  }
+
+   //metodo para selecionar servicos para perfil serviço
+   elseif($postjson['aksi']=='selectServico'){
+    $data = array();
+    $query = mysqli_query($mysqli, "SELECT * FROM service WHERE idService='$postjson[id_servico]'");
+
+    $data = mysqli_fetch_array($query);
+    $datauser = array(
+      'id_servico' => $data['idService'],
+      'nome_servico' => $data['Nome'],
+      'tipo_servico' => $data['Tipo'],
+      'descricao_servico' => $data['Descricao'],
+    );
+    $result = json_encode(array('success'=>true, 'result'=>$datauser));
+    echo $result;
+  }
 ?>
