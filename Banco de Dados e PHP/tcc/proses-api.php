@@ -218,6 +218,30 @@
 
     }
 
+    //Refresh do perfil-cliente
+    elseif($postjson['aksi']=='refreshPerfil'){
+      $query = mysqli_query($mysqli, "SELECT * FROM usuario WHERE idUsuario='$postjson[idUsuario]'");   //aqui eu declaro qual linha do banco ele vai pegar, por exemplo, ele vai selecionar todas as informações da tabela usuario onde o idUsuairo é igual ao declarado no let la no ts da pagina q to trabalhando (editar-perfil) 
+      $check = mysqli_num_rows($query); //aqui ele ta checkando para ver se existe alguma linha realmente, se n existir nenhuma linha q corresponde com o idUsuario q eu declarei mais cedo, da erro, mas como é um update é meio impossivel isso dar erro, mas isso pq eu to fazendo no usuario, se for outra coisa fica esperto para n causar esse erro fazendo ele modificar a informação q vc usa (por exemplo eu dar um update no BD mudando o id do Usuario e querer puxar o antigo id -- q ja n existe -- iria dar um erro, então fica esperto)
 
+    if($check>0){
+      $data = mysqli_fetch_array($query);
+      $datauser = array(
+        'idUsuario' => $data['idUsuario'],  //aqui em vez de usar $postjson, vc usa o data pq vc ta criando uma informação e não puxando de um input ou coisa do genero, n sei explicar direito, mas acho q da para entender
+        'Login' => $data['Login'],
+        'Nome' => $data['Nome'],
+        'Email' => $data ['Email'],
+        'CPF' => $data['CPF'],
+        'Celular' => $data['Celular'],
+        'Telefone' => $data['Telefone'],
+        'SecunContat'=> $data['SecunContat']
+      );
+
+        $result = json_encode(array('success'=>true, 'result'=>$datauser)); //n esquece de declarar o result como $datauser
+    }else{
+      $result = json_encode(array('success'=>false, 'msg'=>'Não foi possivel atualizar as informação nesse momento')); //msg sdo erro para caso ocorra
+    }
+
+    echo $result;
+  }
 
 ?>
