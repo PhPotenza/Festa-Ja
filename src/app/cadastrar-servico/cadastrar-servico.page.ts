@@ -11,10 +11,10 @@ import { PostProvider } from 'src/providers/post-provider';
 })
 export class CadastrarServicoPage implements OnInit {
   
-  idUsuario: number=0;
-  nome: string = "";
-  descricao: string = "";
-  tipo: string = "";
+  id_usuario: number=0;
+  nome_servico: string = "";
+  descricao_servico: string = "";
+  tipo_servico: string = "";
   anggota: any;
   
   constructor (
@@ -22,7 +22,7 @@ export class CadastrarServicoPage implements OnInit {
       private storage: Storage,
       public toastCtrl: ToastController,
       private postPvdr: PostProvider,
-  ){}
+  ){} 
 
   ngOnInit() {
   }
@@ -35,20 +35,20 @@ export class CadastrarServicoPage implements OnInit {
     return new Promise(resolve => {
       this.storage.get('session_storage').then(async (res)=>{
         this.anggota = res;
-        this.idUsuario = this.anggota.idUsuario;
-    if(this.nome==""){
+        this.id_usuario = this.anggota.idUsuario;
+    if(this.nome_servico==""){
         const toast = await this.toastCtrl.create({
           message: 'Nome Obrigatório',
           duration: 3000
         });
         toast.present();
-    }else if(this.descricao==""){
+    }else if(this.descricao_servico==""){
       const toast = await this.toastCtrl.create({
         message: 'Descrição Obrigatória',
         duration: 3000
       });
       toast.present();
-    }else if(this.tipo==""){
+    }else if(this.tipo_servico==""){
       const toast = await this.toastCtrl.create({
         message: 'Tipo de Serviço Obrigatório',
         duration: 3000
@@ -57,17 +57,17 @@ export class CadastrarServicoPage implements OnInit {
     }else{
 
       let body = {
-        IdUsuario: this.idUsuario,
-        nome: this.nome,
-        descricao: this.descricao,
-        tipo: this.tipo,
+        IdUsuario: this.id_usuario,
+        nome: this.nome_servico,
+        descricao: this.descricao_servico,
+        tipo: this.tipo_servico,
         aksi: 'cadastrarServico'
       };
 
       this.postPvdr.postData(body, 'proses-api.php').subscribe(async data =>{
         var alertpesan = data.msg;
         if(data.success){
-          this.router.navigate(['/home']);
+          this.router.navigate(['/meus-servicos']);
           const toast = await this.toastCtrl.create({
             message: 'Adicionado com Sucesso',
             duration: 3000

@@ -36,6 +36,7 @@ const routes: Routes = [
   { path: 'pesquisar-servico', loadChildren: './pesquisar-servico/pesquisar-servico.module#PesquisarServicoPageModule' },
   { path: 'editar-evento', loadChildren: './editar-evento/editar-evento.module#EditarEventoPageModule' },
   { path: 'lista-servicos', loadChildren: './lista-servicos/lista-servicos.module#ListaServicosPageModule' },
+  { path: 'meus-servicos', loadChildren: './meus-servicos/meus-servicos.module#MeusServicosPageModule' },
   { path: 'pesquisa/:pesquisar/:tipo', loadChildren: './pesquisa/pesquisa.module#PesquisaPageModule' },
   { path: 'pesquisa', loadChildren: './pesquisa/pesquisa.module#PesquisaPageModule' },
 ];
@@ -46,4 +47,5 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule { }

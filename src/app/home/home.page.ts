@@ -44,7 +44,7 @@ export class HomePage implements OnInit {
     this.eventos = [];
     this.start = 0;
   	this.loadEvento();
-  }
+  }  
 
   async prosesLogout(){
     this.storage.clear();
