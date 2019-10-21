@@ -172,4 +172,9 @@ export class PerfilEventoPage implements OnInit {
 
     await alert.present();
   }
+
+  buffetEvento(){
+    this.router.navigate(['/buffet/']);
+  }
+
 }
