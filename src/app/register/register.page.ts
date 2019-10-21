@@ -4,6 +4,7 @@ import { PostProvider } from '../../providers/post-provider';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/Storage';
 
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
@@ -11,6 +12,7 @@ import { Storage } from '@ionic/Storage';
 })
 export class RegisterPage implements OnInit {
   
+
   username: string = "";
   password: string = "";
   confirm_password: string = "";
