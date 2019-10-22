@@ -27,6 +27,16 @@ export class PerfilClientePage implements OnInit {
   	public toastCtrl: ToastController
   ) { }
   ngOnInit() {
+       this.storage.get('session_storage').then((res)=>{
+      this.anggota = res;
+      this.nome = this.anggota.Nome,
+      this.email = this.anggota.Email;
+      this.cpf = this.anggota.CPF;
+      this.celular = this.anggota.Celular;
+      this.telefone = this.anggota.Telefone;
+      this.contato_secundario = this.anggota.SecunContat;
+      console.log(res);
+    });
   }
 
  formEditarPerfil(){

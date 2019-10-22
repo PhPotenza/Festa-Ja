@@ -12,6 +12,7 @@ import { PostProvider } from 'src/providers/post-provider';
 })
 export class EditarServicoPage implements OnInit {
 
+  id_servico: number=0;
   nome_servico: string = "";
   descricao_servico: string = "";
   tipo_servico: string = "";
@@ -22,69 +23,74 @@ export class EditarServicoPage implements OnInit {
         private storage: Storage,
         public toastCtrl: ToastController,
         private postPvdr: PostProvider
-    ){}
+    ){} 
 
     ngOnInit() {
     }
 
-    //async alteracaoPerfilServico(){
-    //this.storage.clear();
-    //this.router.navigate(['/perfil-servico']);
-    //const toast = await this.toastCtrl.create({
-        //message: 'Informações atualizadas!',
-        //duration: 3000
-      //});
-    //toast.present();
-  //}
-
-  async alterarServico(){
-    return new Promise(resolve=> {
-      this.storage.get('session_storage').then(async (res)=>{
+    ionViewWillEnter(){
+      this.storage.get('session_storage3').then((res)=>{
         this.anggota = res;
-        //this.idService = this.anggota.idService;
-        
+        this.nome_servico = this.anggota.Nome;
+        this.tipo_servico = this.anggota.Tipo;
+        this.descricao_servico = this.anggota.Descricao;
+      });
+    }
+
+    async updateServico(){
+      return new Promise(resolve => {
+        this.storage.get('session_storage3').then(async (res)=>{
+          this.anggota = res;
+          this.id_servico = this.anggota.idServico;
+      
       if(this.nome_servico==""){
+          const toast = await this.toastCtrl.create({
+            message: 'Nome Obrigatório',
+            duration: 3000
+          });
+          toast.present();
+      }else if(this.descricao_servico==""){
         const toast = await this.toastCtrl.create({
-          message: 'Dê um nome ao seu serviço!',
+          message: 'Descrição Obrigatória',
           duration: 3000
         });
         toast.present();
       }else if(this.tipo_servico==""){
         const toast = await this.toastCtrl.create({
-          message: 'Selecione um tipo para seu serviço!'
+          message: 'Tipo de Serviço Obrigatório',
+          duration: 3000
         });
-      }else if(this.descricao_servico==""){
-        const toast = await this.toastCtrl.create({
-          message: 'Inclua uma descrição ao seu serviço!'
-        });
+        toast.present();
       }else{
+  
         let body = {
-          Nome: this.nome_servico,
-          Tipo: this.tipo_servico,
-          Descricao: this.descricao_servico,
-          aski: 'cadastrarServico'
-        }
-      
-
-      this.postPvdr.postData(body, 'proses-api.php').subscribe(async data =>{
-        var alertpesan = data.msg;
-        if(data.success){
-          this.router.navigate(['/perfil-servico']);
-          const toast = await this.toastCtrl.create({
-            message: 'Informações atualizadas com sucesso!',
-            duration: 3000
-          });
-          toast.present();
-        }else{
-          const toast = await this.toastCtrl.create({
-            message: alertpesan,
-            duration: 3000
-          });
-          toast.present();
-        }
-      });
+          idServico: this.id_servico,
+          nome: this.nome_servico,
+          descricao: this.descricao_servico,
+          tipo: this.tipo_servico,
+          aksi: 'updateServico'
+        };
+  
+        this.postPvdr.postData(body, 'proses-api.php').subscribe(async data =>{
+          var alertpesan = data.msg;
+          if(data.success){
+            this.router.navigate(['/perfil-servico']);
+            const toast = await this.toastCtrl.create({
+              message: 'Alterado com Sucesso',
+              duration: 3000
+            });
+            toast.present();
+          }else{
+            const toast = await this.toastCtrl.create({
+              message: alertpesan,
+              duration: 3000
+            });
+            toast.present();
+          }
+        });
+  
+      }
+    });
+  });
     }
-      })
-    })
-  }
 }
