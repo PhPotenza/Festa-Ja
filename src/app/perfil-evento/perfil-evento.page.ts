@@ -213,4 +213,10 @@ this.dia2=this.day2;
   formBuffet(){
     this.router.navigate(['/buffet']);
   } 
+  formConvidados(){
+    this.router.navigate(['/convidados']);
+  }
+  formServico(){
+    this.router.navigate(['/pesquisar-servico']);
+  }  
 }
