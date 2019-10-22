@@ -19,12 +19,12 @@
         <ion-select-option value="todos">Todos</ion-select-option>
     </ion-select>
   </ion-item>
-  <ion-button class="ion-button" expand="block" color="light">Pesquisar</ion-button>
+  <ion-button class="ion-button" (click)="pesquisa()" expand="block" color="light">Pesquisar</ion-button>
 
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content
       pullingIcon="arrow-dropdown"
-      pullingText="Pull to refresh"
+      pullingText="Puxe para atualizar"
       refreshingSpinner="circles"
       refreshingText="Carregando...">
     </ion-refresher-content>
@@ -40,7 +40,8 @@
       </ion-item>
         
         <ion-card-content (click)="perfilEvento(evento.idEvento)">{{evento.TipoEvento}}</ion-card-content>
-        <ion-card-content (click)="perfilEvento(evento.idEvento)">Início: {{evento.day1}}/{{evento.month1}}/{{evento.year1}}</ion-card-content>
+        <ion-card-content (click)="perfilEvento(evento.idEvento)">Início: {{evento.day1}}/{{evento.month1}}/{{evento.year1}} às {{evento.hour1}}:{{evento.minute1}}</ion-card-content>
+        <ion-card-content (click)="perfilEvento(evento.idEvento)">Término: {{evento.day2}}/{{evento.month2}}/{{evento.year2}} às {{evento.hour2}}:{{evento.minute2}}</ion-card-content>     
       </ion-card>
   </ion-item-sliding>
 </ion-list>
