@@ -230,9 +230,10 @@
 
     }
 
+    //GET SERVIÇO
     elseif($postjson['aksi']=='getservico'){
       $data = array();
-      $query = mysqli_query($mysqli, "SELECT * FROM service ORDER BY idService LIMIT $postjson[start],$postjson[limit]");
+      $query = mysqli_query($mysqli, "SELECT * FROM service WHERE idUsuario='$postjson[idUsuario]' ORDER BY idService LIMIT $postjson[start],$postjson[limit]");
 
       while($row = mysqli_fetch_array($query)){
 
@@ -251,6 +252,8 @@
 
     }
 
+
+    //PESQUISAR SERVICOS
     elseif($postjson['aksi']=='pesquisarservico'){
       $data = array();
       $pesquisa = $postjson['pesquisa'];

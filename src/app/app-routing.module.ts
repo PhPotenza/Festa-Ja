@@ -39,6 +39,8 @@ const routes: Routes = [
   { path: 'meus-servicos', loadChildren: './meus-servicos/meus-servicos.module#MeusServicosPageModule' },
   { path: 'pesquisa/:pesquisar/:tipo', loadChildren: './pesquisa/pesquisa.module#PesquisaPageModule' },
   { path: 'pesquisa', loadChildren: './pesquisa/pesquisa.module#PesquisaPageModule' },
+  { path: 'perfil-servico/:id', loadChildren: './perfil-servico/perfil-servico.module#PerfilServicoPageModule' },
+
 ];
 
 @NgModule({
