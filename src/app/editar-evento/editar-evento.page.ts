@@ -23,6 +23,8 @@ export class EditarEventoPage implements OnInit {
   Complemento: string;
   date1: string;
   time1: string;
+  date2: string;
+  time2: string;
   anggota: any;
 
   constructor(
@@ -50,6 +52,8 @@ export class EditarEventoPage implements OnInit {
       this.Complemento = this.anggota.Complemento;
       this.date1 = this.anggota.Data_Inicio;
       this.time1 = this.anggota.Hora_Inicio;
+      this.date2 = this.anggota.Data_Fim;
+      this.time2 = this.anggota.Hora_Fim;
     });
   }
 
@@ -79,6 +83,8 @@ export class EditarEventoPage implements OnInit {
         complemento: this.Complemento,
         date1: this.date1,
         time1: this.time1,
+        date2: this.date2,
+        time2: this.time2,
         idEvento: this.idEvento,
         aksi: 'updateEvento'
       };

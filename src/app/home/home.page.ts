@@ -15,6 +15,7 @@ export class HomePage implements OnInit {
 
 
   anggota: any;
+  mes1: number;
   eventos: any = [];
   idUsuario: number;
   limit: number = 13;
