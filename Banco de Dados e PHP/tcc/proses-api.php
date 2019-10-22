@@ -82,7 +82,9 @@
 //método de selecionar evento para o home
   elseif($postjson['aksi']=='getevento'){
     $data = array();
-    $query = mysqli_query($mysqli, "SELECT * FROM evento where idUsuario='$postjson[idUsuario]' ORDER BY idEvento DESC LIMIT $postjson[start],$postjson[limit]");
+    $query = mysqli_query($mysqli, "SELECT *, year(Data_Inicio), month(Data_Inicio), day(Data_Inicio), minute(Hora_Inicio), hour(Hora_Inicio),
+    year(Data_Fim), month(Data_Fim), day(Data_Fim), minute(Hora_Fim), hour(Hora_Fim)
+     FROM evento where idUsuario='$postjson[idUsuario]' ORDER BY idEvento DESC LIMIT $postjson[start],$postjson[limit]");
 
     while($row = mysqli_fetch_array($query)){
 
@@ -91,6 +93,18 @@
         'NomeEvento' => $row['NomeEvento'],
         'TipoEvento' => $row['Tipo'],
         'CEP' => $row['CEP'],
+        'year1' => $row['year(Data_Inicio)'],
+        'day1' => $row['day(Data_Inicio)'],
+        'month1' => $row['month(Data_Inicio)'],
+        'minute1' => $row['minute(Hora_Inicio)'],
+        'hour1' => $row['hour(Hora_Inicio)'],
+        'Data_Fim' => $row['Data_Fim'],
+        'Hora_Fim' => $row['Hora_Fim'],
+        'year2' => $row['year(Data_Fim)'],
+        'day2' => $row['day(Data_Fim)'],
+        'month2' => $row['month(Data_Fim)'],
+        'minute2' => $row['minute(Hora_Fim)'],
+        'hour2' => $row['hour(Hora_Fim)'],
       );
     }
 
@@ -115,7 +129,9 @@
       Numero = '$postjson[numero]',
       Complemento = '$postjson[complemento]',
       Data_Inicio = '$postjson[date1]',
-      Hora_Inicio = '$postjson[time1]'
+      Hora_Inicio = '$postjson[time1]',
+      Data_Fim = '$postjson[date2]',
+      Hora_Fim = '$postjson[time2]'
     ");
 
     if($query) $result = json_encode(array('success'=>true));
@@ -139,7 +155,9 @@
 
   elseif($postjson['aksi']=='selectEvento'){
     $data = array();
-    $query = mysqli_query($mysqli, "SELECT *, year(Data_Inicio), month(Data_Inicio), day(Data_Inicio), minute(Hora_Inicio), hour(Hora_Inicio) FROM evento where idEvento='$postjson[idEvento]'");
+    $query = mysqli_query($mysqli, "SELECT *, year(Data_Inicio), month(Data_Inicio), day(Data_Inicio), minute(Hora_Inicio), hour(Hora_Inicio),
+    year(Data_Fim), month(Data_Fim), day(Data_Fim), minute(Hora_Fim), hour(Hora_Fim)
+     FROM evento where idEvento='$postjson[idEvento]'");
 
     $data = mysqli_fetch_array($query);
     $datauser = array(
@@ -160,6 +178,13 @@
       'month1' => $data['month(Data_Inicio)'],
       'minute1' => $data['minute(Hora_Inicio)'],
       'hour1' => $data['hour(Hora_Inicio)'],
+      'Data_Fim' => $data['Data_Fim'],
+      'Hora_Fim' => $data['Hora_Fim'],
+      'year2' => $data['year(Data_Fim)'],
+      'day2' => $data['day(Data_Fim)'],
+      'month2' => $data['month(Data_Fim)'],
+      'minute2' => $data['minute(Hora_Fim)'],
+      'hour2' => $data['hour(Hora_Fim)'],
     );
     $result = json_encode(array('success'=>true, 'result'=>$datauser));
     echo $result;
@@ -196,6 +221,7 @@
 
       echo $result;
     }
+
     elseif($postjson['aksi']=='updateEvento'){
       $query = mysqli_query($mysqli, "UPDATE Evento SET
         NomeEvento = '$postjson[nome]',
@@ -208,12 +234,73 @@
         Numero = '$postjson[numero]',
         Complemento = '$postjson[complemento]',
         Data_Inicio = '$postjson[date1]',
-        Hora_Inicio = '$postjson[time1]' WHERE idEvento='$postjson[idEvento]'");
+        Hora_Inicio = '$postjson[time1]',
+        Data_Fim = '$postjson[date2]',
+        Hora_Fim = '$postjson[time2]' WHERE idEvento='$postjson[idEvento]'");
 
       if($query) $result = json_encode(array('success'=>true, 'result'=>'success'));
       else $result = json_encode(array('success'=>false, 'result'=>'error'));
 
       echo $result;
+
+    }
+
+    elseif($postjson['aksi']=='getservico'){
+      $data = array();
+      $query = mysqli_query($mysqli, "SELECT * FROM service ORDER BY idService LIMIT $postjson[start],$postjson[limit]");
+
+      while($row = mysqli_fetch_array($query)){
+
+        $data[] = array(
+          'idService' => $row['idService'],
+          'Nome' => $row['Nome'],
+          'Tipo' => $row['Tipo'],
+          'Descricao' => $row['Descricao'],
+        );
+      }
+
+      if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
+      else $result = json_encode(array('success'=>false));
+
+      echo $result;
+
+    }
+
+    elseif($postjson['aksi']=='pesquisarservico'){
+      $data = array();
+      $pesquisa = $postjson['pesquisa'];
+      $filtro = $postjson['filtro'];
+      if($filtro == "todos"){
+        $query = mysqli_query($mysqli, "SELECT * FROM service where Nome like '%$pesquisa%' or
+           Descricao like '%$pesquisa%' ORDER BY idService LIMIT $postjson[start],$postjson[limit] ");
+        $check = mysqli_num_rows($query);
+
+
+      }
+      else{
+      $query = mysqli_query($mysqli, "SELECT * FROM service where (Tipo='$filtro' and Nome like '%$pesquisa%')
+       or (Tipo='$filtro' and Descricao like '%$pesquisa%') ORDER BY idService LIMIT $postjson[start],$postjson[limit] ");
+      $check = mysqli_num_rows($query);
+
+    }
+    while($row = mysqli_fetch_array($query)){
+      $data[] = array(
+        'idService' => $row['idService'],
+        'Nome' => $row['Nome'],
+        'Tipo' => $row['Tipo'],
+        'Descricao' => $row['Descricao'],
+      );
+    }
+
+    if($check>0){
+    if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
+    else $result = json_encode(array('success'=>false));
+    }
+    else{
+      $result = json_encode(array('sucess'=>false, 'msg'=>'Nenhum serviço encontrado'));
+    }
+
+    echo $result;
 
     }
 
