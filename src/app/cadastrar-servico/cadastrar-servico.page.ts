@@ -73,6 +73,9 @@ export class CadastrarServicoPage implements OnInit {
             duration: 3000
           });
           toast.present();
+          this.nome_servico="";
+          this.descricao_servico="";
+          this.tipo_servico="";
         }else{
           const toast = await this.toastCtrl.create({
             message: alertpesan,

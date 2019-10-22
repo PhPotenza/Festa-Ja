@@ -13,6 +13,7 @@ import { AlertController } from '@ionic/angular';
 })
 export class MeusServicosPage implements OnInit {
 
+  idUsuario: number;
   id_servico: number=0;
   anggota: any;
   servicos: any = [];
@@ -27,29 +28,38 @@ export class MeusServicosPage implements OnInit {
   ) { }
 
   ngOnInit() {
-  }
-
-  ionViewWillEnter(){
-    this.storage.get('session_storage3').then((res)=>{
+     this.storage.get('session_storage').then((res)=>{
       this.anggota = res;
-      this.id_servico = this.anggota.idService;
+      this.idUsuario = this.anggota.idUsuario;
       console.log(res);
     });
     this.servicos = [];
     this.start = 0;
-  	this.loadServico();
-  } 
+    this.loadServico();
+
+  }
+
+ionViewWillEnter(){
+    this.storage.get('session_storage').then((res)=>{
+      this.anggota = res;
+      this.idUsuario = this.anggota.idUsuario;
+      console.log(res);
+    });
+    this.servicos = [];
+    this.start = 0;
+    this.loadServico();
+  }  
 
   loadServico() {
     return new Promise(resolve => {
-      this.storage.get('session_storage3').then((res) => {
+      this.storage.get('session_storage').then((res)=>{
         this.anggota = res;
-        this.id_servico = this.anggota.idUsuario;
+        this.idUsuario = this.anggota.idUsuario;
         let body = {
-          idService: this.id_servico,
-          limit: this.limit,
-          start: this.start,
-          aksi: 'getservico',
+          idUsuario: this.idUsuario,
+          limit : this.limit,
+          start : this.start,
+          aksi : 'getservico',
         };
 
         this.postPvdr.postData(body, 'proses-api.php').subscribe(data => {
@@ -82,8 +92,8 @@ export class MeusServicosPage implements OnInit {
   	this.router.navigate(['/perfil-servico/' + id]);
   }
 
-  goToCadastrarServicos(){
-    this.router.navigate(['/cadastrar-servicos/']);
+  goToCadastrarServico(){
+    this.router.navigate(['/cadastrar-servico']);
   }
 
 }
