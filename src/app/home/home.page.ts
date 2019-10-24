@@ -15,10 +15,13 @@ export class HomePage implements OnInit {
 
 
   anggota: any;
+  mes1: number;
   eventos: any = [];
   idUsuario: number;
   limit: number = 13;
   start: number = 0;
+  pesquisar: string = "";
+  tipo: string = "todos";
 
   constructor(
     private router: Router,
@@ -44,7 +47,7 @@ export class HomePage implements OnInit {
     this.eventos = [];
     this.start = 0;
   	this.loadEvento();
-  }
+  }  
 
   async prosesLogout(){
     this.storage.clear();
@@ -156,6 +159,21 @@ export class HomePage implements OnInit {
 
   perfilEvento(id){
   	this.router.navigate(['/perfil-evento/' + id]);
+  }
+
+  async pesquisa(){
+    if(this.pesquisar==""){
+      const toast = await this.toastCtrl.create({
+        message: 'A barra de pesquisa está vazia!',
+        duration: 2000
+      });
+      toast.present();
+    }
+    else{
+    this.router.navigate(['/pesquisa/' + this.pesquisar + '/' + this.tipo]);
+    this.pesquisar="";
+    this.tipo="todos";
+    }
   }
 
 }

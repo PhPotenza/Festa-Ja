@@ -1,58 +1,77 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastController } from '@ionic/angular';
 import { PostProvider } from '../../providers/post-provider';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Storage } from '@ionic/Storage';
+import { ToastController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
-import {  MenuController } from '@ionic/angular';
+import { DomAdapter } from '@angular/platform-browser/src/dom/dom_adapter';
 
 @Component({
-  selector: 'app-pesquisar-servico',
-  templateUrl: './pesquisar-servico.page.html',
-  styleUrls: ['./pesquisar-servico.page.scss'],
+  selector: 'app-pesquisa',
+  templateUrl: './pesquisa.page.html',
+  styleUrls: ['./pesquisa.page.scss'],
 })
-export class PesquisarServicoPage implements OnInit {
+export class PesquisaPage implements OnInit {
 
+  pesquisar: string = "";
+  tipo: string = "";
   servicos: any = [];
   limit: number = 13;
   start: number = 0;
-  pesquisar: string = "";
-  tipo: string = "todos";
+
 
   constructor(
     private router: Router,
   	private postPvdr: PostProvider,
+    private actRoute: ActivatedRoute,
     private storage: Storage,
     public toastCtrl: ToastController,
-    private actRoute: ActivatedRoute,
     public alertController: AlertController,
-    public menuCtrl: MenuController
   ) { }
 
   ngOnInit() {
+      this.actRoute.params.subscribe((data: any) =>{
+        this.tipo = data.tipo;
+        this.pesquisar = data.pesquisar;
+      });
   }
 
   ionViewWillEnter(){
-    this.menuCtrl.enable(true);
- 
+    this.actRoute.params.subscribe((data: any) =>{
+      this.tipo = data.tipo;
+      this.pesquisar = data.pesquisar;
+    });
     this.servicos = [];
     this.start = 0;
   	this.loadServico();
   }
 
-  loadServico(){
+  async loadServico(){
   	return new Promise(resolve => {
         let body = {
           limit: this.limit,
-  			  start: this.start,
-          aksi: 'getservico'
+          start: this.start,
+          filtro: this.tipo,
+          pesquisa: this.pesquisar, 
+          aksi: 'pesquisarservico'
         };
   
-        this.postPvdr.postData(body, 'proses-api.php').subscribe(data => {
+        this.postPvdr.postData(body, 'proses-api.php').subscribe(async data => {
+          if(data.success){
           for(let servico of data.result){
             this.servicos.push(servico);
           }
+         
           resolve(true);
+        }
+        else{
+          const toast = await this.toastCtrl.create({
+            message: data.msg,
+            duration: 2000
+          });
+          toast.present();
+          
+        }
         });
      
       });
@@ -76,17 +95,22 @@ export class PesquisarServicoPage implements OnInit {
   }
 
  async pesquisa(){
+  this.actRoute.params.subscribe(async (data: any) =>{
     if(this.pesquisar==""){
       const toast = await this.toastCtrl.create({
         message: 'A barra de pesquisa está vazia!',
         duration: 2000
       });
       toast.present();
+    }else if(this.pesquisar==data.pesquisar && this.tipo==data.tipo){
+      this.router.navigate(['/pesquisa/' + this.pesquisar + '/' + this.tipo]);
     }
     else{
     this.router.navigate(['/pesquisa/' + this.pesquisar + '/' + this.tipo]);
     this.pesquisar="";
     this.tipo="todos";
     }
-  }
+  });
+}
+
 }

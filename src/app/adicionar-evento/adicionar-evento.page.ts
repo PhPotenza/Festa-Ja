@@ -24,6 +24,8 @@ export class AdicionarEventoPage implements OnInit {
   date1: string="";
   time1: string="";
   idUsuario: number= 0;
+  date2: string="";
+  time2: string="";
   anggota: any;
 
 
@@ -77,6 +79,8 @@ export class AdicionarEventoPage implements OnInit {
         complemento: this.complemento,
         date1: this.date1,
         time1: this.time1,
+        date2: this.date2,
+        time2: this.time2,
         aksi: 'addEvento'
       };
 

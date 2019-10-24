@@ -82,7 +82,9 @@
 //método de selecionar evento para o home
   elseif($postjson['aksi']=='getevento'){
     $data = array();
-    $query = mysqli_query($mysqli, "SELECT * FROM evento where idUsuario='$postjson[idUsuario]' ORDER BY idEvento DESC LIMIT $postjson[start],$postjson[limit]");
+    $query = mysqli_query($mysqli, "SELECT *, year(Data_Inicio), month(Data_Inicio), day(Data_Inicio), minute(Hora_Inicio), hour(Hora_Inicio),
+    year(Data_Fim), month(Data_Fim), day(Data_Fim), minute(Hora_Fim), hour(Hora_Fim)
+     FROM evento where idUsuario='$postjson[idUsuario]' ORDER BY idEvento DESC LIMIT $postjson[start],$postjson[limit]");
 
     while($row = mysqli_fetch_array($query)){
 
@@ -91,6 +93,18 @@
         'NomeEvento' => $row['NomeEvento'],
         'TipoEvento' => $row['Tipo'],
         'CEP' => $row['CEP'],
+        'year1' => $row['year(Data_Inicio)'],
+        'day1' => $row['day(Data_Inicio)'],
+        'month1' => $row['month(Data_Inicio)'],
+        'minute1' => $row['minute(Hora_Inicio)'],
+        'hour1' => $row['hour(Hora_Inicio)'],
+        'Data_Fim' => $row['Data_Fim'],
+        'Hora_Fim' => $row['Hora_Fim'],
+        'year2' => $row['year(Data_Fim)'],
+        'day2' => $row['day(Data_Fim)'],
+        'month2' => $row['month(Data_Fim)'],
+        'minute2' => $row['minute(Hora_Fim)'],
+        'hour2' => $row['hour(Hora_Fim)'],
       );
     }
 
@@ -115,7 +129,9 @@
       Numero = '$postjson[numero]',
       Complemento = '$postjson[complemento]',
       Data_Inicio = '$postjson[date1]',
-      Hora_Inicio = '$postjson[time1]'
+      Hora_Inicio = '$postjson[time1]',
+      Data_Fim = '$postjson[date2]',
+      Hora_Fim = '$postjson[time2]'
     ");
 
     if($query) $result = json_encode(array('success'=>true));
@@ -139,7 +155,9 @@
 
   elseif($postjson['aksi']=='selectEvento'){
     $data = array();
-    $query = mysqli_query($mysqli, "SELECT *, year(Data_Inicio), month(Data_Inicio), day(Data_Inicio), minute(Hora_Inicio), hour(Hora_Inicio) FROM evento where idEvento='$postjson[idEvento]'");
+    $query = mysqli_query($mysqli, "SELECT *, year(Data_Inicio), month(Data_Inicio), day(Data_Inicio), minute(Hora_Inicio), hour(Hora_Inicio),
+    year(Data_Fim), month(Data_Fim), day(Data_Fim), minute(Hora_Fim), hour(Hora_Fim)
+     FROM evento where idEvento='$postjson[idEvento]'");
 
     $data = mysqli_fetch_array($query);
     $datauser = array(
@@ -160,6 +178,13 @@
       'month1' => $data['month(Data_Inicio)'],
       'minute1' => $data['minute(Hora_Inicio)'],
       'hour1' => $data['hour(Hora_Inicio)'],
+      'Data_Fim' => $data['Data_Fim'],
+      'Hora_Fim' => $data['Hora_Fim'],
+      'year2' => $data['year(Data_Fim)'],
+      'day2' => $data['day(Data_Fim)'],
+      'month2' => $data['month(Data_Fim)'],
+      'minute2' => $data['minute(Hora_Fim)'],
+      'hour2' => $data['hour(Hora_Fim)'],
     );
     $result = json_encode(array('success'=>true, 'result'=>$datauser));
     echo $result;
@@ -182,21 +207,6 @@
     $result = json_encode(array('success'=>true, 'result'=>$datauser));
     echo $result;
   }
-
-  //método para cadastrar servico
-    elseif($postjson['aksi']=='cadastrarServico'){
-      $query = mysqli_query($mysqli, "INSERT INTO service SET
-        idUsuario = '$postjson[IdUsuario]',
-        Nome = '$postjson[nome]',
-        Descricao = '$postjson[descricao]',
-        Tipo = '$postjson[tipo]'
-      ");
-
-      if($query) $result = json_encode(array('success'=>true));
-      else $result = json_encode(array('success'=>false, 'msg'=>'Erro! Por favor tente novamente'));
-
-      echo $result;
-    }
 
     //Update do perfil cliente (editar perfil)
     elseif($postjson['aksi']=='updatePerfil'){
@@ -227,7 +237,9 @@
         Numero = '$postjson[numero]',
         Complemento = '$postjson[complemento]',
         Data_Inicio = '$postjson[date1]',
-        Hora_Inicio = '$postjson[time1]' WHERE idEvento='$postjson[idEvento]'");
+        Hora_Inicio = '$postjson[time1]',
+        Data_Fim = '$postjson[date2]',
+        Hora_Fim = '$postjson[time2]' WHERE idEvento='$postjson[idEvento]'");
 
       if($query) $result = json_encode(array('success'=>true, 'result'=>'success'));
       else $result = json_encode(array('success'=>false, 'result'=>'error'));
@@ -236,7 +248,135 @@
 
     }
 
-    //Refresh do perfil-cliente
+    //GET SERVIÇO
+    elseif($postjson['aksi']=='getservico'){
+      $data = array();
+      $query = mysqli_query($mysqli, "SELECT * FROM service WHERE idUsuario='$postjson[idUsuario]' ORDER BY idService LIMIT $postjson[start],$postjson[limit]");
+
+      while($row = mysqli_fetch_array($query)){
+
+        $data[] = array(
+          'idService' => $row['idService'],
+          'Nome' => $row['Nome'],
+          'Tipo' => $row['Tipo'],
+          'Descricao' => $row['Descricao'],
+        );
+      }
+
+      if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
+      else $result = json_encode(array('success'=>false));
+
+      echo $result;
+
+    }
+
+
+    //PESQUISAR SERVICOS
+    elseif($postjson['aksi']=='pesquisarservico'){
+      $data = array();
+      $pesquisa = $postjson['pesquisa'];
+      $filtro = $postjson['filtro'];
+      if($filtro == "todos"){
+        $query = mysqli_query($mysqli, "SELECT * FROM service where Nome like '%$pesquisa%' or
+           Descricao like '%$pesquisa%' ORDER BY idService LIMIT $postjson[start],$postjson[limit] ");
+        $check = mysqli_num_rows($query);
+
+
+      }
+      else{
+      $query = mysqli_query($mysqli, "SELECT * FROM service where (Tipo='$filtro' and Nome like '%$pesquisa%')
+       or (Tipo='$filtro' and Descricao like '%$pesquisa%') ORDER BY idService LIMIT $postjson[start],$postjson[limit] ");
+      $check = mysqli_num_rows($query);
+
+    }
+    while($row = mysqli_fetch_array($query)){
+      $data[] = array(
+        'idService' => $row['idService'],
+        'Nome' => $row['Nome'],
+        'Tipo' => $row['Tipo'],
+        'Descricao' => $row['Descricao'],
+      );
+    }
+
+    if($check>0){
+    if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
+    else $result = json_encode(array('success'=>false));
+    }
+    else{
+      $result = json_encode(array('sucess'=>false, 'msg'=>'Nenhum serviço encontrado'));
+    }
+
+    echo $result;
+
+    }
+
+
+    //método para cadastrar servico
+    elseif($postjson['aksi']=='cadastrarServico'){
+      $query = mysqli_query($mysqli, "INSERT INTO service SET
+        idUsuario = '$postjson[IdUsuario]',
+        Nome = '$postjson[nome]',
+        Descricao = '$postjson[descricao]',
+        Tipo = '$postjson[tipo]'
+      ");
+
+      if($query) $result = json_encode(array('success'=>true));
+      else $result = json_encode(array('success'=>false, 'msg'=>'Erro! Por favor tente novamente'));
+      
+      echo $result;
+    }
+
+    //metodo alterar serviço
+    elseif($postjson['aksi']=='updateServico'){
+      $query = mysqli_query($mysqli, "UPDATE servico SET
+        Nome = '$postjson[nome_servico]',
+        Descricao = '$postjson[descricao_servico]',
+        Tipo =  '$postjson[tipo_servico]' WHERE idService='$postjson[id_servico]'");
+
+      if($query) $result = json_encode(array('success'=>true, 'msg'=>'Atualizado com sucesso'));
+      else $result = json_encode(array('success'=>false, 'msg'=>'Erro! Por favor tente novamente'));
+
+      echo $result;
+    }
+
+    //método de selecionar serviço para meus serviços
+  elseif($postjson['aksi']=='getservico'){
+    $data = array();
+    $query = mysqli_query($mysqli, "SELECT * FROM service where idService='$postjson[id_servico]' ORDER BY idService DESC LIMIT $postjson[start],$postjson[limit]");
+
+    while($row = mysqli_fetch_array($query)){
+
+      $data[] = array(
+        'id_servico' => $row['idService'],
+        'nome_servico' => $row['Nome'],
+        'tipo_servico' => $row['Tipo'],
+        'descricao_servico' => $row['Descricao'],
+      );
+    }
+
+    if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
+    else $result = json_encode(array('success'=>false));
+
+    echo $result;
+  }
+
+   //metodo para selecionar servicos para perfil serviço
+   elseif($postjson['aksi']=='selectServico'){
+    $data = array();
+    $query = mysqli_query($mysqli, "SELECT * FROM service WHERE idService='$postjson[id_servico]'");
+
+    $data = mysqli_fetch_array($query);
+    $datauser = array(
+      'id_servico' => $data['idService'],
+      'nome_servico' => $data['Nome'],
+      'tipo_servico' => $data['Tipo'],
+      'descricao_servico' => $data['Descricao'],
+    );
+    $result = json_encode(array('success'=>true, 'result'=>$datauser));
+    echo $result;
+  }
+
+//Refresh do perfil-cliente
     elseif($postjson['aksi']=='refreshPerfil'){
       $query = mysqli_query($mysqli, "SELECT * FROM usuario WHERE idUsuario='$postjson[idUsuario]'");   //aqui eu declaro qual linha do banco ele vai pegar, por exemplo, ele vai selecionar todas as informações da tabela usuario onde o idUsuairo é igual ao declarado no let la no ts da pagina q to trabalhando (editar-perfil) 
       $check = mysqli_num_rows($query); //aqui ele ta checkando para ver se existe alguma linha realmente, se n existir nenhuma linha q corresponde com o idUsuario q eu declarei mais cedo, da erro, mas como é um update é meio impossivel isso dar erro, mas isso pq eu to fazendo no usuario, se for outra coisa fica esperto para n causar esse erro fazendo ele modificar a informação q vc usa (por exemplo eu dar um update no BD mudando o id do Usuario e querer puxar o antigo id -- q ja n existe -- iria dar um erro, então fica esperto)
@@ -261,5 +401,4 @@
 
     echo $result;
   }
-
 ?>
