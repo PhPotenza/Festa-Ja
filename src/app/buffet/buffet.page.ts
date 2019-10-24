@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastController } from '@ionic/angular';
 import { PostProvider } from '../../providers/post-provider';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Storage } from '@ionic/Storage';
+import { ToastController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 
 
 @Component({
@@ -12,13 +13,59 @@ import { Storage } from '@ionic/Storage';
 })
 export class BuffetPage implements OnInit {
 
+  idListaAlimentos: number;
+  idEvento: number;
+  Nome: string;
+  Tipo: string;
+  Quantidade: number;
+  Unidade: string;
+  anggota: any;
+
   constructor(
   	private router: Router,
   	private postPvdr: PostProvider,
-  	private storage: Storage,
-  	public toastCtrl: ToastController
+    private actRoute: ActivatedRoute,
+    private storage: Storage,
+    public toastCtrl: ToastController,
+    public alertController: AlertController,
   ) { }
   ngOnInit() {
+    this.actRoute.params.subscribe((data: any) =>{
+      this.idEvento = data.id;
+      let body = {
+        idEvento: this.idEvento,
+        aksi : 'selectBuffet',
+      };
+      this.postPvdr.postData(body, 'proses-api.php').subscribe(data => {
+        if(data.success){
+          this.storage.set('session_storage3', data.result);
+        }
+      });
+    });
+  }
+
+  ionViewWillEnter(){
+    this.actRoute.params.subscribe((data: any) =>{
+      this.idEvento = data.id;
+      let body = {
+        idEvento: this.idEvento,
+        aksi : 'selectBuffet',
+      };
+      this.postPvdr.postData(body, 'proses-api.php').subscribe(data => {
+        if(data.success){
+          this.storage.set('session_storage3', data.result);
+          this.storage.get('session_storage3').then((res)=>{
+            this.anggota = res;
+            this.Nome = this.anggota.Nome;
+            this.Tipo = this.anggota.Tipo;
+            this.Quantidade = this.anggota.Quantidade;
+            this.Unidade= this.anggota.Unidade;
+            this.idListaAlimentos = this.anggota.idListaAlimentos;
+            console.log(res);
+          });
+        }
+      });
+    });
   }
 
  formAdicionarBuffet(){

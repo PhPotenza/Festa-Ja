@@ -210,6 +210,7 @@ this.dia2=this.day2;
     await alert.present();
   }
 
+
   formBuffet(){
     this.router.navigate(['/buffet']);
   } 
