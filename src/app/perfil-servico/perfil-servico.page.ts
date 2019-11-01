@@ -35,12 +35,19 @@ export class PerfilServicoPage implements OnInit {
     this.actRoute.params.subscribe((data: any) => {
       this.id_servico = data.id;
       let body = {
-        idServico: this.id_servico,
+        idService: this.id_servico,
         aksi: 'selectServico',
       };
       this.postPvdr.postData(body, 'proses-api.php').subscribe(data => {
         if (data.success) {
           this.storage.set('session_storage3', data.result);
+              this.storage.get('session_storage3').then((res)=>{
+            this.anggota = res;
+            this.nome_servico = this.anggota.Nome;
+            this.tipo_servico = this.anggota.Tipo;
+            this.descricao_servico = this.anggota.Descricao;
+            console.log(res);
+          });
         }
       });
     });
@@ -50,7 +57,7 @@ export class PerfilServicoPage implements OnInit {
     this.actRoute.params.subscribe((data: any) =>{
       this.id_servico = data.id;
       let body = {
-        idEvento: this.id_servico,
+        idService: this.id_servico,
         aksi : 'selectServico',
       };
       this.postPvdr.postData(body, 'proses-api.php').subscribe(data => {
@@ -72,43 +79,43 @@ export class PerfilServicoPage implements OnInit {
     this.router.navigate(['/editar-servico']);
   }
 
-  async presentActionSheet() {
-    const actionSheet = await this.actionSheetController.create({
-      header: 'Albums',
-      buttons: [{
-        text: 'Delete',
-        role: 'destructive',
-        icon: 'trash',
-        handler: () => {
-          console.log('Delete clicked');
-        }
-      }, {
-        text: 'Share',
-        icon: 'share',
-        handler: () => {
-          console.log('Share clicked');
-        }
-      }, {
-        text: 'Play (open modal)',
-        icon: 'arrow-dropright-circle',
-        handler: () => {
-          console.log('Play clicked');
-        }
-      }, {
-        text: 'Favorite',
-        icon: 'heart',
-        handler: () => {
-          console.log('Favorite clicked');
-        }
-      }, {
-        text: 'Cancel',
-        icon: 'close',
-        role: 'cancel',
-        handler: () => {
-          console.log('Cancel clicked');
-        }
-      }]
-    });
-    await actionSheet.present();
-  }
+//   async presentActionSheet() {
+//     const actionSheet = await this.actionSheetController.create({
+//       header: 'Albums',
+//       buttons: [{
+//         text: 'Delete',
+//         role: 'destructive',
+//         icon: 'trash',
+//         handler: () => {
+//           console.log('Delete clicked');
+//         }
+//       }, {
+//         text: 'Share',
+//         icon: 'share',
+//         handler: () => {
+//           console.log('Share clicked');
+//         }
+//       }, {
+//         text: 'Play (open modal)',
+//         icon: 'arrow-dropright-circle',
+//         handler: () => {
+//           console.log('Play clicked');
+//         }
+//       }, {
+//         text: 'Favorite',
+//         icon: 'heart',
+//         handler: () => {
+//           console.log('Favorite clicked');
+//         }
+//       }, {
+//         text: 'Cancel',
+//         icon: 'close',
+//         role: 'cancel',
+//         handler: () => {
+//           console.log('Cancel clicked');
+//         }
+//       }]
+//     });
+//     await actionSheet.present();
+//   }
 }
