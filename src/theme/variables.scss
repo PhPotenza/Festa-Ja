@@ -4,6 +4,7 @@
 /** Ionic CSS Variables **/
 :root {
   /** primary **/
+  --ion-font-family: 'Poppins';
   --ion-color-primary: #3880ff;
   --ion-color-primary-rgb: 56, 128, 255;
   --ion-color-primary-contrast: #ffffff;
@@ -75,4 +76,32 @@
   --ion-color-light-shade: #7e3403;
   --ion-color-light-tint: #faad79;
 
-}
+  }
+
+  @font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: normal;
+  src: url('../assets/fonts/Poppins/Poppins-Regular.ttf');
+  }
+
+  @font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: bold;
+    src: url('../assets/fonts/Poppins/Poppins-Bold.ttf');
+  }
+
+  @font-face {
+    font-family: 'Poppins';
+    font-style: italic;
+    font-weight: normal;
+    src: url('../assets/fonts/Poppins/Poppins-Italic.ttf');
+  }
+
+  @font-face {
+    font-family: 'Poppins';
+    font-style: italic;
+    font-weight: bold;
+    src: url('../assets/fonts/Poppins/Poppins-BoldItalic.ttf');
+  }
