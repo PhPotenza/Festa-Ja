@@ -12,6 +12,13 @@ import { AlertController } from '@ionic/angular';
 })
 export class CalculadoraBPage implements OnInit {
 
+  homens: number = 0;
+  mulheres: number = 0;
+  criancas: number = 0;
+  adolescente: number = 0;
+  horas: number = 0;
+  dados: any = [];
+
   constructor(
     private router: Router,
   	private postPvdr: PostProvider,
@@ -25,6 +32,15 @@ export class CalculadoraBPage implements OnInit {
   }
 
   formCalculadorac(){
+    this.dados = [(this.homens)];
+    this.storage.set('calculadora', this.dados);
+    this.storage.get('calculadora').then((res)=>{
+      console.log(res);
+    });
     this.router.navigate(['/calculadora-c']);
+
     }
+
+    
+
 }
