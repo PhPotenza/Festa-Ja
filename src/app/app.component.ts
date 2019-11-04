@@ -45,7 +45,7 @@ export class AppComponent {
     },
     {
       title: 'Meus Serviços',
-      url: '/lista-servicos',
+      url: '/meus-servicos',
       icon: 'briefcase'
     }
   ];
