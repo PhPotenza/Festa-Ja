@@ -45,7 +45,7 @@ export class PesquisarServicoPage implements OnInit {
         let body = {
           limit: this.limit,
   			  start: this.start,
-          aksi: 'getservico'
+          aksi: 'getdestaque'
         };
   
         this.postPvdr.postData(body, 'proses-api.php').subscribe(data => {

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Storage } from '@ionic/Storage';
 import {  MenuController } from '@ionic/angular';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -75,6 +76,7 @@ export class LoginPage implements OnInit {
 
   formRecuperarSenha(){
     this.router.navigate(['/recuperar-senha']);
-  } 
+  }
+  
 
 }

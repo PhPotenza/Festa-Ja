@@ -51,11 +51,11 @@
 		  <ion-label position="floating">Contato Secundário</ion-label>
 		  <ion-input type="text" [(ngModel)]="celular2"></ion-input>
 		</ion-item>
-  
+
 		<ion-item>
-		  <ion-label class="ion-text-wrap">Data de Nascimento</ion-label>
-		  <ion-input required="true" slot="end" type="date" [(ngModel)]="DataNasc"></ion-input>
-		</ion-item>
+			<ion-label class="ion-text-wrap">Data de Nascimento</ion-label>
+			<ion-datetime display-format="DD/MM/YYYY" picker-format="DD/MM/YYYY" required="true" [(ngModel)]="DataNasc"></ion-datetime>
+		  </ion-item>
   
 		<ion-item>
 		  <ion-label>Deseja ser um fornecedor?</ion-label>

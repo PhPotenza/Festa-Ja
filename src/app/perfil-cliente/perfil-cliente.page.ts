@@ -18,6 +18,11 @@ export class PerfilClientePage implements OnInit {
   telefone: string = "";
   contato_secundario: string = "";
   anggota: any;
+  display: boolean = true;
+  cor: string = "light";
+  cor2: string = "tertiary";
+  icone: string = "create";
+
 
 
   constructor(
@@ -40,7 +45,19 @@ export class PerfilClientePage implements OnInit {
   }
 
  formEditarPerfil(){
-    this.router.navigate(['/editar-perfil']);
+    //this.router.navigate(['/editar-perfil']);
+    if(this.display==true){
+      this.display=false;
+      this.icone="checkmark";
+      this.cor="success";
+      this.cor2="danger";
+    }
+    else{
+      this.display=true;
+      this.icone="create";
+      this.cor="light";
+      this.cor2="tertiary";
+    }
   }
 
   formAlterarSenha(){
