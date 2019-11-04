@@ -190,6 +190,24 @@
     echo $result;
   }
 
+  //select buffet
+  elseif($postjson['aksi']=='selectBuffet'){
+    $data = array();
+    $query = mysqli_query($mysqli, "SELECT * FROM listaalimentos where idEvento='$postjson[idEvento]'");
+
+    $data = mysqli_fetch_array($query);
+    $datauser = array(
+      'idEvento' => $data['idEvento'],
+      'idListaAlimentos' => $data['idListaAlimentos'],
+      'Nome' => $data['Nome'],
+      'Tipo' => $data['Tipo'],
+      'Quantidade' => $data['Quantidade'],
+      'Unidade' => $data['Unidade'],
+    );
+    $result = json_encode(array('success'=>true, 'result'=>$datauser));
+    echo $result;
+  }
+
     //Update do perfil cliente (editar perfil)
     elseif($postjson['aksi']=='updatePerfil'){
       $query = mysqli_query($mysqli, "UPDATE usuario SET

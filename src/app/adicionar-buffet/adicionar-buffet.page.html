@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="light">
     <ion-buttons slot="start">
-          <ion-menu-button></ion-menu-button>
+      <ion-back-button icon="md-arrow-back" ></ion-back-button>
         </ion-buttons>
     <ion-title>Adicionar Buffet</ion-title>
   </ion-toolbar>
@@ -16,9 +16,12 @@
     <ion-item>
       <ion-label>Tipo</ion-label>
       <ion-select multiple="false" cancelText="Cancelar" okText="Selecionar">
-          <ion-select-option value="buffet">Alimento</ion-select-option>
-          <ion-select-option value="bebidas">Bebida</ion-select-option>
-          <ion-select-option value="entrtenimento">Doce</ion-select-option>
+          <ion-select-option value="festa">Alimento de Festa</ion-select-option>
+          <ion-select-option value="churrasco">Churrasco</ion-select-option>
+          <ion-select-option value="porcao">Porções</ion-select-option>
+          <ion-select-option value="bebida">Bebida</ion-select-option>
+          <ion-select-option value="doce">Doce</ion-select-option>
+          <ion-select-option value="suprimento">Suprimentos</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item>

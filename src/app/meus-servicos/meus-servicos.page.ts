@@ -11,6 +11,7 @@ import { AlertController } from '@ionic/angular';
   templateUrl: './meus-servicos.page.html',
   styleUrls: ['./meus-servicos.page.scss'],
 })
+
 export class MeusServicosPage implements OnInit {
 
   idUsuario: number;
@@ -24,7 +25,7 @@ export class MeusServicosPage implements OnInit {
     private router: Router,
     private storage: Storage,
     public toastCtrl: ToastController,
-    private postPvdr: PostProvider,
+    private postPvdr: PostProvider
   ) { }
 
   ngOnInit() {
