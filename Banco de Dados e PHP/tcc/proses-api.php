@@ -401,4 +401,65 @@
 
     echo $result;
   }
+
+  //metodo adicionar convidados
+  elseif($postjson['aksi']=='adicionarConvidados'){
+    $query = mysqli_query($mysqli, "INSERT INTO convidados SET
+      idEvento = '$postjson[id_evento]',
+      NomeEvento = '$postjson[nome_convidado]',
+      Tipo = '$postjson[tipo_convidado]',
+    ");
+
+    if($query) $result = json_encode(array('success'=>true));
+    else $result = json_encode(array('success'=>false, 'msg'=>'Erro! Por favor tente novamente'));
+
+    echo $result;
+  }
+
+  //getconvidados
+  elseif($postjson['aksi']=='getconvidado'){
+    $data = array();
+    $query = mysqli_query($mysqli, "SELECT * FROM service WHERE idEvento='$postjson[idEvento]' ORDER BY Nome");
+
+    while($row = mysqli_fetch_array($query)){
+
+      $data[] = array(
+        'idConvidados' => $row['idConvidados'],
+        'nome_convidado' => $row['Nome'],
+        'tipo_convidado' => $row['Tipo'],
+      );
+    }
+
+    if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
+    else $result = json_encode(array('success'=>false));
+
+    echo $result;
+  }
+
+  //metodo selecionar convidados
+  elseif($postjson['aksi']=='selectConvidados'){
+    $data = array();
+    $query = mysqli_query($mysqli, "SELECT * FROM convidados where idEvento='$postjson[id_evento]'");
+
+    $data = mysqli_fetch_array($query);
+    $datauser = array(
+      'id_evento' => $data['idEvento'],
+      'nome_convidado' => $data['Nome'],
+      'tipo_convidado' => $data['Tipo'],
+    );
+    $result = json_encode(array('success'=>true, 'result'=>$datauser));
+    echo $result;
+  }
+
+  //metodo deletar convidados
+  elseif($postjson['aksi']=='delConvidado'){
+    $query = mysqli_query($mysqli, "DELETE FROM convidados WHERE idConvidados='$postjson[id_convidado]'");
+
+    if($query) $result = json_encode(array('success'=>true, 'result'=>'success', 'msg'=>'Deletado com sucesso'));
+    else $result = json_encode(array('success'=>false, 'result'=>'error', 'msg'=>'Erro ao deletar'));
+
+    echo $result;
+  }
+
+  
 ?>

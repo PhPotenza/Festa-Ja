@@ -12,67 +12,68 @@ import { PostProvider } from 'src/providers/post-provider';
 })
 export class AdicionarConvidadosPage implements OnInit {
 
+  id_evento: number=0;
   nome_convidado: string = "";
-  categoria_convidado: string = "";
-  anggota:any;
+  tipo_convidado: string = "";
+  anggota: any;
 
-  constructor (
+  constructor(
     private router: Router,
     private storage: Storage,
     public toastCtrl: ToastController,
     private postPvdr: PostProvider
-  ){}
+  ) { }
 
   ngOnInit() {
   }
 
-  //apagar se estiver com o banco de dados
-  goToConvidados(){
-    this.router.navigate(['/convidados']);
-  }
-
-  async cadastrarServico(){
-    return new Promise(resolve=> {
-      this.storage.get('session_storage').then(async (res)=>{
+  async adicionarCovidados() {
+    return new Promise(resolve => {
+      this.storage.get('session_storage').then(async (res) => {
         this.anggota = res;
-
-      if(this.nome_convidado==""){
-        const toast = await this.toastCtrl.create({
-          message: 'Dê um nome ao seu serviço!',
-          duration: 3000
-        });
-        toast.present();
-      }else if(this.categoria_convidado==""){
-        const toast = await this.toastCtrl.create({
-          message: 'Selecione um tipo para seu serviço!'
-        });
-      }else{
-        let body = {
-          Nome: this.nome_convidado,
-          Categoria: this.categoria_convidado,
-          aski: 'adionarConvidado'
-        }
-      
-
-      this.postPvdr.postData(body, 'proses-api.php').subscribe(async data =>{
-        var alertpesan = data.msg;
-        if(data.success){
-          this.router.navigate(['/convidados']);
+        this.id_evento = this.anggota.idEvento;
+        if (this.nome_convidado == "") {
           const toast = await this.toastCtrl.create({
-            message: 'Convidado adicionado com sucesso!',
+            message: 'Nome Obrigatório',
             duration: 3000
           });
           toast.present();
-        }else{
+        } else if (this.tipo_convidado == "") {
           const toast = await this.toastCtrl.create({
-            message: alertpesan,
+            message: 'Classificação obrigatória',
             duration: 3000
           });
           toast.present();
+        } else {
+
+          let body = {
+            idEvento: this.id_evento,
+            nome: this.nome_convidado,
+            tipo: this.tipo_convidado,
+            aksi: 'adicionarConvidados'
+          };
+
+          this.postPvdr.postData(body, 'proses-api.php').subscribe(async data => {
+            var alertpesan = data.msg;
+            if (data.success) {
+              this.router.navigate(['/convidados']);
+              const toast = await this.toastCtrl.create({
+                message: 'Adicionado com Sucesso',
+                duration: 3000
+              });
+              toast.present();
+              this.nome_convidado = "";
+              this.tipo_convidado = "";
+            } else {
+              const toast = await this.toastCtrl.create({
+                message: alertpesan,
+                duration: 3000
+              });
+              toast.present();
+            }
+          });
         }
       });
-    }
-      })
-    })
+    });
   }
 }
