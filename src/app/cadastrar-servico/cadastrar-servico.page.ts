@@ -27,10 +27,6 @@ export class CadastrarServicoPage implements OnInit {
   ngOnInit() {
   }
 
-  goToPerfilServico(){
-  		this.router.navigate(['/perfil-servico']);
-  }
-
   async cadastrarServico(){
     return new Promise(resolve => {
       this.storage.get('session_storage').then(async (res)=>{

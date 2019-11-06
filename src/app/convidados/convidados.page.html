@@ -1,8 +1,8 @@
 <ion-header>
   <ion-toolbar color="light">
-      <ion-buttons slot="start">
-          <ion-back-button icon="md-arrow-back" ></ion-back-button>
-        </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-back-button icon="md-arrow-back"></ion-back-button>
+    </ion-buttons>
     <ion-title>Convidados</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -13,27 +13,29 @@
     <ion-button class="ion-button" expand="block" color="light">Pesquisar</ion-button>
   </form>
   <ion-list>
-    <ion-item>{{ nome_convidado }} 
-      <ion-icon slot="end" color="light" name="trash"></ion-icon>
-      <ion-checkbox slot="end" color="light" border-color="light"></ion-checkbox>
-    </ion-item>
-    <ion-item>{{ nome_convidado }} convidado 1
-      <ion-icon slot="end" color="light" name="trash"></ion-icon>
-      <ion-checkbox slot="end" color="light" border-color="light"></ion-checkbox>
-    </ion-item>
-    <ion-item>{{ nome_convidado }} convidado 1
-      <ion-icon slot="end" color="light" name="trash"></ion-icon>
-      <ion-checkbox slot="end" color="light" border-color="light"></ion-checkbox>
-    </ion-item>
-    <ion-item>{{ nome_convidado }} convidado 1
-      <ion-icon slot="end" color="light" name="trash"></ion-icon>
-      <ion-checkbox slot="end" color="light" border-color="light"></ion-checkbox>
-    </ion-item>
+    <ion-item-sliding *ngFor="let convidado of convidados">
+      <ion-card>
+        <ion-item>
+          <ion-card-title>{{convidados.nome_convidado}}</ion-card-title>
+          <ion-icon color="light" name="trash" slot="end">
+          </ion-icon>
+          <ion-checkbox slot="end" color="light" border-color="light"></ion-checkbox>
+        </ion-item>
+
+        <ion-card-content>{{convidados.tipo_convidado}}</ion-card-content>
+      </ion-card>
+    </ion-item-sliding>
   </ion-list>
+
+  <ion-infinite-scroll (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Carregando...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
 </ion-content>
-<ion-footer class="ion-padding-bottom">
-  <div class="ion-padding-bottom">
-    <ion-button class="ion-button" expand="block" padding color="light" (click)="goToAdicionarConvidados()">Adicionar
-    </ion-button>
-  </div>
+
+<ion-footer 	translucent="true" class="ion-padding-bottom">
+  <ion-button class="ion-button" color="light" expand="block" (click)="goToAdicionarConvidados()">
+    Adicionar Convidados
+  </ion-button>
 </ion-footer>
