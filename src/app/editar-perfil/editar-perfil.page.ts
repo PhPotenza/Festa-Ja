@@ -74,22 +74,23 @@ export class EditarPerfilPage implements OnInit {
         let alertpesan = data.msg;
         console.log(data);
         if(data.success){
-          this.router.navigate(['/perfil-cliente'])
           const toast = await this.toastCtrl.create({
             message: 'Alterado com Sucesso',
             duration: 3000
           });
           toast.present();
-/*
-                    let body = {
-      username: this.username,
-      password: this.password,
-      aksi: 'login'
-    };
+
+          //a função para dar o refresh é daqui para baixo, em cima está a função que da update no BD, mas ela sozinha não faz aparecer as modificações pois ele puxa o q está salvo no session.storage, então a função refresh funciona para dar uma atualizada nessa session
+
+           let body = {
+            idUsuario: this.idUsuario,  //Declarando o idUsuario que ele vai usar para decidir a linha do BD
+            aksi: 'refreshPerfil'       //Não esquece q o update das coisas no BD é uma função, e para atualizar para o usuario ver precisa de outra função sendo a refresh
+            };
+
     this.postPvdr.postData(body, 'proses-api.php').subscribe(async data =>{
       var alertpesan = data.msg;
       if(data.success){
-        this.storage.set('session_storage', data.result);
+        this.storage.set('session_storage', data.result);  //seta as novas informações na session
          this.router.navigate(['/perfil-cliente']);
       }
       else{
@@ -100,7 +101,9 @@ export class EditarPerfilPage implements OnInit {
           toast.present();
       }
     });
-*/
+
+    // fim da função refresh (lembrando q ela ta dentro do if success do update, por isso tem mais um else aqui em baixo)
+
         }else{
           const toast = await this.toastCtrl.create({
             message: alertpesan,

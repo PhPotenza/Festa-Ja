@@ -86,14 +86,31 @@
     </ion-item>
 
     <ion-item>
-        <ion-label>Data de Início</ion-label>
-        <ion-input slot="end" type="date" [(ngModel)]="date1"></ion-input>
-    </ion-item>
+      <ion-label>Data de Início</ion-label>
+      <ion-datetime monthNames="Janeiro, Fevereiro, Março, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro"
+      cancel-text="Calcelar" done-text="Ok" display-format="DD/MM/YYYY" picker-format="DD/MMMM/YYYY" required="true" [(ngModel)]="date1"></ion-datetime>    </ion-item>
+
 
     <ion-item>
         <ion-label>Hora de Início</ion-label>
         <ion-input slot="end" type="time" [(ngModel)]="time1"></ion-input>
     </ion-item>
+
+    <ion-item>
+      <ion-label>Data de Término</ion-label>
+      <ion-datetime monthNames="Janeiro, Fevereiro, Março, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro"
+      cancel-text="Calcelar" done-text="Ok" display-format="DD/MM/YYYY" picker-format="DD/MMMM/YYYY" required="true" [(ngModel)]="date2"></ion-datetime>  </ion-item>
+
+  <ion-item>
+    <ion-label>Hora de Término</ion-label>
+    <ion-input slot="end" type="time" [(ngModel)]="time2"></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-label>Cor do Evento</ion-label>
+  <input [(ngModel)]="color" mbsc-color [mbsc-options]="colorSettings" [mbsc-data]="colors" placeholder="Selecione uma cor" />
+</ion-item>
+
     
   </ion-list>
   

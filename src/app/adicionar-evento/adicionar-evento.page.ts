@@ -3,6 +3,8 @@ import { ToastController } from '@ionic/angular';
 import { PostProvider } from '../../providers/post-provider';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/Storage';
+import { mobiscroll, MbscColorOptions } from '@mobiscroll/angular';
+
 
 
 @Component({
@@ -11,6 +13,16 @@ import { Storage } from '@ionic/Storage';
   styleUrls: ['./adicionar-evento.page.scss'],
 })
 export class AdicionarEventoPage implements OnInit {
+
+  colors = ['#fff568', '#ffc400', '#ff9800', '#ff6e40', '#f4511e', '#ff5252', '#e53935', '#e57373', '#f48fb1', '#9575cd', '#ba68c8',
+    '#8c9eff', '#90caf9', '#64b5f6', '#d4e157', '#afb42b', '#9ccc65', '#bcaaa4', '#a1887f', '#a67c52', '#cfd8dc', '#90a4ae', '#78909c'];
+
+    colorSettings: MbscColorOptions = {
+        theme: 'ios',
+        lang: 'pt-BR'
+    };
+    
+  color: string;
 
   nome: string = "";
   cep: string="";
@@ -24,6 +36,8 @@ export class AdicionarEventoPage implements OnInit {
   date1: string="";
   time1: string="";
   idUsuario: number= 0;
+  date2: string="";
+  time2: string="";
   anggota: any;
 
 
@@ -77,6 +91,8 @@ export class AdicionarEventoPage implements OnInit {
         complemento: this.complemento,
         date1: this.date1,
         time1: this.time1,
+        date2: this.date2,
+        time2: this.time2,
         aksi: 'addEvento'
       };
 

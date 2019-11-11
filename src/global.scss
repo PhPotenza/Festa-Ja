@@ -18,3 +18,22 @@
     --handle-background-checked: white;
     --background-checked: #ff6600;
 }
+
+.hide {
+    display: none;
+  }
+
+  .check{
+      ion-checkbox{
+      color:#ff6600;
+  }
+}
+
+
+$mbsc-ios-primary: #ff6600;
+$mbsc-material-primary: #ff6600;
+$mbsc-mobiscroll-primary: #ff6600;
+
+
+
+@import "~@mobiscroll/angular/dist/css/mobiscroll.scss";

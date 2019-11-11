@@ -1,68 +1,52 @@
 <ion-header>
-  <ion-toolbar color="light">
-      <ion-buttons slot="start">
-			<ion-back-button icon="md-arrow-back" ></ion-back-button>
-        </ion-buttons>
-    <ion-title>Calculadora</ion-title>
-  </ion-toolbar>
+	<ion-toolbar color="light">
+		<ion-buttons slot="start">
+			<ion-back-button icon="md-arrow-back"></ion-back-button>
+		</ion-buttons>
+		<ion-title>Calculadora</ion-title>
+	</ion-toolbar>
 </ion-header>
 
 
 <ion-content class="ion-padding">
-	
+
 	<h5><b>Informe a quantidade de convidados</b></h5>
 
 	<ion-list>
+        <!--Form mbsc-->
+		<mbsc-form [options]="formSettings">
+		
+				<mbsc-stepper [(ngModel)]="stepper1" color="primary" val="left">Homens
+					<span class="mbsc-desc">A partir de 18 anos</span>
+				</mbsc-stepper>
+				<mbsc-stepper [(ngModel)]="stepper2" color="primary" val="left">Mulheres
+					<span class="mbsc-desc">A partir de 18 anos</span>
+				</mbsc-stepper>
+				<mbsc-stepper [(ngModel)]="stepper4" color="primary" val="left">Adolescentes
+					<span class="mbsc-desc">14-18 anos</span>
+				</mbsc-stepper>
+				<mbsc-stepper [(ngModel)]="stepper3" color="primary"  val="left">Crianças
+					<span class="mbsc-desc">2-14 anos</span>
+				</mbsc-stepper>
+			
+		</mbsc-form>
+		<!--Fim do form mbsc-->
 
-	  <ion-item>
-		<ion-label>Homens</ion-label>
-		<div align="end">
-		<ion-input type="number" inputmode="numeric"></ion-input>
-		</div>
-	  </ion-item>
 
-	  <ion-item>
-		 <ion-label>Mulheres</ion-label>
-		 <div align="end">
-		 <ion-input type="number" inputmode="numeric"></ion-input>
-		 </div>
-	  </ion-item>
+		<h4 class="padding-top"><b>Informe a duração do evento</b></h4>
 
-	  <ion-item>
-		 <ion-label>Adolescente</ion-label>
-		 <div align="end">
-		 <ion-input type="number" inputmode="numeric"></ion-input>
-		 </div>
-	  </ion-item>
-
-	  <ion-item>
-		 <ion-label>Crianças</ion-label>
-		 <div align="end">
-		 <ion-input type="number" inputmode="numeric"></ion-input>
-		 </div>
-	  </ion-item>
-
-	  <p text align="center">OU</p>
-
-	  <ion-item  lines="none">
-	    <ion-label>Deseja usar lista de convidados?</ion-label>
-		<ion-toggle slot="end" class="ion-toggle" [(ngModel)]="toggle"></ion-toggle>
-	  </ion-item>
-
-	  <h4 class="padding-top"><b>Informe a duração do evento</b></h4>
-	
-	  <ion-item>
-		<ion-label>Horas</ion-label>
-		<div align="end">
-		<ion-input type="number" inputmode="numeric"></ion-input>
-		</div>
-	  </ion-item>
+		<ion-item>
+			<ion-label>Horas</ion-label>
+			<div align="end">
+				<ion-input type="number" inputmode="numeric"></ion-input>
+			</div>
+		</ion-item>
 
 
 	</ion-list>
-	
+
 </ion-content>
 
 <ion-footer class="ion-padding-bottom">
-		<ion-button class="ion-button" expand="block" color="light" (click)="formCalculadorac()">Continuar</ion-button>
-</ion-footer>  
+	<ion-button class="ion-button" expand="block" color="light" (click)="formCalculadorac()">Continuar</ion-button>
+</ion-footer>

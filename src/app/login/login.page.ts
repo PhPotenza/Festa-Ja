@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Storage } from '@ionic/Storage';
 import {  MenuController } from '@ionic/angular';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -54,8 +55,6 @@ export class LoginPage implements OnInit {
       duration: 2000
     });
     toast.present();
-    this.username = "";
-    this.password = "";
         console.log(data);
       }else{
         const toast = await this.toastCtrl.create({
@@ -77,6 +76,7 @@ export class LoginPage implements OnInit {
 
   formRecuperarSenha(){
     this.router.navigate(['/recuperar-senha']);
-  } 
+  }
+  
 
 }

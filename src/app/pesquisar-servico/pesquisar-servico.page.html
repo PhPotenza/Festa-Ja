@@ -19,7 +19,36 @@
         <ion-select-option value="todos">Todos</ion-select-option>
     </ion-select>
   </ion-item>
-  <ion-button class="ion-button" expand="block" color="light">Pesquisar</ion-button>
+  <ion-button class="ion-button" (click)="pesquisa()" expand="block" color="light">Pesquisar</ion-button>
 
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Puxe para atualizar"
+      refreshingSpinner="circles"
+      refreshingText="Carregando...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <h4><b>Destaques</b></h4>
+  <ion-list>
+    <ion-item-sliding *ngFor="let servico of servicos">
+        <ion-card>
+          <ion-item>
+          <ion-card-title>{{servico.Nome}}</ion-card-title>
+        </ion-item>
+          
+          <ion-card-content></ion-card-content>
+          
+        </ion-card>
+    </ion-item-sliding>
+  </ion-list>
+
+  <ion-infinite-scroll (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Carregando...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 
 </ion-content>

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
+
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
@@ -35,9 +36,11 @@ const routes: Routes = [
   { path: 'contratar-servicos', loadChildren: './contratar-servicos/contratar-servicos.module#ContratarServicosPageModule' },
   { path: 'pesquisar-servico', loadChildren: './pesquisar-servico/pesquisar-servico.module#PesquisarServicoPageModule' },
   { path: 'editar-evento', loadChildren: './editar-evento/editar-evento.module#EditarEventoPageModule' },
-  { path: 'lista-servicos', loadChildren: './lista-servicos/lista-servicos.module#ListaServicosPageModule' },  { path: 'meus-servicos', loadChildren: './meus-servicos/meus-servicos.module#MeusServicosPageModule' },
-
-
+  { path: 'lista-servicos', loadChildren: './lista-servicos/lista-servicos.module#ListaServicosPageModule' },
+  { path: 'meus-servicos', loadChildren: './meus-servicos/meus-servicos.module#MeusServicosPageModule' },
+  { path: 'pesquisa/:pesquisar/:tipo', loadChildren: './pesquisa/pesquisa.module#PesquisaPageModule' },
+  { path: 'pesquisa', loadChildren: './pesquisa/pesquisa.module#PesquisaPageModule' },
+  { path: 'perfil-servico/:id', loadChildren: './perfil-servico/perfil-servico.module#PerfilServicoPageModule' },
 
 ];
 
@@ -47,4 +50,5 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule { }

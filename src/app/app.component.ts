@@ -24,19 +24,9 @@ export class AppComponent {
       icon: 'briefcase'
     },
     {
-      title: 'Adicionar Evento',
-      url: '/adicionar-evento',
-      icon: 'add'
-    },
-    {
       title: 'Perfil',
       url: '/perfil-cliente',
       icon: 'person'
-    },
-    {
-      title: 'Buffet',
-      url: '/buffet',
-      icon: 'restaurant'
     },
     {
       title: 'Calculadora',
@@ -44,19 +34,19 @@ export class AppComponent {
       icon: 'calculator'
     },
     {
-      title: 'Convidados',
-      url: '/convidados',
-      icon: 'people'
-    },
-    {
       title: 'Pesquisar Serviço',
       url: '/pesquisar-servico',
       icon: 'search'
     },
     {
+      title: 'Perfil Serviço',
+      url: '/perfil-servico',
+      icon: 'briefcase'
+    },
+    {
       title: 'Meus Serviços',
-      url: '/lista-servicos',
-      icon: 'people'
+      url: '/meus-servicos',
+      icon: 'briefcase'
     }
   ];
 

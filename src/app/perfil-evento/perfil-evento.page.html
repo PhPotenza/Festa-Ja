@@ -16,13 +16,14 @@
   <ion-card>
     <ion-item>
     <ion-card-title >{{NomeEvento}}</ion-card-title>
-    <ion-icon color="light" name="trash" slot="end" (click)="confirmar()"></ion-icon>
+    <ion-icon color="danger" name="trash" slot="end" (click)="confirmar()"></ion-icon>
   </ion-item>
   <ion-item lines="none">
     <h5>Informações do(a) {{TipoEvento}}</h5>
   </ion-item>
   <ion-card-content>
-    O evento {{NomeEvento}} começará no dia {{dia1}}/{{mes1}}/{{year1}} às {{hora1}}:{{minuto1}} e terminará às
+    O evento {{NomeEvento}} começará no dia {{dia1}}/{{mes1}}/{{year1}} às {{hora1}}:{{minuto1}} e terminará no dia
+    {{dia2}}/{{mes2}}/{{year2}} às {{hora2}}:{{minuto2}} 
   </ion-card-content>
     <br>
     <br>
@@ -41,4 +42,9 @@
     {{Complemento}}
   </ion-card-content>
   </ion-card>
+  
+  <ion-button expand="block" padding color="light" (click)="formBuffet()">Buffet</ion-button>
+  <ion-button expand="block" padding color="light" (click)="formConvidados()">Lista de Convidados</ion-button>
+  <ion-button expand="block" padding color="light" (click)="formServico()">Serviços</ion-button>
+
 </ion-content>

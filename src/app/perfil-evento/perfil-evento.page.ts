@@ -35,6 +35,17 @@ export class PerfilEventoPage implements OnInit {
   hora1: number;
   minuto1: number;
   dia1: number;
+  date2: string;
+  time2: string;
+  day2: number;
+  month2: number;
+  year2: number;
+  mes2: number;
+  minute2: number;
+  hour2: number;
+  hora2: number;
+  minuto2: number;
+  dia2: number;
 
   constructor(
     private router: Router,
@@ -88,6 +99,13 @@ export class PerfilEventoPage implements OnInit {
             this.year1= this.anggota.year1;
             this.minute1= this.anggota.minute1;
             this.hour1=this.anggota.hour1;
+            this.date2 = this.anggota.Data_Fim;
+            this.time2 = this.anggota.Hora_Fim;
+            this.day2 = this.anggota.day2;
+            this.month2= this.anggota.month2;
+            this.year2= this.anggota.year2;
+            this.minute2= this.anggota.minute2;
+            this.hour2=this.anggota.hour2;
             console.log(res);
             if(this.month1<10){
                 this.mes1=0 + this.month1;
@@ -108,7 +126,26 @@ export class PerfilEventoPage implements OnInit {
           this.dia1=0 + this.day1;
       }else{
         this.dia1=this.day1;
-      }
+      }   if(this.month2<10){
+        this.mes2=0 + this.month2;
+    }else{
+      this.mes2=this.month2;
+    }
+    if(this.hour2<10){
+      this.hora2=0 + this.hour2;
+  }else{
+    this.hora2=this.hour2;
+  }
+  if(this.minute2<10){
+    this.minuto2=0 + this.minute2;
+}else{
+  this.minuto2=this.minute2;
+}
+if(this.day2<10){
+  this.dia2=0 + this.day2;
+}else{
+this.dia2=this.day2;
+}
           });
         }
       });
@@ -172,4 +209,15 @@ export class PerfilEventoPage implements OnInit {
 
     await alert.present();
   }
+
+
+  formBuffet(){
+    this.router.navigate(['/buffet']);
+  } 
+  formConvidados(){
+    this.router.navigate(['/convidados']);
+  }
+  formServico(){
+    this.router.navigate(['/pesquisar-servico']);
+  }  
 }
