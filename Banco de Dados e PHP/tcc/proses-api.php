@@ -339,27 +339,6 @@
       echo $result;
     }
 
-    //método de selecionar serviço para meus serviços
-  elseif($postjson['aksi']=='getservico'){
-    $data = array();
-    $query = mysqli_query($mysqli, "SELECT * FROM service where idService='$postjson[id_servico]' ORDER BY idService DESC LIMIT $postjson[start],$postjson[limit]");
-
-    while($row = mysqli_fetch_array($query)){
-
-      $data[] = array(
-        'id_servico' => $row['idService'],
-        'nome_servico' => $row['Nome'],
-        'tipo_servico' => $row['Tipo'],
-        'descricao_servico' => $row['Descricao'],
-      );
-    }
-
-    if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
-    else $result = json_encode(array('success'=>false));
-
-    echo $result;
-  }
-
    //metodo para selecionar servicos para perfil serviço
    elseif($postjson['aksi']=='selectServico'){
     $data = array();

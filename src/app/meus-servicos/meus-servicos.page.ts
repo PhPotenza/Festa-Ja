@@ -34,10 +34,6 @@ export class MeusServicosPage implements OnInit {
       this.idUsuario = this.anggota.idUsuario;
       console.log(res);
     });
-    this.servicos = [];
-    this.start = 0;
-    this.loadServico();
-
   }
 
 ionViewWillEnter(){

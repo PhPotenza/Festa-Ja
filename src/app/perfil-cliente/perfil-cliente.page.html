@@ -16,8 +16,8 @@
           <ion-label>
 			<h2><b>{{nome}}</b></h2>
 		  </ion-label>
-		  <ion-icon slot="end" [color]="cor2" (click)="formEditarPerfil()" name="close"></ion-icon>  
-		  <ion-icon slot="end" [color]="cor" (click)="formEditarPerfil()" [name]="icone"></ion-icon> 
+		  <ion-icon slot="end" [color]="cor2" (click)="cancelar()" enable="false" name="close"></ion-icon>  
+		  <ion-icon slot="end" [color]="cor" (click)="editar()" [name]="icone"></ion-icon> 
 
         </ion-item>
 
@@ -47,7 +47,5 @@
 </ion-content>
 
 <ion-footer class="ion-padding-bottom">
-	<div class="ion-padding-bottom">
-	  <ion-button expand="block" padding color="light">Alterar Senha</ion-button>
-	</div>
+	  <ion-button  class="ion-button" expand="block" padding color="light">Alterar Senha</ion-button>
 </ion-footer>

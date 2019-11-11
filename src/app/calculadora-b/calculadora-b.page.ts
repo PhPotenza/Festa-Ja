@@ -4,6 +4,8 @@ import { PostProvider } from '../../providers/post-provider';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Storage } from '@ionic/Storage';
 import { AlertController } from '@ionic/angular';
+import { MbscFormOptions } from '@mobiscroll/angular';
+
 
 @Component({
   selector: 'app-calculadora-b',
@@ -11,6 +13,18 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./calculadora-b.page.scss'],
 })
 export class CalculadoraBPage implements OnInit {
+
+  stepper1: number;
+  stepper2: number;
+  stepper3: number;
+  stepper4: number;
+  danger = 100;
+
+
+  formSettings: MbscFormOptions = {
+    lang: 'pt-BR',
+    theme: 'ios'
+};
 
   homens: number = 0;
   mulheres: number = 0;

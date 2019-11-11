@@ -34,11 +34,6 @@ export class HomePage implements OnInit {
   ) { }
 
   ngOnInit() {
-
-  }
-
-  ionViewWillEnter(){
-    this.menuCtrl.enable(true);
     this.storage.get('session_storage').then((res)=>{
       this.anggota = res;
       this.idUsuario = this.anggota.idUsuario;
@@ -47,6 +42,11 @@ export class HomePage implements OnInit {
     this.eventos = [];
     this.start = 0;
   	this.loadEvento();
+  }
+
+  ionViewWillEnter(){
+    this.menuCtrl.enable(true);
+  
   }  
 
   async prosesLogout(){
