@@ -8,16 +8,16 @@
   <ion-list>
     <ion-item>
       <ion-label>Nome</ion-label>
-      <ion-input type="text" position="floating" [(ngModel)]="nome_convidados"></ion-input>
+      <ion-input type="text" position="floating" [(ngModel)]="nome_convidado"></ion-input>
     </ion-item>
     <ion-item>
         <ion-label>Categoria</ion-label>
-      <ion-select multiple="false" cancelText="Cancelar" okText="Selecionar" [(ngModel)]="categoria_convidados">
+      <ion-select multiple="false" cancelText="Cancelar" okText="Selecionar" [(ngModel)]="tipo_convidado">
         <ion-select-option value="homem">Homem</ion-select-option>
         <ion-select-option value="mulher">Mulher</ion-select-option>
         <ion-select-option value="crianca">Criança</ion-select-option>
       </ion-select>
     </ion-item>
   </ion-list>
-  <ion-button class="ion-button" expand="block" padding color="light" (click)="goToConvidados()">Adicionar</ion-button>
+  <ion-button class="ion-button" expand="block" padding color="light" (click)="adicionarConvidados()">Adicionar Convidados</ion-button>
 </ion-content>
