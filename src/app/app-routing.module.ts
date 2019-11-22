@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'alterar-senha', loadChildren: './alterar-senha/alterar-senha.module#AlterarSenhaPageModule' },
   { path: 'perfil-cliente', loadChildren: './perfil-cliente/perfil-cliente.module#PerfilClientePageModule' },
   { path: 'editar-perfil', loadChildren: './editar-perfil/editar-perfil.module#EditarPerfilPageModule' },
-  { path: 'buffet', loadChildren: './buffet/buffet.module#BuffetPageModule' },
+  { path: 'buffet/:id', loadChildren: './buffet/buffet.module#BuffetPageModule' },
   { path: 'perfil-evento', loadChildren: './perfil-evento/perfil-evento.module#PerfilEventoPageModule' },
   { path: 'editar-servico', loadChildren: './editar-servico/editar-servico.module#EditarServicoPageModule' },
   { path: 'convidados', loadChildren: './convidados/convidados.module#ConvidadosPageModule' },
