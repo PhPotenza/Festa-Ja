@@ -30,6 +30,7 @@ export class BuffetPage implements OnInit {
     public alertController: AlertController,
   ) { }
   ngOnInit() {
+  /*
     this.actRoute.params.subscribe((data: any) =>{
       this.idEvento = data.id;
       let body = {
@@ -42,12 +43,27 @@ export class BuffetPage implements OnInit {
         }
       });
     });
+    */
   }
-
+  
   ionViewWillEnter(){
-    
+  /*
+    this.actRoute.params.subscribe((data: any) =>{
+      this.idEvento = data.id;
+      let body = {
+        id_evento: this.idEvento,
+        aksi : 'selectBuffet'
+      };
+      this.postPvdr.postData(body, 'proses-api.php').subscribe(data => {
+        if(data.success){
+          this.storage.set('session_storage6', data.result);
+          loadBuffet();
+        }
+      });
+    }); 
+  */
   }
-
+  
   loadBuffet() {
     return new Promise(resolve => {
       this.storage.get('session_storage6').then((res)=>{
