@@ -439,4 +439,22 @@
     else $result = json_encode(array('success'=>false, 'result'=>'error', 'msg'=>'Erro ao deletar'));
     echo $result;
   }
+
+  //metodo selecionar buffet
+  elseif($postjson['aksi']=='selectBuffet'){
+    $query = mysqli_query($mysqli, "SELECT * FROM listaalimentos WHERE idEvento='$postjson[id_evento]'");
+
+    $data = mysqli_fetch_array($query);
+    $datauser = array(
+        'id_evento' => $data['idEvento'],
+        'nome_buffet' => $data['Nome'],
+        'tipo_buffet' => $data['Tipo'],
+        'quant_buffet' => $data['Quantidade'],
+        'unid_buffet' => $data['Unidade'],
+      );
+    $result = json_encode(array('success'=>true, 'result'=>$datauser));
+    echo $result;
+
+  }
+
 ?>
