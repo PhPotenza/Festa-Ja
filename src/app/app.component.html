@@ -1,5 +1,6 @@
 <ion-app>
-    <ion-split-pane>
+    <ion-split-pane contentId="main-content">
+      <div id="main-content">
       <ion-menu type="overlay">
         <ion-header>
           <ion-toolbar color="light">
@@ -24,5 +25,6 @@
         </ion-content>
       </ion-menu>
       <ion-router-outlet main></ion-router-outlet>
+    </div>
     </ion-split-pane>
   </ion-app>
