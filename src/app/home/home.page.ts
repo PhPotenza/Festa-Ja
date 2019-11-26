@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Storage } from '@ionic/Storage';
 import { AlertController } from '@ionic/angular';
 import {  MenuController } from '@ionic/angular';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -22,6 +23,7 @@ export class HomePage implements OnInit {
   start: number = 0;
   pesquisar: string = "";
   tipo: string = "todos";
+  chave: boolean = true;
 
   constructor(
     private router: Router,
@@ -30,7 +32,8 @@ export class HomePage implements OnInit {
     public toastCtrl: ToastController,
     private actRoute: ActivatedRoute,
     public alertController: AlertController,
-    public menuCtrl: MenuController
+    public menuCtrl: MenuController,
+    public loadingController: LoadingController
   ) { }
 
   ngOnInit() {
@@ -45,19 +48,20 @@ export class HomePage implements OnInit {
   }
 
   ionViewWillEnter(){
+    if(this.chave==true){
+    this.presentLoadingWithOptions();
+    this.chave=false;
+    }
     this.menuCtrl.enable(true);
-  
+    this.storage.get('session_storage').then((res)=>{
+      this.anggota = res;
+      this.idUsuario = this.anggota.idUsuario;
+      console.log(res);
+    });
+    this.eventos = [];
+    this.start = 0;
+  	this.loadEvento();
   }  
-
-  async prosesLogout(){
-    this.storage.clear();
-    this.router.navigate(['/login']);
-    const toast = await this.toastCtrl.create({
-        message: 'Deslogado com Sucesso',
-        duration: 3000
-      });
-    toast.present();
-  }
 
   loadEvento(){
   	return new Promise(resolve => {
@@ -99,7 +103,8 @@ export class HomePage implements OnInit {
   }
 
   pageAdicionarEvento(){
-  	this.router.navigate(['/adicionar-evento']);
+    this.router.navigate(['/adicionar-evento']);
+    this.chave=true;
   }
 
 
@@ -114,6 +119,7 @@ export class HomePage implements OnInit {
         
         var alertpesan = data.msg;
         if(data.success){
+          this.presentLoadingWithOptions();
         const toast = await this.toastCtrl.create({
           message: 'Deletado com Sucesso.',
           duration: 2000
@@ -158,7 +164,8 @@ export class HomePage implements OnInit {
   }
 
   perfilEvento(id){
-  	this.router.navigate(['/perfil-evento/' + id]);
+    this.chave=true;
+    this.router.navigate(['/perfil-evento/' + id]);
   }
 
   async pesquisa(){
@@ -173,7 +180,20 @@ export class HomePage implements OnInit {
     this.router.navigate(['/pesquisa/' + this.pesquisar + '/' + this.tipo]);
     this.pesquisar="";
     this.tipo="todos";
+    this.chave=true;
     }
+  }
+
+
+  async presentLoadingWithOptions() {
+    const loading = await this.loadingController.create({
+      spinner: 'crescent',
+      duration: 5000,
+      message: 'Carregando...',
+      translucent: true,
+      cssClass: 'custom-class custom-loading'
+    });
+    return await loading.present();
   }
 
 }

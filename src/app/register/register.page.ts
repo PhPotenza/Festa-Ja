@@ -102,7 +102,6 @@ export class RegisterPage implements OnInit {
         celular2: this.celular2,
         userTipo: this.userTipo,
         DataNasc: this.DataNasc,
-
         aksi: 'register'
       };
 

@@ -4,7 +4,7 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class PostProvider {
-	server: string = "http://tanembaun.etecpaof.lan/32605/tcc/"; // default
+	server: string = "http://localhost/tcc/"; // default
 	// Server da escola "http://tanembaun.etecpaof.lan/32605/tcc/"
     // Server Local "http://localhost/tcc/"; 
 

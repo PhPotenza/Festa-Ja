@@ -30,14 +30,16 @@ DROP TABLE IF EXISTS `avaliacao`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `avaliacao` (
-  `idAvaliacao` int(11) NOT NULL,
-  `Avaliacao` int(11) default NULL,
-  `Comentário` varchar(45) default NULL,
-  `idService` int(11) default NULL,
-  `Avaliaçãocol` varchar(45) default NULL,
+  `idAvaliacao` int(11) NOT NULL auto_increment,
+  `Avaliacao` int(11) NOT NULL,
+  `Comentario` varchar(45) NOT NULL,
+  `idService` int(11) NOT NULL,
+  `idUsuario` int(11) NOT NULL,
   PRIMARY KEY  (`idAvaliacao`),
-  KEY `FK_Service45_idx` (`idService`),
-  CONSTRAINT `FK_Service45` FOREIGN KEY (`idService`) REFERENCES `service` (`idService`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `FK_Service1_idx` (`idService`),
+  key `FK_Usuario1_idx` (`idUsuario`),
+  CONSTRAINT `FK_Usuario1` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_Service1` FOREIGN KEY (`idService`) REFERENCES `service` (`idService`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -60,22 +62,23 @@ DROP TABLE IF EXISTS `evento`;
 CREATE TABLE `evento` (
   `idEvento` int(11) NOT NULL auto_increment,
   `idUsuario` int(11) NOT NULL,
-  `NomeEvento` varchar(100) default NULL,
-  `Tipo` varchar(100) default NULL,
-  `Data_Inicio` date DEFAULT NULL,
-  `Data_Fim` date DEFAULT NULL,
-  `Hora_Inicio` time DEFAULT NULL,
-  `Hora_Fim` time DEFAULT NULL,
-  `CEP` varchar(100) default NULL,
-  `Estado` varchar(100) default NULL,
-  `Cidade` varchar(100) default NULL,
-  `Bairro` varchar(100) default NULL,
-  `Endereco` varchar(100) default NULL,
-  `Numero` int(11) default NULL,
-  `Complemento` varchar(100) default NULL,
+  `NomeEvento` varchar(50) NOT NULL,
+  `Tipo` varchar(50) NOT NULL,
+  `Data_Inicio` date NOT NULL,
+  `Data_Fim` date NOT NULL,
+  `Hora_Inicio` time NOT NULL,
+  `Hora_Fim` time NOT NULL,
+  `CEP` varchar(20) NOT NULL,
+  `Estado` char(2) NOT NULL,
+  `Cidade` varchar(100) NOT NULL,
+  `Bairro` varchar(100) NOT NULL,
+  `Endereco` varchar(100) NOT NULL,
+  `Numero` int(11) NOT NULL,
+  `Complemento` varchar(50) default NULL,
+  `Cor` varchar(50) default NULL,
   PRIMARY KEY  (`idEvento`),
-  KEY `FK_Usuario1_idx` (`idUsuario`),
-  CONSTRAINT `FK_Usuario1` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `FK_Usuario2_idx` (`idUsuario`),
+  CONSTRAINT `FK_Usuario2` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -96,12 +99,12 @@ DROP TABLE IF EXISTS `imagem`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `imagem` (
-  `idImagem` int(11) NOT NULL,
-  `Imagem` varchar(45) NOT NULL,
+  `idImagem` int(11) NOT NULL auto_increment,
+  `Imagem` varchar(500) NOT NULL,
   `idService` int(11) NOT NULL,
   PRIMARY KEY  (`idImagem`),
-  KEY `FK_Servico34_idx` (`idService`),
-  CONSTRAINT `FK_Servico34` FOREIGN KEY (`idService`) REFERENCES `service` (`idService`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `FK_Servico2_idx` (`idService`),
+  CONSTRAINT `FK_Service2` FOREIGN KEY (`idService`) REFERENCES `service` (`idService`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -114,31 +117,6 @@ LOCK TABLES `imagem` WRITE;
 /*!40000 ALTER TABLE `imagem` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `itens`
---
-
-DROP TABLE IF EXISTS `itens`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `itens` (
-  `idItens` int(11) NOT NULL,
-  `Nome` varchar(45) default NULL,
-  `Categoria` varchar(45) default NULL,
-  `Tipo` varchar(45) default NULL,
-  `Unidade` varchar(45) default NULL,
-  PRIMARY KEY  (`idItens`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `itens`
---
-
-LOCK TABLES `itens` WRITE;
-/*!40000 ALTER TABLE `itens` DISABLE KEYS */;
-/*!40000 ALTER TABLE `itens` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `listaalimentos`
@@ -150,14 +128,14 @@ DROP TABLE IF EXISTS `listaalimentos`;
 CREATE TABLE `listaalimentos` (
   `idListaAlimentos` int(11) NOT NULL auto_increment,
   `idEvento` int(11) NOT NULL,
-  `Nome` varchar(100) default NULL,
-  `Tipo` varchar(100) default NULL,
-  `Quantidade` double default NULL,
-  `Unidade` varchar(10) default NULL,
-  `Situacao` tinyint(4) default NULL,
+  `Nome` varchar(85) NOT NULL,
+  `Tipo` varchar(85) NOT NULL,
+  `Quantidade` double NOT NULL,
+  `Unidade` char(10) NOT NULL,
+  `Situacao` char(2) NOT NULL,
   PRIMARY KEY  (`idListaAlimentos`),
-  KEY `FK_Evento7_idx` (`idEvento`),
-  CONSTRAINT `FK_Evento7` FOREIGN KEY (`idEvento`) REFERENCES `evento` (`idEvento`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `FK_Evento1_idx` (`idEvento`),
+  CONSTRAINT `FK_Evento1` FOREIGN KEY (`idEvento`) REFERENCES `evento` (`idEvento`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -179,16 +157,13 @@ DROP TABLE IF EXISTS `listaconvidados`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `listaconvidados` (
   `idListaConvidados` int(11) NOT NULL auto_increment,
-  `IdEvento` int(11) default NULL,
-  `Nome` varchar(100) default NULL,
-  `Celular` varchar(100) default NULL,
-  `Email` varchar(100) default NULL,
-  `Sexo` varchar(45) default NULL,
-  `Faixa_Etaria` varchar(45) default NULL,
-  `Situacao` tinyint(4) default NULL,
+  `IdEvento` int(11) NOT NULL,
+  `Nome` varchar(100) NOT NULL,
+  `Tipo` varchar(50) NOT NULL,
+  `Situacao` char(2) NOT NULL,
   PRIMARY KEY  (`idListaConvidados`),
-  KEY `FK_Evento45_idx` (`IdEvento`),
-  CONSTRAINT `FK_Evento45` FOREIGN KEY (`IdEvento`) REFERENCES `evento` (`idEvento`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `FK_Evento2_idx` (`IdEvento`),
+  CONSTRAINT `FK_Evento2` FOREIGN KEY (`IdEvento`) REFERENCES `evento` (`idEvento`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -202,35 +177,6 @@ LOCK TABLES `listaconvidados` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `listaitens`
---
-
-DROP TABLE IF EXISTS `listaitens`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `listaitens` (
-  `idListaItens` int(11) NOT NULL,
-  `idItens` int(11) default NULL,
-  `idSimulacao` int(11) default NULL,
-  `Qtd` int(11) default NULL,
-  PRIMARY KEY  (`idListaItens`),
-  KEY `FK_Itens_idx` (`idItens`),
-  KEY `FK_Simulacao_idx` (`idSimulacao`),
-  CONSTRAINT `FK_Itens` FOREIGN KEY (`idItens`) REFERENCES `itens` (`idItens`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_Simulacao` FOREIGN KEY (`idSimulacao`) REFERENCES `simulacao` (`idSimulação`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `listaitens`
---
-
-LOCK TABLES `listaitens` WRITE;
-/*!40000 ALTER TABLE `listaitens` DISABLE KEYS */;
-/*!40000 ALTER TABLE `listaitens` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `listaservice`
 --
 
@@ -239,14 +185,14 @@ DROP TABLE IF EXISTS `listaservice`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `listaservice` (
   `idListaService` int(11) NOT NULL auto_increment,
-  `idService` int(11) default NULL,
+  `idService` int(11) NOT NULL,
   `idEvento` int(11) NOT NULL,
-  `Situacao` tinyint(4) default NULL,
+  `Situacao` char(2) NOT NULL,
   PRIMARY KEY  (`idListaService`),
-  KEY `FK_Service2_idx` (`idService`),
-  KEY `FK_Evento2_idx` (`idEvento`),
-  CONSTRAINT `FK_Service2` FOREIGN KEY (`idService`) REFERENCES `service` (`idService`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_Evento2` FOREIGN KEY (`idEvento`) REFERENCES `evento` (`idEvento`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `FK_Service3_idx` (`idService`),
+  KEY `FK_Evento3_idx` (`idEvento`),
+  CONSTRAINT `FK_Service3` FOREIGN KEY (`idService`) REFERENCES `service` (`idService`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_Evento3` FOREIGN KEY (`idEvento`) REFERENCES `evento` (`idEvento`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -268,13 +214,24 @@ DROP TABLE IF EXISTS `service`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `service` (
   `idService` int(11) NOT NULL auto_increment,
-  `idUsuario` int(11) default NULL,
-  `Nome` varchar(100) default NULL,
-  `Tipo` varchar(100) default NULL,
-  `Descricao` varchar(100) default NULL,
+  `idUsuario` int(11) NOT NULL,
+  `Nome` varchar(85) NOT NULL,
+  `Tipo` varchar(85) NOT NULL,
+  `Descricao` varchar(500) NOT NULL,
+  `CEP` varchar(20) NOT NULL,
+  `Estado` char(2) NOT NULL,
+  `Cidade` varchar(100) NOT NULL,
+  `Bairro` varchar(100) NOT NULL,
+  `Endereco` varchar(100) NOT NULL,
+  `Numero` int(11) NOT NULL,
+  `Complemento` varchar(50) default NULL,
+  `Celular` varchar(50) NOT NULL,
+  `Telefone` varchar(50) default NULL,
+  `SecundContat` varchar(50) default NULL,
+  `Email` varchar(100) default NULL,
   PRIMARY KEY  (`idService`),
-  KEY `FK_User10_idx` (`idUsuario`),
-  CONSTRAINT `FK_User10` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `FK_Usuario3_idx` (`idUsuario`),
+  CONSTRAINT `FK_Usuario3` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -288,36 +245,6 @@ LOCK TABLES `service` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `simulacao`
---
-
-DROP TABLE IF EXISTS `simulacao`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `simulacao` (
-  `idSimulação` int(11) NOT NULL,
-  `idUsuario` int(11) default NULL,
-  `QTDConviados` int(11) default NULL,
-  `QTDMulheres` int(11) default NULL,
-  `QTDHomens` int(11) default NULL,
-  `QTDCriancas` int(11) default NULL,
-  `Date` datetime default NULL,
-  PRIMARY KEY  (`idSimulação`),
-  KEY `FK_Usuario88_idx` (`idUsuario`),
-  CONSTRAINT `FK_Usuario88` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `simulacao`
---
-
-LOCK TABLES `simulacao` WRITE;
-/*!40000 ALTER TABLE `simulacao` DISABLE KEYS */;
-/*!40000 ALTER TABLE `simulacao` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `tipo`
 --
 
@@ -326,7 +253,7 @@ DROP TABLE IF EXISTS `tipo`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tipo` (
   `idTipo` int(11) NOT NULL auto_increment,
-  `Nome` varchar(100) default NULL,
+  `Nome` varchar(45) NOT NULL NULL,
   PRIMARY KEY  (`idTipo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -352,18 +279,18 @@ CREATE TABLE `usuario` (
   `idTipo` int(11) NOT NULL,
   `Nome` varchar(100) default NULL,
   `Email` varchar(100) default NULL,
-  `Login` varchar(50) NOT NULL,
-  `Senha` varchar(50) NOT NULL,
-  `CPF` varchar(45) default NULL,
-  `Celular` varchar(45) default NULL,
-  `Telefone` varchar(45) default NULL,
-  `SecunContat` varchar(45) default NULL,
+  `Login` varchar(20) NOT NULL,
+  `Senha` varchar(100) NOT NULL,
+  `CPF` varchar(16) default NULL,
+  `Celular` varchar(24) default NULL,
+  `Telefone` varchar(24) default NULL,
+  `SecunContat` varchar(24) default NULL,
   `DataNasc` date default NULL,
-  `FirstTime?` char(1) default NULL,
-  `Status` char(1) not NULL,
+  `FirstTime` char(2) NOT NULL,
+  `Status` char(2) NOT NULL,
   PRIMARY KEY  (`idUsuario`),
-  KEY `FK_Tipo5_idx` (`idTipo`),
-  CONSTRAINT `FK_Tipo19` FOREIGN KEY (`idTipo`) REFERENCES `tipo` (`idTipo`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `FK_Tipo1_idx` (`idTipo`),
+  CONSTRAINT `FK_Tipo1` FOREIGN KEY (`idTipo`) REFERENCES `tipo` (`idTipo`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -374,6 +301,87 @@ CREATE TABLE `usuario` (
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `notificacao`
+--
+
+DROP TABLE IF EXISTS `notificacao`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `notificacao` (
+  `idNotificacao` int(11) NOT NULL auto_increment,
+  `Mensagem` varchar(500) NOT NULL,
+  PRIMARY KEY  (`idNotificacao`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `notificaco`
+--
+
+LOCK TABLES `notificacao` WRITE;
+/*!40000 ALTER TABLE `notificacao` DISABLE KEYS */;
+/*!40000 ALTER TABLE `notificacao` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `listanotificacao`
+--
+
+DROP TABLE IF EXISTS `listanotificacao`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `listanotificacao` (
+  `idListaNotificacao` int(11) NOT NULL auto_increment,
+  `idUsuario` int(11) NOT NULL,
+  `idNotificacao` int(11) NOT NULL,
+  PRIMARY KEY  (`idListaNotificacao`),
+  KEY `FK_Usuario4_idx` (`idUsuario`),
+  KEY `FK_Notificacao_idx` (`idNotificacao`),
+  CONSTRAINT `FK_Usuario4` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_Notificacao` FOREIGN KEY (`idNotificacao`) REFERENCES `notificacao` (`idNotificacao`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `listanotificacao`
+--
+
+LOCK TABLES `listanotificacao` WRITE;
+/*!40000 ALTER TABLE `listanotificacao` DISABLE KEYS */;
+/*!40000 ALTER TABLE `listanotificacao` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `codigo`
+--
+
+DROP TABLE IF EXISTS `codigo`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `codigo` (
+  `idCodigo` int(11) NOT NULL auto_increment,
+  `idUsuario` int(11) NOT NULL,
+  `Token1` int(2) NOT NULL,
+  `Token2` int(2) NOT NULL,
+  `Token3` int(2) NOT NULL,
+  `Token4` int(2) NOT NULL,
+  `Criado` datetime NOT NULL,
+  PRIMARY KEY  (`idCodigo`),
+  KEY `FK_Usuario5_idx` (`idUsuario`),
+  CONSTRAINT `FK_Usuario5` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `codigo`
+--
+
+LOCK TABLES `codigo` WRITE;
+/*!40000 ALTER TABLE `codigo` DISABLE KEYS */;
+/*!40000 ALTER TABLE `codigo` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
