@@ -27,9 +27,9 @@ export class AdicionarConvidadosPage implements OnInit {
   ngOnInit() {
   }
 
-  async adicionarCovidados() {
+  async adicionarConvidados() {
     return new Promise(resolve => {
-      this.storage.get('session_storage').then(async (res) => {
+      this.storage.get('session_storage2').then(async (res) => {
         this.anggota = res;
         this.id_evento = this.anggota.idEvento;
         if (this.nome_convidado == "") {
@@ -47,9 +47,9 @@ export class AdicionarConvidadosPage implements OnInit {
         } else {
 
           let body = {
-            idEvento: this.id_evento,
-            nome: this.nome_convidado,
-            tipo: this.tipo_convidado,
+            id_evento: this.id_evento,
+            nome_convidado: this.nome_convidado,
+            tipo_convidado: this.tipo_convidado,
             aksi: 'adicionarConvidados'
           };
 
