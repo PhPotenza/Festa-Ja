@@ -30,40 +30,60 @@ export class BuffetPage implements OnInit {
     public alertController: AlertController,
   ) { }
   ngOnInit() {
+  /*
     this.actRoute.params.subscribe((data: any) =>{
       this.idEvento = data.id;
       let body = {
-        idEvento: this.idEvento,
-        aksi : 'selectBuffet',
+        id_evento: this.idEvento,
+        aksi : 'selectBuffet'
       };
       this.postPvdr.postData(body, 'proses-api.php').subscribe(data => {
         if(data.success){
-          this.storage.set('session_storage3', data.result);
+          this.storage.set('session_storage6', data.result);
         }
       });
     });
+    */
   }
-
+  
   ionViewWillEnter(){
+  /*
     this.actRoute.params.subscribe((data: any) =>{
       this.idEvento = data.id;
       let body = {
-        idEvento: this.idEvento,
-        aksi : 'selectBuffet',
+        id_evento: this.idEvento,
+        aksi : 'selectBuffet'
       };
       this.postPvdr.postData(body, 'proses-api.php').subscribe(data => {
         if(data.success){
-          this.storage.set('session_storage3', data.result);
-          this.storage.get('session_storage3').then((res)=>{
-            this.anggota = res;
-            this.Nome = this.anggota.Nome;
-            this.Tipo = this.anggota.Tipo;
-            this.Quantidade = this.anggota.Quantidade;
-            this.Unidade= this.anggota.Unidade;
-            this.idListaAlimentos = this.anggota.idListaAlimentos;
-            console.log(res);
-          });
+          this.storage.set('session_storage6', data.result);
+          loadBuffet();
         }
+      });
+    }); 
+  */
+  }
+  
+  loadBuffet() {
+    return new Promise(resolve => {
+      this.storage.get('session_storage6').then((res)=>{
+        this.anggota = res;
+        this.Nome = this.anggota.Nome;
+        this.Tipo = this.anggota.Tipo;
+        this.Quantidade = this.anggota.Quantidade;
+        this.Unidade= this.anggota.Unidade;
+        this.idListaAlimentos = this.anggota.idListaAlimentos;
+        let body = {
+          idUsuario: this.idUsuario,
+          aksi : 'selectBuffet',
+        };
+
+        this.postPvdr.postData(body, 'proses-api.php').subscribe(data => {
+          for (let buffet_list of data.result) {
+            this.buffet_lists.push(buffet_list);
+          }
+          resolve(true);
+        });
       });
     });
   }

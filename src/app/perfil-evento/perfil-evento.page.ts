@@ -211,8 +211,12 @@ this.dia2=this.day2;
   }
 
 
-  formBuffet(){
-    this.router.navigate(['/buffet']);
+  formBuffet(id){
+        this.actRoute.params.subscribe((data: any) =>{
+      this.idEvento = data.id;
+       this.router.navigate(['/buffet/'+ id]);
+    });
+   
   } 
   formConvidados(){
     this.router.navigate(['/convidados']);
