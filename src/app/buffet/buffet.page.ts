@@ -64,6 +64,7 @@ export class BuffetPage implements OnInit {
   */
   }
   
+  /*
   loadBuffet() {
     return new Promise(resolve => {
       this.storage.get('session_storage6').then((res)=>{
@@ -87,7 +88,7 @@ export class BuffetPage implements OnInit {
       });
     });
   }
-
+  */
  formAdicionarBuffet(){
     this.router.navigate(['/adicionar-buffet']);
   }
