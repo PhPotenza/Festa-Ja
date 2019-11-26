@@ -66,7 +66,8 @@
       telefone =  '$postjson[telefone]',
       SecunContat =  '$postjson[celular2]',
       DataNasc = '$postjson[DataNasc]',
-      status   = 'y'
+      Status   = 'y',
+      FirstTime = 'y'
     ");
 
     if($query) $result = json_encode(array('success'=>true));
@@ -95,7 +96,7 @@
         'CEP' => $row['CEP'],
         'year1' => $row['year(Data_Inicio)'],
         'day1' => $row['day(Data_Inicio)'],
-        'month1' => $row['month(Data_Inicio)'],
+        'month1' =>$row['month(Data_Inicio)'],
         'minute1' => $row['minute(Hora_Inicio)'],
         'hour1' => $row['hour(Hora_Inicio)'],
         'Data_Fim' => $row['Data_Fim'],
@@ -313,6 +314,28 @@
       echo $result;
     }
 
+    //método de selecionar serviço para meus serviços
+    elseif($postjson['aksi']=='getservico'){
+      $data = array();
+      $query = mysqli_query($mysqli, "SELECT * FROM service WHERE idUsuario='$postjson[idUsuario]' ORDER BY idService LIMIT $postjson[start],$postjson[limit]");
+
+      while($row = mysqli_fetch_array($query)){
+
+        $data[] = array(
+          'idService' => $row['idService'],
+          'Nome' => $row['Nome'],
+          'Tipo' => $row['Tipo'],
+          'Descricao' => $row['Descricao'],
+        );
+      }
+
+      if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
+      else $result = json_encode(array('success'=>false));
+
+      echo $result;
+
+    }
+
    //metodo para selecionar servicos para perfil serviço
    elseif($postjson['aksi']=='selectServico'){
     $data = array();
@@ -351,7 +374,7 @@
 
   }
 
-   elseif($postjson['aksi']=='addBuffet'){
+  elseif($postjson['aksi']=='addBuffet'){
     $query = mysqli_query($mysqli, "INSERT INTO listaalimentos SET
       Nome = '$postjson[nome]',
       Tipo = '$postjson[tipo]',
@@ -369,10 +392,10 @@
 
   //metodo adicionar convidados
   elseif($postjson['aksi']=='adicionarConvidados'){
-    $query = mysqli_query($mysqli, "INSERT INTO convidados SET
+    $query = mysqli_query($mysqli, "INSERT INTO listaconvidados SET
       idEvento = '$postjson[id_evento]',
-      NomeEvento = '$postjson[nome_convidado]',
-      Tipo = '$postjson[tipo_convidado]',
+      Nome = '$postjson[nome_convidado]',
+      Tipo = '$postjson[tipo_convidado]'
     ");
 
     if($query) $result = json_encode(array('success'=>true));
@@ -385,27 +408,21 @@
   elseif($postjson['aksi']=='getconvidado'){
     $data = array();
     $query = mysqli_query($mysqli, "SELECT * FROM service WHERE idEvento='$postjson[idEvento]' ORDER BY Nome");
-
     while($row = mysqli_fetch_array($query)){
-
       $data[] = array(
         'idConvidados' => $row['idConvidados'],
         'nome_convidado' => $row['Nome'],
         'tipo_convidado' => $row['Tipo'],
       );
     }
-
     if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
     else $result = json_encode(array('success'=>false));
-
     echo $result;
   }
-
   //metodo selecionar convidados
   elseif($postjson['aksi']=='selectConvidados'){
     $data = array();
     $query = mysqli_query($mysqli, "SELECT * FROM convidados where idEvento='$postjson[id_evento]'");
-
     $data = mysqli_fetch_array($query);
     $datauser = array(
       'id_evento' => $data['idEvento'],
@@ -415,16 +432,11 @@
     $result = json_encode(array('success'=>true, 'result'=>$datauser));
     echo $result;
   }
-
   //metodo deletar convidados
   elseif($postjson['aksi']=='delConvidado'){
     $query = mysqli_query($mysqli, "DELETE FROM convidados WHERE idConvidados='$postjson[id_convidado]'");
-
     if($query) $result = json_encode(array('success'=>true, 'result'=>'success', 'msg'=>'Deletado com sucesso'));
     else $result = json_encode(array('success'=>false, 'result'=>'error', 'msg'=>'Erro ao deletar'));
-
     echo $result;
   }
-
-  
 ?>

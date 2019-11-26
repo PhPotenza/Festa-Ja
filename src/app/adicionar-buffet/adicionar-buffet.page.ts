@@ -44,7 +44,7 @@ export class AdicionarBuffetPage implements OnInit {
           duration: 3000
         });
         toast.present();
-    }else if(this.quant==""){
+    }else if(this.quant==0){
         const toast = await this.toastCtrl.create({
           message: 'Quantidade Obrigatória',
           duration: 3000
