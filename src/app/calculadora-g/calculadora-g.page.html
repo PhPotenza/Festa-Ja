@@ -8,16 +8,56 @@
   </ion-header>
 
 <ion-content class="ion-padding">
-	
+  
     <h4><b>Doces</b></h4>
   
     <ion-list no-lines>
   
-      <ion-item *ngFor="let doce of doces">
-        <ion-label>{{doce.name}}</ion-label>
-        <ion-checkbox slot="end" [(ngModel)]="doce.isChecked"></ion-checkbox>
-      </ion-item>
-
+    <ion-item>
+      <ion-label>Brigadeiro</ion-label>
+      <ion-checkbox slot="end" [(ngModel)]="brigadeiro"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Beijinho</ion-label>
+      <ion-checkbox slot="end" [(ngModel)]="beijinho"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Bicho de Pé</ion-label>
+      <ion-checkbox slot="end" [(ngModel)]="bicho_pe"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Brigadeiro de Colher</ion-label>
+      <ion-checkbox slot="end" [(ngModel)]="brigadeiro_colher"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Bolo</ion-label>
+      <ion-checkbox slot="end" [(ngModel)]="bolo"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Torta</ion-label>
+      <ion-checkbox slot="end" [(ngModel)]="torta"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Palha Italiana</ion-label>
+      <ion-checkbox slot="end" [(ngModel)]="palha_italiana"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Quindim</ion-label>
+      <ion-checkbox slot="end" [(ngModel)]="quindim"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Petit Gateau</ion-label>
+      <ion-checkbox slot="end" [(ngModel)]="petit_gateau"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Cupcake</ion-label>
+      <ion-checkbox slot="end" [(ngModel)]="cupcake"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Maçã do Amor</ion-label>
+      <ion-checkbox slot="end" [(ngModel)]="maca_amor"></ion-checkbox>
+    </ion-item>
+    
     </ion-list>
   </ion-content>
   

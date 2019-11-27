@@ -42,9 +42,6 @@ export class HomePage implements OnInit {
       this.idUsuario = this.anggota.idUsuario;
       console.log(res);
     });
-    this.eventos = [];
-    this.start = 0;
-  	this.loadEvento();
   }
 
   ionViewWillEnter(){

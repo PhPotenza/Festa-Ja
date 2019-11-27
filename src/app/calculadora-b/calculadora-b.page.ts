@@ -14,28 +14,22 @@ import { MbscFormOptions } from '@mobiscroll/angular';
 })
 export class CalculadoraBPage implements OnInit {
 
-  stepper1: number;
-  stepper2: number;
-  stepper3: number;
-  stepper4: number;
-  danger = 100;
-
-
   formSettings: MbscFormOptions = {
     lang: 'pt-BR',
     theme: 'ios'
 };
 
-  homens: number = 0;
-  mulheres: number = 0;
-  criancas: number = 0;
-  adolescente: number = 0;
-  horas: number = 0;
-  dados: any = [];
+  homens: number;
+  mulheres: number;
+  adolescentes: number;
+  criancas: number;
+  horas: number;
+  dados: any=[];
+  anggota: any;
 
   constructor(
     private router: Router,
-  	private postPvdr: PostProvider,
+    private postPvdr: PostProvider,
     private storage: Storage,
     public toastCtrl: ToastController,
     private actRoute: ActivatedRoute,
@@ -46,15 +40,10 @@ export class CalculadoraBPage implements OnInit {
   }
 
   formCalculadorac(){
-    this.dados = [(this.homens)];
-    this.storage.set('calculadora', this.dados);
-    this.storage.get('calculadora').then((res)=>{
-      console.log(res);
-    });
+    this.dados = [this.homens, this.mulheres, this.adolescentes, this.criancas];
+    this.storage.set('session_dados', this.dados);
     this.router.navigate(['/calculadora-c']);
-
-    }
-
+      console.log(this.dados);
     
-
+  }
 }

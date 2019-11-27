@@ -12,28 +12,27 @@ import { AlertController } from '@ionic/angular';
 })
 export class CalculadoraCPage implements OnInit {
 
-  festas = [
-    { name: 'Coxinha de Frango', isChecked: false },
-    { name: 'Bolinha de Queijo', isChecked: false },
-    { name: 'Mini Quibe frito', isChecked: false },
-    { name: 'Croquete', isChecked: false },
-    { name: 'Enroladinho de salsicha', isChecked: false },
-    { name: 'Enroladinho de Presunto e Queijo', isChecked: false },
-    { name: 'Pão de Queijo', isChecked: false },
-    { name: 'Risole de Queijo e Presunto', isChecked: false },
-    { name: 'Risole de Camarão', isChecked: false },
-    { name: 'Pastel', isChecked: false },
-    { name: 'Empadinha', isChecked: false },
-    { name: 'Nuggets de Frango', isChecked: false },
-    { name: 'Croissant', isChecked: false },
-    { name: 'Trouxinha', isChecked: false },
-    { name: 'Esfiha', isChecked: false },
-    { name: 'Mini Pizza', isChecked: false },
-  ];
+  coxinha_frango: boolean=false;
+  bolinha_queijo: boolean=false;
+  quibe: boolean=false;
+  croquete: boolean=false;
+  enroladinho_salsicha: boolean=false;
+  enroladinho_pq: boolean=false;
+  pao_queijo: boolean=false;
+  risole_pq: boolean=false;
+  risole_camarao: boolean=false;
+  pastel: boolean=false;
+  empadinha: boolean=false;
+  nuggets: boolean=false;
+  croissant: boolean=false;
+  trouxinha: boolean=false;
+  esfiha: boolean=false;
+  pizza: boolean=false;
+  festas: any = [];
 
   constructor(
     private router: Router,
-  	private postPvdr: PostProvider,
+    private postPvdr: PostProvider,
     private storage: Storage,
     public toastCtrl: ToastController,
     private actRoute: ActivatedRoute,
@@ -44,6 +43,8 @@ export class CalculadoraCPage implements OnInit {
   }
 
   formCalculadorad(){
+    this.festas = [(this.coxinha_frango, this.bolinha_queijo, this.quibe, this.croquete, this.enroladinho_salsicha, this.enroladinho_pq, this.pao_queijo, this.risole_pq, this.risole_camarao, this.pastel, this.empadinha, this.nuggets, this.croissant, this.trouxinha, this.esfiha, this.pizza)];
+    this.storage.set('session_festas', this.festas);
     this.router.navigate(['/calculadora-d']);
     console.log(this.festas);
     }
