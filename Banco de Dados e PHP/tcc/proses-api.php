@@ -457,4 +457,17 @@
 
   }
 
+  //método para deletar servico
+  elseif($postjson['aksi']=='delServico'){
+    $query = mysqli_query($mysqli, "DELETE FROM service WHERE idService='$postjson[id_servico]'");
+
+    if($query) $result = json_encode(array('success'=>true, 'result'=>'success', 'msg'=>'Deletado com sucesso'));
+    else $result = json_encode(array('success'=>false, 'result'=>'error', 'msg'=>'Erro ao deletar'));
+
+    echo $result;
+
+
+  }
+
+
 ?>

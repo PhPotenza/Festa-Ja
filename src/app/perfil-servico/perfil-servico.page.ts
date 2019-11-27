@@ -18,7 +18,7 @@ export class PerfilServicoPage implements OnInit {
   nome_servico: string = "";
   tipo_servico: string= "";
   descricao_servico: string = "";
-  comentarios: string = "";
+  /*comentarios: string = "";*/
   anggota: any;
 
   constructor(
