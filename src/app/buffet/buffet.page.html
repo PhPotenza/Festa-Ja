@@ -3,37 +3,54 @@
       <ion-buttons slot="start">
           <ion-menu-button></ion-menu-button>
         </ion-buttons>
-    <ion-title>Buffet</ion-title>
+    <ion-title>Buffet {{idEvento}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
+
+    <!--<ion-item-sliding *ngFor="let evento of eventos">
+        <ion-card>
+          <ion-item>
+          <ion-card-title (click)="perfilEvento(evento.idEvento)">{{evento.NomeEvento}}</ion-card-title>
+          <ion-icon (click)="confirmar(evento.idEvento, evento.NomeEvento)" color="danger" name="trash" slot="end"></ion-icon>
+        </ion-item>
+          
+          <ion-card-content (click)="perfilEvento(evento.idEvento)">{{evento.TipoEvento}}</ion-card-content>
+          <ion-card-content (click)="perfilEvento(evento.idEvento)">Início: {{evento.day1}}/{{evento.month1}}/{{evento.year1}} às {{evento.hour1}}:{{evento.minute1}}</ion-card-content>
+          <ion-card-content (click)="perfilEvento(evento.idEvento)">Término: {{evento.day2}}/{{evento.month2}}/{{evento.year2}} às {{evento.hour2}}:{{evento.minute2}}</ion-card-content>     
+        </ion-card>
+    </ion-item-sliding>
+    -->
     <ion-grid  no-padding>     
-        
+    
+
         <ion-row>
             <ion-col size="7">
-              <div align="start"><ion-text color="light"><b>Festa</b></ion-text></div>
+              <div align="start"><ion-text color="light"><b>Alimentos</b></ion-text></div>
             </ion-col>
             <ion-col>
               <div align="start"><ion-text color="light"><b>Quant.</b></ion-text></div>
             </ion-col>
           </ion-row>
   
-  
+        <ion-item-sliding *ngFor="let alimento of alimentos">
           <ion-row class="ion-align-items-center">
             <ion-col size="6">
-              <div>Bolinha de Queijo</div>
+              <div>{{alimento.Nome}}</div>
             </ion-col>
             <ion-col no-padding>
-              <div align="right">100</div>
+              <div align="right">{{alimento.Quantidade}}</div>
             </ion-col>
             <ion-col no-padding>
-              <div>Unid.</div>
+              <div>{{alimento.Unidade}}</div>
             </ion-col>
             <ion-col no-padding>
               <div align="center"><ion-checkbox color="light"></ion-checkbox></div>
             </ion-col>
           </ion-row>
+        </ion-item-sliding>
+    
   
           <!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
           <ion-row>

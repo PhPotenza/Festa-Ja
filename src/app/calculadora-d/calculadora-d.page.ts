@@ -12,40 +12,29 @@ import { AlertController } from '@ionic/angular';
 })
 export class CalculadoraDPage implements OnInit {
 
-  Churras_bois = [
-    { name: 'Alcatra', isChecked: false },
-    { name: 'Maminha', isChecked: false },
-    { name: 'Picanha', isChecked: false },
-    { name: 'Contrafilé', isChecked: false },
-    { name: 'Fraldinha', isChecked: false },
-  ];
-
-  Churras_porcos = [
-    { name: 'Pernil', isChecked: false },
-    { name: 'Picanha Suína', isChecked: false },
-    { name: 'Lombo', isChecked: false },
-    { name: 'Costelinha', isChecked: false },
-    { name: 'Panceta', isChecked: false },
-  ];
-
-  Churras_frangos = [
-    { name: 'Coxinha da asa', isChecked: false },
-    { name: 'Asinha', isChecked: false },
-    { name: 'Coração', isChecked: false },
-  ];
-
-  Churras_outros = [
-    { name: 'Linguiça para churrasco', isChecked: false },
-    { name: 'Salsichão', isChecked: false },
-    { name: 'Linguiça Toscana', isChecked: false },
-    { name: 'Pão de Alho', isChecked: false },
-    { name: 'Queijo Coalho', isChecked: false },
-    { name: 'Sal Grosso', isChecked: false },
-  ];
+  alcatra: boolean=false;
+  maminha: boolean=false;
+  picanha: boolean=false;
+  contrafile: boolean=false;
+  fraldinha: boolean=false;
+  pernil: boolean=false;
+  picanha_suina: boolean=false;
+  lombo: boolean=false;
+  costelinha: boolean=false;
+  panceta: boolean=false;
+  coxinha_asa: boolean=false;
+  asinha: boolean=false;
+  coracao: boolean=false;
+  coxinha_frango: boolean=false;
+  salsichao: boolean=false;
+  linguica_toscana: boolean=false;
+  queijo_coalho: boolean=false;
+  pao_alho: boolean=false;
+  churrasco: any=[];
 
   constructor(
     private router: Router,
-  	private postPvdr: PostProvider,
+    private postPvdr: PostProvider,
     private storage: Storage,
     public toastCtrl: ToastController,
     private actRoute: ActivatedRoute,
@@ -56,8 +45,10 @@ export class CalculadoraDPage implements OnInit {
   }
 
   formCalculadorae(){
+    this.churrasco = [(this.maminha, this.picanha, this.contrafile, this.fraldinha, this.pernil, this.picanha_suina, this.lombo, this.costelinha, this.panceta, this.coxinha_asa, this.asinha, this.coracao, this.coxinha_frango, this.salsichao, this.linguica_toscana, this.queijo_coalho, this.pao_alho)];
+    this.storage.set('session_churrasco', this.churrasco);
     this.router.navigate(['/calculadora-e']);
-    console.log(this.Churras_bois, this.Churras_porcos, this.Churras_frangos, this.Churras_outros);
-    }
+    console.log(this.churrasco);
+  }
 }
 

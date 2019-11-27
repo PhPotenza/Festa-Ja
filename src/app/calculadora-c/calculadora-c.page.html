@@ -12,14 +12,73 @@
 	<h4><b>Comidas de festa</b></h4>
 
 	<ion-list no-lines>
-
-		<ion-item *ngFor="let festa of festas">
-			<ion-label>{{festa.name}}</ion-label>
-			<ion-checkbox slot="end" [(ngModel)]="festa.isChecked"></ion-checkbox>
-		  </ion-item>
+		<ion-item>
+			<ion-label>Coxinha de Frango</ion-label>
+ 			<ion-checkbox slot="end" [(ngModel)]="coxinha_frango"></ion-checkbox>
+	    </ion-item>
+	  	<ion-item>
+			<ion-label>Bolinha de Queijo</ion-label>
+			<ion-checkbox slot="end" [(ngModel)]="bolinha_queijo"></ion-checkbox>
+		</ion-item>
+		<ion-item>
+			<ion-label>Mini Quibe frito</ion-label>
+			<ion-checkbox slot="end" [(ngModel)]="quibe"></ion-checkbox>
+		</ion-item>
+		<ion-item>
+			<ion-label>Croquete</ion-label>
+			<ion-checkbox slot="end" [(ngModel)]="croquete"></ion-checkbox>
+		</ion-item>
+		<ion-item>
+			<ion-label>Enroladinho de salsicha</ion-label>
+			<ion-checkbox slot="end" [(ngModel)]="enroladinho_salsicha"></ion-checkbox>
+		</ion-item>
+		<ion-item>
+			<ion-label>Enroladinho de Presunto e Queijo</ion-label>
+			<ion-checkbox slot="end" [(ngModel)]="enroladinho_pq"></ion-checkbox>
+		</ion-item>
+		<ion-item>
+			<ion-label>Pão de Queijo</ion-label>
+			<ion-checkbox slot="end" [(ngModel)]="pao_queijo"></ion-checkbox>
+		</ion-item>
+		<ion-item>
+			<ion-label>Risole de Queijo e Presunto</ion-label>
+			<ion-checkbox slot="end" [(ngModel)]="risole_pq"></ion-checkbox>
+		</ion-item>
+		<ion-item>
+			<ion-label>Risole de Camarão</ion-label>
+			<ion-checkbox slot="end" [(ngModel)]="risole_camarao"></ion-checkbox>
+		</ion-item>
+		<ion-item>
+			<ion-label>Pastel</ion-label>
+			<ion-checkbox slot="end" [(ngModel)]="pastel"></ion-checkbox>
+		</ion-item>
+		<ion-item>
+			<ion-label>Empadinha</ion-label>
+			<ion-checkbox slot="end" [(ngModel)]="empadinha"></ion-checkbox>
+		</ion-item>
+		<ion-item>
+			<ion-label>Nuggets de Frango</ion-label>
+			<ion-checkbox slot="end" [(ngModel)]="nuggets"></ion-checkbox>
+		</ion-item>
+		<ion-item>
+			<ion-label>Croissant</ion-label>
+			<ion-checkbox slot="end" [(ngModel)]="croissant"></ion-checkbox>
+		</ion-item>
+		<ion-item>
+			<ion-label>Trouxinha</ion-label>
+			<ion-checkbox slot="end" [(ngModel)]="trouxinha"></ion-checkbox>
+		</ion-item>
+		<ion-item>
+			<ion-label>Esfiha</ion-label>
+			<ion-checkbox slot="end" [(ngModel)]="esfiha"></ion-checkbox>
+		</ion-item>
+		<ion-item>
+			<ion-label>Mini Pizza</ion-label>
+			<ion-checkbox slot="end" [(ngModel)]="pizza"></ion-checkbox>
+		</ion-item>
 	</ion-list>
 </ion-content>
 
 <ion-footer class="ion-padding-bottom">
-			<ion-button class="ion-button" expand="block" color="light" (click)="formCalculadorad()">Continuar</ion-button>
-	</ion-footer>  
+	<ion-button class="ion-button" expand="block" color="light" (click)="formCalculadorad()">Continuar</ion-button>
+</ion-footer>  

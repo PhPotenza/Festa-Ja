@@ -33,7 +33,7 @@
   <h4><b>Seus Eventos...</b></h4>
 <ion-list>
   <ion-item-sliding *ngFor="let evento of eventos">
-      <ion-card bgcolor="green">
+      <ion-card>
         <ion-item>
         <ion-card-title (click)="perfilEvento(evento.idEvento)">{{evento.NomeEvento}}</ion-card-title>
         <ion-icon (click)="confirmar(evento.idEvento, evento.NomeEvento)" color="danger" name="trash" slot="end"></ion-icon>
