@@ -18,10 +18,12 @@
     <ion-item>
       <ion-label>Tipo</ion-label>
       <ion-select multiple="false" cancelText="Cancelar" okText="Selecionar" [(ngModel)]="tipo">
-          <ion-select-option value="alimento">Alimento</ion-select-option>
+          <ion-select-option value="festa">Alimento de Festa</ion-select-option>
+          <ion-select-option value="churrasco">Churrasco</ion-select-option>
+          <ion-select-option value="porcao">Porções</ion-select-option>
           <ion-select-option value="bebida">Bebida</ion-select-option>
           <ion-select-option value="doce">Doce</ion-select-option>
-          <ion-select-option value="outros">Outros</ion-select-option>
+          <ion-select-option value="suprimento">Suprimentos</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item>
@@ -33,11 +35,11 @@
     <ion-item>
       <ion-label>Unidade</ion-label>
       <ion-select multiple="false" cancelText="Cancelar" okText="Selecionar" [(ngModel)]="unid">
-          <ion-select-option value="unidade">Unid.</ion-select-option>
-          <ion-select-option value="kg">Kg</ion-select-option>
-          <ion-select-option value="g">g</ion-select-option>
-          <ion-select-option value="l">L</ion-select-option>
-          <ion-select-option value="ml">ml</ion-select-option>
+          <ion-select-option value="unidade">Unidades</ion-select-option>
+          <ion-select-option value="kg">Kilogramas</ion-select-option>
+          <ion-select-option value="g">gramas</ion-select-option>
+          <ion-select-option value="l">Litros</ion-select-option>
+          <ion-select-option value="ml">Mililitros</ion-select-option>
       </ion-select>
     </ion-item>
    </ion-list>
