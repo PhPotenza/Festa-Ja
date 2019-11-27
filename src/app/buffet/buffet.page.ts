@@ -26,14 +26,15 @@ export class BuffetPage implements OnInit {
     public alertController: AlertController,
   ) { }
   ngOnInit() {
+
     return new Promise(resolve => {
     this.storage.get('session_storage2').then((res)=>{
       this.anggota = res;
       this.idEvento = this.anggota.idEvento;
       console.log(res);
       let body = {
-        idEvento: this.idEvento,
-        aksi : 'selectBuffet',
+        id_evento: this.idEvento,
+        aksi : 'selectBuffet'
       };
   
       this.postPvdr.postData(body, 'proses-api.php').subscribe(data => {
@@ -41,16 +42,39 @@ export class BuffetPage implements OnInit {
           this.alimentos.push(alimento);
         }
         resolve(true);
-    });
-    
+    });   
     });
   });
   }
-
+  
   ionViewWillEnter(){
- 
   }
+  
+  /*
+  loadBuffet() {
+    return new Promise(resolve => {
+      this.storage.get('session_storage6').then((res)=>{
+        this.anggota = res;
+        this.Nome = this.anggota.Nome;
+        this.Tipo = this.anggota.Tipo;
+        this.Quantidade = this.anggota.Quantidade;
+        this.Unidade= this.anggota.Unidade;
+        this.idListaAlimentos = this.anggota.idListaAlimentos;
+        let body = {
+          idUsuario: this.idUsuario,
+          aksi : 'selectBuffet',
+        };
 
+        this.postPvdr.postData(body, 'proses-api.php').subscribe(data => {
+          for (let buffet_list of data.result) {
+            this.buffet_lists.push(buffet_list);
+          }
+          resolve(true);
+        });
+      });
+    });
+  }
+  */
  formAdicionarBuffet(){
     this.router.navigate(['/adicionar-buffet']);
   }

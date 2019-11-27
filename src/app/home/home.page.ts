@@ -185,7 +185,7 @@ export class HomePage implements OnInit {
   async presentLoadingWithOptions() {
     const loading = await this.loadingController.create({
       spinner: 'crescent',
-      duration: 5000,
+      duration: 2500,
       message: 'Carregando...',
       translucent: true,
       cssClass: 'custom-class custom-loading'
