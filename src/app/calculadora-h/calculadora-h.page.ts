@@ -12,11 +12,17 @@ import { AlertController } from '@ionic/angular';
 })
 export class CalculadoraHPage implements OnInit {
 
-  
+  suprimentos = [
+    { name: 'Pratos', isChecked: false },
+    { name: 'Copos', isChecked: false },
+    { name: 'Talheres', isChecked: false },
+    { name: 'Guardanapo', isChecked: false },
+    { name: 'Gelo', isChecked: false },
+  ];
 
   constructor(
     private router: Router,
-    private postPvdr: PostProvider,
+  	private postPvdr: PostProvider,
     private storage: Storage,
     public toastCtrl: ToastController,
     private actRoute: ActivatedRoute,
@@ -28,13 +34,6 @@ export class CalculadoraHPage implements OnInit {
 
   formCalculadorai(){
     this.router.navigate(['/calculadora-i']);
-    console.log(this.suprimentos);
-  }
-
-  formCalculadorah(){
-    this.suprimentos = [];
-    this.storage.set('session_suprimentos', this.suprimentos);
-    this.router.navigate(['/calculadora-h']);
     console.log(this.suprimentos);
     }
 }
