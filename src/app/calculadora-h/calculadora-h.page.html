@@ -8,19 +8,27 @@
   </ion-header>
 
 <ion-content class="ion-padding">
-	
+  
     <h4><b>Suprimentos</b></h4>
   
     <ion-list no-lines>
-  
-      <ion-item *ngFor="let suprimento of suprimentos">
-        <ion-label>{{suprimento.name}}</ion-label>
-        <ion-checkbox slot="end" [(ngModel)]="suprimento.isChecked"></ion-checkbox>
-      </ion-item>
-
+      
       <ion-item>
-        <ion-label>Não esqueça de comprar gelo para suas bebidas e carnes ;)</ion-label>
-      </ion-item>
+      <ion-label>Pratos</ion-label>
+      <ion-checkbox slot="end" [(ngModel)]="pratos"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Copos</ion-label>
+      <ion-checkbox slot="end" [(ngModel)]="copos"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Talheres</ion-label>
+      <ion-checkbox slot="end" [(ngModel)]="talheres"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Guardanapo</ion-label>
+      <ion-checkbox slot="end" [(ngModel)]="guardanapo"></ion-checkbox>
+    </ion-item>
 
     </ion-list>
   </ion-content>

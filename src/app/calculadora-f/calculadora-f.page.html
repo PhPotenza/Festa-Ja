@@ -8,15 +8,27 @@
   </ion-header>
 
 <ion-content class="ion-padding">
-	
+  
     <h4><b>Bebidas</b></h4>
   
     <ion-list no-lines>
   
-      <ion-item *ngFor="let bebida of bebidas">
-        <ion-label>{{bebida.name}}</ion-label>
-        <ion-checkbox slot="end" [(ngModel)]="bebida.isChecked"></ion-checkbox>
-      </ion-item>
+    <ion-item>
+      <ion-label>Cerveja</ion-label>
+      <ion-checkbox slot="end" [(ngModel)]="cerveja"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Refrigerante</ion-label>
+      <ion-checkbox slot="end" [(ngModel)]="refrigerante"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Suco</ion-label>
+      <ion-checkbox slot="end" [(ngModel)]="suco"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Água</ion-label>
+      <ion-checkbox slot="end" [(ngModel)]="agua"></ion-checkbox>
+    </ion-item>
 
     </ion-list>
   </ion-content>

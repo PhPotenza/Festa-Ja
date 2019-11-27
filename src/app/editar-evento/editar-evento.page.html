@@ -86,24 +86,27 @@
     </ion-item>
 
     <ion-item>
-        <ion-label>Data de Início</ion-label>
-        <ion-input slot="end" type="date" [(ngModel)]="date1"></ion-input>
+      <ion-label>Data de Início</ion-label>
+      <ion-datetime monthNames="Janeiro, Fevereiro, Março, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro"
+      cancel-text="Calcelar" done-text="Ok" display-format="DD/MM/YYYY" picker-format="DD/MMMM/YYYY" required="true" [(ngModel)]="date1"></ion-datetime>  
     </ion-item>
 
+    
     <ion-item>
-        <ion-label>Hora de Início</ion-label>
-        <ion-input slot="end" type="time" [(ngModel)]="time1"></ion-input>
+      <ion-label>Hora de Início</ion-label>
+      <ion-datetime cancel-text="Calcelar" done-text="Ok" display-format="HH:mm" picker-format="HH:mm" required="true" [(ngModel)]="time1"></ion-datetime>  
     </ion-item>
 
     <ion-item>
       <ion-label>Data de Término</ion-label>
-      <ion-input slot="end" type="date" [(ngModel)]="date2"></ion-input>
-  </ion-item>
+      <ion-datetime monthNames="Janeiro, Fevereiro, Março, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro"
+      cancel-text="Calcelar" done-text="Ok" display-format="DD/MM/YYYY" picker-format="DD/MMMM/YYYY" required="true" [(ngModel)]="date2"></ion-datetime>  </ion-item>
 
-  <ion-item>
+            
+    <ion-item>
       <ion-label>Hora de Término</ion-label>
-      <ion-input slot="end" type="time" [(ngModel)]="time2"></ion-input>
-  </ion-item>
+      <ion-datetime cancel-text="Calcelar" done-text="Ok" display-format="HH:mm" picker-format="HH:mm" required="true" [(ngModel)]="time2"></ion-datetime>  
+    </ion-item>
     
   </ion-list>
   

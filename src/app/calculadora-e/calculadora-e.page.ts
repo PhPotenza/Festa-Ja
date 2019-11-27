@@ -12,28 +12,27 @@ import { AlertController } from '@ionic/angular';
 })
 export class CalculadoraEPage implements OnInit {
 
-  porcoess = [
-    { name: 'Mandioca Frita', isChecked: false },
-    { name: 'Batata frita', isChecked: false },
-    { name: 'Amendoim', isChecked: false },
-    { name: 'Torresmo', isChecked: false },
-    { name: 'Linguiça Acebolada', isChecked: false },
-    { name: 'Bolinho de Arroz', isChecked: false },
-    { name: 'Frango a passarinho', isChecked: false },
-    { name: 'Medalhão de Frango', isChecked: false },
-    { name: 'Polenta Frita', isChecked: false },
-    { name: 'Bolinho de Bacalhau', isChecked: false },
-    { name: 'Espetinho', isChecked: false },
-    { name: 'Tilápia Frita', isChecked: false },
-    { name: 'Batata Rústica', isChecked: false },
-    { name: 'Iscas de Filé', isChecked: false },
-    { name: 'Azeitona Temperada', isChecked: false },
-    { name: 'Tábuas de Frios', isChecked: false },
-  ];
+  mandioca_frita: boolean=false;
+  batata_frita: boolean=false;
+  amendoim: boolean=false;
+  torresmo: boolean=false;
+  linguica_acebolada: boolean=false;
+  bolinho_arroz: boolean=false;
+  frango_passarinho: boolean=false;
+  medalahao_frango: boolean=false;
+  polenta_frita: boolean=false;
+  bolinho_bacalhau: boolean=false;
+  espetinho: boolean=false;
+  tilapia_frita: boolean=false;
+  batata_rustica: boolean=false;
+  iscas_file: boolean=false;
+  azeitona_temperada: boolean=false;
+  tabua_frios: boolean=false;
+  porcoes: any=[];
 
   constructor(
     private router: Router,
-  	private postPvdr: PostProvider,
+    private postPvdr: PostProvider,
     private storage: Storage,
     public toastCtrl: ToastController,
     private actRoute: ActivatedRoute,
@@ -44,7 +43,9 @@ export class CalculadoraEPage implements OnInit {
   }
 
   formCalculadoraf(){
+    this.porcoes = [(this.mandioca_frita, this.batata_frita, this.amendoim, this.torresmo, this.linguica_acebolada, this.bolinho_arroz, this.frango_passarinho, this.medalahao_frango, this.polenta_frita, this.bolinho_bacalhau, this.espetinho, this.tilapia_frita, this.batata_rustica, this.iscas_file, this.azeitona_temperada, this.tabua_frios)];
+    this.storage.set('session_porcoes', this.porcoes);
     this.router.navigate(['/calculadora-f']);
-    console.log(this.porcoess);
+    console.log(this.porcoes);
     }
 }

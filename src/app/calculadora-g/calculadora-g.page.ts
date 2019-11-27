@@ -11,27 +11,23 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./calculadora-g.page.scss'],
 })
 export class CalculadoraGPage implements OnInit {
-
-  doces = [
-    { name: 'Brigadeiro', isChecked: false },
-    { name: 'Beijinho', isChecked: false },
-    { name: 'Bicho de Pé', isChecked: false },
-    { name: 'Bem Casado', isChecked: false },
-    { name: 'Brigadeiro de Colher', isChecked: false },
-    { name: 'Bolo', isChecked: false },
-    { name: 'Torta', isChecked: false },
-    { name: 'Palha Italiana', isChecked: false },
-    { name: 'Maçã do Amor', isChecked: false },
-    { name: 'Quindim', isChecked: false },
-    { name: 'Pudim', isChecked: false },
-    { name: 'Petit Gateau', isChecked: false },
-    { name: 'Donuts', isChecked: false },
-    { name: 'Cupcake', isChecked: false },
-  ];
+  
+  brigadeiro: boolean=false;
+  beijinho: boolean=false;
+  bicho_pe: boolean=false;
+  brigadeiro_colher: boolean=false;
+  bolo: boolean=false;
+  torta: boolean=false;
+  palha_italiana: boolean=false;
+  quindim: boolean=false;
+  petit_gateau: boolean=false;
+  cupcake: boolean=false;
+  maca_amor: boolean=false;
+  doces: any[];
   
   constructor(
     private router: Router,
-  	private postPvdr: PostProvider,
+    private postPvdr: PostProvider,
     private storage: Storage,
     public toastCtrl: ToastController,
     private actRoute: ActivatedRoute,
@@ -42,6 +38,8 @@ export class CalculadoraGPage implements OnInit {
   }
 
   formCalculadorah(){
+    this.doces = [(this.brigadeiro, this.beijinho, this.bicho_pe, this.brigadeiro_colher, this.bolo, this.torta, this.palha_italiana, this.quindim, this.petit_gateau, this.cupcake, this.maca_amor)];
+    this.storage.set('session_doces', this.doces);
     this.router.navigate(['/calculadora-h']);
     console.log(this.doces);
     }

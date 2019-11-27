@@ -12,18 +12,16 @@ import { AlertController } from '@ionic/angular';
 })
 export class CalculadoraFPage implements OnInit {
 
-  bebidas = [
-    { name: 'Cerveja', isChecked: false },
-    { name: 'Refrigerante', isChecked: false },
-    { name: 'Suco', isChecked: false },
-    { name: 'Água', isChecked: false },
-    { name: 'Cachaça', isChecked: false },
-    { name: 'Vodka', isChecked: false },
-  ];
+  
+  cerveja: boolean=false;
+  refrigerante: boolean=false;
+  suco: boolean=false;
+  agua: boolean=false;
+  bebidas: any=[];
 
   constructor(
     private router: Router,
-  	private postPvdr: PostProvider,
+    private postPvdr: PostProvider,
     private storage: Storage,
     public toastCtrl: ToastController,
     private actRoute: ActivatedRoute,
@@ -34,6 +32,8 @@ export class CalculadoraFPage implements OnInit {
   }
 
   formCalculadorag(){
+    this.bebidas = [(this.cerveja, this.refrigerante, this.suco, this.agua)];
+    this.storage.set('session_bebidas', this.bebidas);
     this.router.navigate(['/calculadora-g']);
     console.log(this.bebidas);
     }
