@@ -41,6 +41,8 @@ const routes: Routes = [
   { path: 'pesquisa/:pesquisar/:tipo', loadChildren: './pesquisa/pesquisa.module#PesquisaPageModule' },
   { path: 'pesquisa', loadChildren: './pesquisa/pesquisa.module#PesquisaPageModule' },
   { path: 'perfil-servico/:id', loadChildren: './perfil-servico/perfil-servico.module#PerfilServicoPageModule' },
+  { path: 'servicos-contratados/:id', loadChildren: './servicos-contratados/servicos-contratados.module#ServicosContratadosPageModule' },
+
 
 ];
 
