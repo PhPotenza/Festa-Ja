@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Storage } from '@ionic/Storage';
 import { ToastController } from '@ionic/angular';
 import { async } from 'q';
@@ -12,50 +12,63 @@ import { PostProvider } from 'src/providers/post-provider';
 })
 export class EditarServicoPage implements OnInit {
 
-  id_servico: number=0;
-  nome_servico: string = "";
-  descricao_servico: string = "";
-  tipo_servico: string = "";
+  idService: number=0;
+  Nome: string = "";
+  Descricao: string = "";
+  Tipo: string = "";
   anggota: any;
 
     constructor( 
         private router: Router,
         private storage: Storage,
+        private actRoute: ActivatedRoute,
         public toastCtrl: ToastController,
         private postPvdr: PostProvider
     ){} 
 
     ngOnInit() {
+      this.actRoute.params.subscribe((data: any) =>{
+        this.idService = data.id;
+        let body = {
+          idService: this.idService,
+          aksi : 'selectServico'
+        };
+        this.postPvdr.postData(body, 'proses-api.php').subscribe(data => {
+          if(data.success){
+            this.storage.set('session_storage_editar_servico', data.result);
+          }
+        });
+    });
     }
 
     ionViewWillEnter(){
-      this.storage.get('session_storage3').then((res)=>{
+      this.storage.get('session_storage_editar_servico').then((res)=>{
         this.anggota = res;
-        this.nome_servico = this.anggota.Nome;
-        this.tipo_servico = this.anggota.Tipo;
-        this.descricao_servico = this.anggota.Descricao;
+        this.Nome = this.anggota.Nome;
+        this.Tipo = this.anggota.Tipo;
+        this.Descricao = this.anggota.Descricao;
       });
     }
 
-    async updateServico(){
+    async updateService(){
       return new Promise(resolve => {
-        this.storage.get('session_storage3').then(async (res)=>{
+        this.storage.get('session_storage_editar_servico').then(async (res)=>{
           this.anggota = res;
-          this.id_servico = this.anggota.idServico;
+          this.idService = this.anggota.idServico;
       
-      if(this.nome_servico==""){
+      if(this.Nome==""){
           const toast = await this.toastCtrl.create({
             message: 'Nome Obrigatório',
             duration: 3000
           });
           toast.present();
-      }else if(this.descricao_servico==""){
+      }else if(this.Descricao==""){
         const toast = await this.toastCtrl.create({
           message: 'Descrição Obrigatória',
           duration: 3000
         });
         toast.present();
-      }else if(this.tipo_servico==""){
+      }else if(this.Tipo==""){
         const toast = await this.toastCtrl.create({
           message: 'Tipo de Serviço Obrigatório',
           duration: 3000
@@ -64,10 +77,10 @@ export class EditarServicoPage implements OnInit {
       }else{
   
         let body = {
-          idServico: this.id_servico,
-          nome: this.nome_servico,
-          descricao: this.descricao_servico,
-          tipo: this.tipo_servico,
+          idServico: this.idService,
+          Nome: this.Nome,
+          Descricao: this.Descricao,
+          Tipo: this.Tipo,
           aksi: 'updateServico'
         };
   

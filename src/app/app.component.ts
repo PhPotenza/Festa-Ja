@@ -19,11 +19,6 @@ export class AppComponent {
       icon: 'home'
     },
     {
-      title: 'Cadastrar Serviços',
-      url: '/cadastrar-servico',
-      icon: 'briefcase'
-    },
-    {
       title: 'Perfil',
       url: '/perfil-cliente',
       icon: 'person'

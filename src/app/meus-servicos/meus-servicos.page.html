@@ -13,8 +13,7 @@
         <ion-card>
           <ion-item>
           <ion-card-title (click)="goToPerfilServico(servico.idService)">{{servico.Nome}}</ion-card-title>
-          <!--<ion-icon (click)="confirmar(evento.idEvento, evento.NomeEvento)" color="light" name="trash" slot="end"></ion-icon>-->
-          <ion-icon slot="end" name="create" color="primary"></ion-icon> 
+          <ion-icon (click)="goToEditarServico(servico.idService)" slot="end" name="create" color="primary" ></ion-icon> 
           <ion-icon  (click)="confirmar(servico.idService, servico.Nome)" color="danger" name="trash" slot="end"></ion-icon>
         </ion-item>
           

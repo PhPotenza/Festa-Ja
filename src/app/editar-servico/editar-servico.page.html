@@ -11,15 +11,15 @@
   <ion-list>
     <ion-item>    
       <ion-label>Nome</ion-label>
-      <ion-input type="text" [(ngModel)]="nome_servico"></ion-input>
+      <ion-input type="text" [(ngModel)]="Nome">{{Nome}}</ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Descrição</ion-label>
-      <ion-input type="text" [(ngModel)]="descricao_servico"></ion-input>
+      <ion-input type="text" [(ngModel)]="Descricao"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Tipo</ion-label>
-    <ion-select multiple="false" cancelText="Cancelar" okText="Selecionar" [(ngModel)]="tipo_servico">
+    <ion-select multiple="false" cancelText="Cancelar" okText="Selecionar" [(ngModel)]="Tipo">
       <ion-select-option value="buffet">Buffet</ion-select-option>
       <ion-select-option value="bebidas">Bebidas</ion-select-option>
       <ion-select-option value="entretenimento">Entretenimento</ion-select-option>
@@ -28,5 +28,5 @@
     </ion-select>
     </ion-item>
   </ion-list>
-  <ion-button class="ion-button" expand="block" padding color="light" (click)="alterarServico()">Salvar</ion-button>
+  <ion-button class="ion-button" expand="block" padding color="light" (click)="updateService()">Salvar</ion-button>
 </ion-content>

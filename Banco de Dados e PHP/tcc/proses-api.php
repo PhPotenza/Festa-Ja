@@ -304,9 +304,9 @@
     //metodo alterar serviço
     elseif($postjson['aksi']=='updateServico'){
       $query = mysqli_query($mysqli, "UPDATE servico SET
-        Nome = '$postjson[nome_servico]',
-        Descricao = '$postjson[descricao_servico]',
-        Tipo =  '$postjson[tipo_servico]' WHERE idService='$postjson[id_servico]'");
+        Nome = '$postjson[Nome]',
+        Descricao = '$postjson[Descricao]',
+        Tipo =  '$postjson[Tipo]' WHERE idService='$postjson[idService]'");
 
       if($query) $result = json_encode(array('success'=>true, 'msg'=>'Atualizado com sucesso'));
       else $result = json_encode(array('success'=>false, 'msg'=>'Erro! Por favor tente novamente'));
@@ -379,14 +379,14 @@
    //metodo para selecionar servicos para perfil serviço
    elseif($postjson['aksi']=='selectServico'){
     $data = array();
-    $query = mysqli_query($mysqli, "SELECT * FROM service WHERE idService='$postjson[id_servico]'");
+    $query = mysqli_query($mysqli, "SELECT * FROM service WHERE idService='$postjson[idService]'");
 
     $data = mysqli_fetch_array($query);
     $datauser = array(
-      'id_servico' => $data['idService'],
-      'nome_servico' => $data['Nome'],
-      'tipo_servico' => $data['Tipo'],
-      'descricao_servico' => $data['Descricao'],
+      'idServico' => $data['idService'],
+      'Nome' => $data['Nome'],
+      'Tipo' => $data['Tipo'],
+      'Descricao' => $data['Descricao'],
     );
     $result = json_encode(array('success'=>true, 'result'=>$datauser));
     echo $result;
@@ -514,7 +514,7 @@
 
   //método para deletar servico
   elseif($postjson['aksi']=='delServico'){
-    $query = mysqli_query($mysqli, "DELETE FROM service WHERE idService='$postjson[id_servico]'");
+    $query = mysqli_query($mysqli, "DELETE FROM service WHERE idService='$postjson[idService]'");
 
     if($query) $result = json_encode(array('success'=>true, 'result'=>'success', 'msg'=>'Deletado com sucesso'));
     else $result = json_encode(array('success'=>false, 'result'=>'error', 'msg'=>'Erro ao deletar'));
