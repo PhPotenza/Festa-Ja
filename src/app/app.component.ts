@@ -34,11 +34,6 @@ export class AppComponent {
       icon: 'search'
     },
     {
-      title: 'Perfil Serviço',
-      url: '/perfil-servico',
-      icon: 'briefcase'
-    },
-    {
       title: 'Meus Serviços',
       url: '/meus-servicos',
       icon: 'briefcase'

@@ -95,19 +95,6 @@ ionViewWillEnter(){
 
   goToEditarServico(id){
     this.router.navigate(['/editar-servico/' + id]);
-    this.actRoute.params.subscribe((data: any) =>{
-    this.idService = data.id;
-      let body = {
-        idService: this.idService,
-        aksi : 'selectServico'
-      };
-      this.postPvdr.postData(body, 'proses-api.php').subscribe(data => {
-        if(data.success){
-          this.storage.set('session_storage_editar_servico', data.result);
-          console.log(data);
-        }
-      });
-  });
 }
   
 

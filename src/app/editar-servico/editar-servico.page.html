@@ -10,15 +10,15 @@
 <ion-content scroll="false" padding>   
   <ion-list>
     <ion-item>    
-      <ion-label>Nome</ion-label>
-      <ion-input type="text" [(ngModel)]="Nome">{{Nome}}</ion-input>
+      <ion-label position="floating" class="item">Nome</ion-label>
+      <ion-input type="text" [(ngModel)]="Nome"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label>Descrição</ion-label>
+      <ion-label position="floating">Descrição</ion-label>
       <ion-input type="text" [(ngModel)]="Descricao"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label>Tipo</ion-label>
+      <ion-label position="floating">Tipo</ion-label>
     <ion-select multiple="false" cancelText="Cancelar" okText="Selecionar" [(ngModel)]="Tipo">
       <ion-select-option value="buffet">Buffet</ion-select-option>
       <ion-select-option value="bebidas">Bebidas</ion-select-option>

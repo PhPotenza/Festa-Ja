@@ -90,7 +90,7 @@ export class PesquisarServicoPage implements OnInit {
     }
   }
 
-  perfilServico(id){
+  goToPerfilServico(id){
     this.router.navigate(['/perfil-servico/' + id]);
   }
 

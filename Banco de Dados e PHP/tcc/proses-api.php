@@ -246,6 +246,19 @@
 
     }
 
+    //Update do serviço
+    elseif($postjson['aksi']=='updateServico'){
+      $query = mysqli_query($mysqli, "UPDATE service SET
+        Nome = '$postjson[Nome]',
+        Descricao = '$postjson[Descricao]',
+        Tipo =  '$postjson[Tipo]' WHERE idService='$postjson[idService]'");
+
+      if($query) $result = json_encode(array('success'=>true, 'msg'=>'Atualizado com sucesso'));
+      else $result = json_encode(array('success'=>false, 'msg'=>'Erro! Por favor tente novamente'));
+
+      echo $result;
+    }
+
     //PESQUISAR SERVICOS
     elseif($postjson['aksi']=='pesquisarservico'){
       $data = array();
@@ -301,18 +314,6 @@
       echo $result;
     }
 
-    //metodo alterar serviço
-    elseif($postjson['aksi']=='updateServico'){
-      $query = mysqli_query($mysqli, "UPDATE servico SET
-        Nome = '$postjson[Nome]',
-        Descricao = '$postjson[Descricao]',
-        Tipo =  '$postjson[Tipo]' WHERE idService='$postjson[idService]'");
-
-      if($query) $result = json_encode(array('success'=>true, 'msg'=>'Atualizado com sucesso'));
-      else $result = json_encode(array('success'=>false, 'msg'=>'Erro! Por favor tente novamente'));
-
-      echo $result;
-    }
 
     //método de selecionar serviço para meus serviços
     elseif($postjson['aksi']=='getservico'){
@@ -383,7 +384,7 @@
 
     $data = mysqli_fetch_array($query);
     $datauser = array(
-      'idServico' => $data['idService'],
+      'idService' => $data['idService'],
       'Nome' => $data['Nome'],
       'Tipo' => $data['Tipo'],
       'Descricao' => $data['Descricao'],

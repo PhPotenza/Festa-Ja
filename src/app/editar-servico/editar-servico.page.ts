@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Storage } from '@ionic/Storage';
 import { ToastController } from '@ionic/angular';
-import { async } from 'q';
 import { PostProvider } from 'src/providers/post-provider';
 
 @Component({
@@ -42,19 +41,32 @@ export class EditarServicoPage implements OnInit {
     }
 
     ionViewWillEnter(){
+      this.actRoute.params.subscribe((data: any) =>{
+        this.idService = data.id;
+        let body = {
+          idService: this.idService,
+          aksi : 'selectServico'
+        };
+        this.postPvdr.postData(body, 'proses-api.php').subscribe(data => {
+          if(data.success){
+            this.storage.set('session_storage_editar_servico', data.result);
       this.storage.get('session_storage_editar_servico').then((res)=>{
         this.anggota = res;
         this.Nome = this.anggota.Nome;
         this.Tipo = this.anggota.Tipo;
         this.Descricao = this.anggota.Descricao;
+           });
+         }
+        });
       });
     }
 
     async updateService(){
       return new Promise(resolve => {
-        this.storage.get('session_storage_editar_servico').then(async (res)=>{
+        this.storage.get('session_storage_editar_servico').then(async (res)=>{ 
           this.anggota = res;
           this.idService = this.anggota.idServico;
+          console.log(res);
       
       if(this.Nome==""){
           const toast = await this.toastCtrl.create({
@@ -77,14 +89,15 @@ export class EditarServicoPage implements OnInit {
       }else{
   
         let body = {
-          idServico: this.idService,
+          idService: this.idService,
           Nome: this.Nome,
           Descricao: this.Descricao,
           Tipo: this.Tipo,
-          aksi: 'updateServico'
+          aksi: 'updateServico',
         };
   
         this.postPvdr.postData(body, 'proses-api.php').subscribe(async data =>{
+          console.log(data);
           var alertpesan = data.msg;
           if(data.success){
             this.router.navigate(['/perfil-servico']);

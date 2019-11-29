@@ -35,7 +35,7 @@
     <ion-item-sliding *ngFor="let servico of servicos">
         <ion-card>
           <ion-item>
-          <ion-card-title (click)="perfilServico(servico.idService)">{{servico.Nome}}</ion-card-title>
+          <ion-card-title (click)="goToPerfilServico(servico.idService)">{{servico.Nome}}</ion-card-title>
         </ion-item>
         <ion-card-content (click)="goToPerfilServico(servico.idService)">{{servico.Tipo}}</ion-card-content>
           <ion-card-content (click)="goToPerfilServico(servico.idService)">{{servico.Descricao}}</ion-card-content>
