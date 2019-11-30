@@ -246,6 +246,19 @@
 
     }
 
+    //Update do serviço
+    elseif($postjson['aksi']=='updateServico'){
+      $query = mysqli_query($mysqli, "UPDATE service SET
+        Nome = '$postjson[Nome]',
+        Descricao = '$postjson[Descricao]',
+        Tipo =  '$postjson[Tipo]' WHERE idService='$postjson[idService]'");
+
+      if($query) $result = json_encode(array('success'=>true, 'msg'=>'Atualizado com sucesso'));
+      else $result = json_encode(array('success'=>false, 'msg'=>'Erro! Por favor tente novamente'));
+
+      echo $result;
+    }
+
     //PESQUISAR SERVICOS
     elseif($postjson['aksi']=='pesquisarservico'){
       $data = array();
@@ -301,18 +314,6 @@
       echo $result;
     }
 
-    //metodo alterar serviço
-    elseif($postjson['aksi']=='updateServico'){
-      $query = mysqli_query($mysqli, "UPDATE servico SET
-        Nome = '$postjson[nome_servico]',
-        Descricao = '$postjson[descricao_servico]',
-        Tipo =  '$postjson[tipo_servico]' WHERE idService='$postjson[id_servico]'");
-
-      if($query) $result = json_encode(array('success'=>true, 'msg'=>'Atualizado com sucesso'));
-      else $result = json_encode(array('success'=>false, 'msg'=>'Erro! Por favor tente novamente'));
-
-      echo $result;
-    }
 
     //método de selecionar serviço para meus serviços
     elseif($postjson['aksi']=='getservico'){
@@ -336,17 +337,72 @@
 
     }
 
+    //método de selecionar serviço para meus serviços
+    elseif($postjson['aksi']=='getDadosServicosContratados'){
+      $data = array();
+      $query = mysqli_query($mysqli, "SELECT * FROM service WHERE idService='$postjson[idService]'");
+
+      while($row = mysqli_fetch_array($query)){
+
+        $data[] = array(
+          'idService' => $row['idService'],
+          'Nome' => $row['Nome'],
+          'Tipo' => $row['Tipo'],
+          'Descricao' => $row['Descricao'],
+        );
+      }
+
+      if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
+      else $result = json_encode(array('success'=>false));
+
+      echo $result;
+
+    }
+
+    
+  elseif($postjson['aksi']=='getServicosContratados'){
+    $data = array();
+    $query = mysqli_query($mysqli, "SELECT * FROM listaservice WHERE idEvento='$postjson[idEvento]' ORDER BY idService LIMIT $postjson[start],$postjson[limit]");
+
+    while($row = mysqli_fetch_array($query)){
+
+      $data[] = array(
+        'idService' => $row['idService'],
+      );
+    }
+
+    if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
+    else $result = json_encode(array('success'=>false));
+
+    echo $result;
+  }
+
    //metodo para selecionar servicos para perfil serviço
    elseif($postjson['aksi']=='selectServico'){
     $data = array();
-    $query = mysqli_query($mysqli, "SELECT * FROM service WHERE idService='$postjson[id_servico]'");
+    $query = mysqli_query($mysqli, "SELECT * FROM service WHERE idService='$postjson[idService]'");
 
     $data = mysqli_fetch_array($query);
     $datauser = array(
-      'id_servico' => $data['idService'],
-      'nome_servico' => $data['Nome'],
-      'tipo_servico' => $data['Tipo'],
-      'descricao_servico' => $data['Descricao'],
+      'idService' => $data['idService'],
+      'Nome' => $data['Nome'],
+      'Tipo' => $data['Tipo'],
+      'Descricao' => $data['Descricao'],
+    );
+    $result = json_encode(array('success'=>true, 'result'=>$datauser));
+    echo $result;
+  }
+
+  //metodo para selecionar servicos para serviços contratados
+  elseif($postjson['aksi']=='selectServicosContratados'){
+    $data = array();
+    $query = mysqli_query($mysqli, "SELECT * FROM listaservice WHERE idEvento='$postjson[idEvento]'");
+
+    $data = mysqli_fetch_array($query);
+    $datauser = array(
+      'idEvento' => $data['idEvento'],
+      'idService' => $data['idService'],
+      'idListaService' => $data['idListaService'],
     );
     $result = json_encode(array('success'=>true, 'result'=>$datauser));
     echo $result;
@@ -456,5 +512,30 @@
     echo $result;
 
   }
+
+  //método para deletar servico
+  elseif($postjson['aksi']=='delServico'){
+    $query = mysqli_query($mysqli, "DELETE FROM service WHERE idService='$postjson[idService]'");
+
+    if($query) $result = json_encode(array('success'=>true, 'result'=>'success', 'msg'=>'Deletado com sucesso'));
+    else $result = json_encode(array('success'=>false, 'result'=>'error', 'msg'=>'Erro ao deletar'));
+
+    echo $result;
+
+
+  }
+
+  //método para deletar servico da lista serviços
+  elseif($postjson['aksi']=='delServicoContratado'){
+    $query = mysqli_query($mysqli, "DELETE FROM listaservice WHERE idListaService='$postjson[idListaService]'");
+
+    if($query) $result = json_encode(array('success'=>true, 'result'=>'success', 'msg'=>'Deletado com sucesso'));
+    else $result = json_encode(array('success'=>false, 'result'=>'error', 'msg'=>'Erro ao deletar'));
+
+    echo $result;
+
+
+  }
+
 
 ?>

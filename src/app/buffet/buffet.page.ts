@@ -13,9 +13,13 @@ import { AlertController } from '@ionic/angular';
 })
 export class BuffetPage implements OnInit {
 
+  idListaAlimentos: number;
   idEvento: number;
+  Nome: string;
+  Tipo: string;
+  Quantidade: number;
+  Unidade: string;
   anggota: any;
-  alimentos: any = [];
 
   constructor(
   	private router: Router,
@@ -26,28 +30,38 @@ export class BuffetPage implements OnInit {
     public alertController: AlertController,
   ) { }
   ngOnInit() {
-
-    return new Promise(resolve => {
-    this.storage.get('session_storage2').then((res)=>{
-      this.anggota = res;
-      this.idEvento = this.anggota.idEvento;
-      console.log(res);
+  /*
+    this.actRoute.params.subscribe((data: any) =>{
+      this.idEvento = data.id;
       let body = {
         id_evento: this.idEvento,
         aksi : 'selectBuffet'
       };
-  
       this.postPvdr.postData(body, 'proses-api.php').subscribe(data => {
-        for(let alimento of data.result){
-          this.alimentos.push(alimento);
+        if(data.success){
+          this.storage.set('session_storage6', data.result);
         }
-        resolve(true);
-    });   
+      });
     });
-  });
+    */
   }
   
   ionViewWillEnter(){
+  /*
+    this.actRoute.params.subscribe((data: any) =>{
+      this.idEvento = data.id;
+      let body = {
+        id_evento: this.idEvento,
+        aksi : 'selectBuffet'
+      };
+      this.postPvdr.postData(body, 'proses-api.php').subscribe(data => {
+        if(data.success){
+          this.storage.set('session_storage6', data.result);
+          loadBuffet();
+        }
+      });
+    }); 
+  */
   }
   
   /*
