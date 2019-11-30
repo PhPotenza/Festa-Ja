@@ -7,7 +7,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CalculadoraIPage implements OnInit {
 
-  constructor() { }
+  anggota: any;
+  homens: number;
+  mulheres: number;
+  adolescentes: number;
+  criancas: number;
+  
+  constructor(
+    private router: Router,
+    private postPvdr: PostProvider,
+    private storage: Storage,
+    public toastCtrl: ToastController,
+    private actRoute: ActivatedRoute,
+    public alertController: AlertController
+ ) { }
 
   ngOnInit() {
   }

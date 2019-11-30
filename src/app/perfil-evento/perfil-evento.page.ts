@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { PostProvider } from '../../providers/post-provider';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Storage } from '@ionic/Storage';
-import { ToastController } from '@ionic/angular';
+import { ToastController, LoadingController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
+
 
 
 @Component({
@@ -54,6 +55,7 @@ export class PerfilEventoPage implements OnInit {
     private storage: Storage,
     public toastCtrl: ToastController,
     public alertController: AlertController,
+    public loadingController: LoadingController
   ) { }
  
   ngOnInit() {
@@ -71,7 +73,16 @@ export class PerfilEventoPage implements OnInit {
     });
   }
 
-  ionViewWillEnter(){
+  async ionViewWillEnter(){
+    const loading = await this.loadingController.create({
+      spinner: 'crescent',
+      duration: 2500,
+      message: 'Carregando...',
+      translucent: true,
+      cssClass: 'custom-class custom-loading'
+    });
+    
+
     this.actRoute.params.subscribe((data: any) =>{
       this.idEvento = data.id;
       let body = {
@@ -150,6 +161,7 @@ this.dia2=this.day2;
         }
       });
     });
+    return await loading.present();
   }
 
   EditarEvento(){

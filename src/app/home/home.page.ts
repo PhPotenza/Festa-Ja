@@ -49,6 +49,7 @@ export class HomePage implements OnInit {
 
   ionViewWillEnter(){
     if(this.chave==true){
+      this.eventos=[];
     this.presentLoadingWithOptions();
     this.chave=false;
     }
@@ -58,9 +59,6 @@ export class HomePage implements OnInit {
       this.idUsuario = this.anggota.idUsuario;
       console.log(res);
     });
-    this.eventos = [];
-    this.start = 0;
-  	this.loadEvento();
   }  
 
   loadEvento(){
@@ -96,6 +94,7 @@ export class HomePage implements OnInit {
   }
 
   doRefresh(event){
+    this.chave=false;
   	setTimeout(() =>{
   		this.ionViewWillEnter();
   		event.target.complete();
@@ -193,6 +192,9 @@ export class HomePage implements OnInit {
       translucent: true,
       cssClass: 'custom-class custom-loading'
     });
+    this.eventos = [];
+    this.start = 0;
+  	this.loadEvento();
     return await loading.present();
   }
 
