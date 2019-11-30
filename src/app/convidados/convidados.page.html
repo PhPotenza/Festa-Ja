@@ -7,34 +7,31 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content  class="ion-padding">
+<ion-content padding>
   <form>
     <ion-searchbar placeholder="Pesquisar convidado..." cancelButtonText="Cancelar" animated></ion-searchbar>
     <ion-button class="ion-button" expand="block" color="light">Pesquisar</ion-button>
   </form>
-  <ion-grid  no-padding>     
-    
-      <br>
-      <ion-row>
-          <ion-col size="7">
-            <div align="start"><ion-text [color]="cor1"><b>Lista de Convidados</b></ion-text></div>
-          </ion-col>
-          <ion-col>
-            <div align="start"><ion-text [color]="cor1"><b>Total: {{total}}</b></ion-text></div>
-          </ion-col>
-        </ion-row>
+  <ion-list>
+    <ion-item-sliding *ngFor="let convidado of convidados">
+      <ion-card>
+        <ion-item>
+          <ion-card-title>{{convidados.nome_convidado}}</ion-card-title>
+          <ion-icon color="light" name="trash" slot="end">
+          </ion-icon>
+          <ion-checkbox slot="end" color="light" border-color="light"></ion-checkbox>
+        </ion-item>
 
-      <ion-item-sliding *ngFor="let convidado of convidados">
-        <ion-row class="ion-align-items-center">
-          <ion-col (click)="formAlterarConvidados(convidado.idListaConvidados)" size="6">
-            <div>{{convidado.Nome}}</div>
-          </ion-col>
-          <ion-col no-padding>
-            <div align="center"><ion-checkbox color="light" (click)="Situacao(convidado.idListaConvidados, convidado.Situacao)" [checked]="convidado.Situacao"></ion-checkbox></div>
-          </ion-col>
-        </ion-row>
-      </ion-item-sliding>
-      </ion-grid>
+        <ion-card-content>{{convidados.tipo_convidado}}</ion-card-content>
+      </ion-card>
+    </ion-item-sliding>
+  </ion-list>
+
+  <ion-infinite-scroll (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Carregando...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
 </ion-content>
 
 <ion-footer 	translucent="true" class="ion-padding-bottom">
