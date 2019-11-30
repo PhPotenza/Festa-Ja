@@ -12,6 +12,7 @@ import { AlertController } from '@ionic/angular';
 })
 export class CalculadoraHPage implements OnInit {
 
+  suprimentos: any =[];
   
 
   constructor(

@@ -27,7 +27,7 @@ export class AdicionarConvidadosPage implements OnInit {
   ngOnInit() {
   }
 
-  async adicionarCovidados() {
+  async adicionarConvidados() {
     return new Promise(resolve => {
       this.storage.get('session_storage2').then(async (res) => {
         this.anggota = res;

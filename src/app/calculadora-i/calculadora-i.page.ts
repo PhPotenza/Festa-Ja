@@ -14,7 +14,12 @@ import { MbscFormOptions } from '@mobiscroll/angular';
 })
 export class CalculadoraIPage implements OnInit {
 
-	anggota: any;
+  anggota: any;
+  homens: number;
+  mulheres: number;
+  adolescentes: number;
+  criancas: number;
+  
   constructor(
     private router: Router,
     private postPvdr: PostProvider,

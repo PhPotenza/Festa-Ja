@@ -144,6 +144,7 @@
 
 //método para deletar evento
   elseif($postjson['aksi']=='delEvento'){
+    $query = mysqli_query($mysqli, "DELETE FROM listaalimentos WHERE idEvento='$postjson[idEvento]'");
     $query = mysqli_query($mysqli, "DELETE FROM evento WHERE idEvento='$postjson[idEvento]'");
 
     if($query) $result = json_encode(array('success'=>true, 'result'=>'success', 'msg'=>'Deletado com sucesso'));
@@ -314,6 +315,55 @@
       echo $result;
     }
 
+    //método para alterar a situação do Buffet
+    elseif($postjson['aksi']=='situacaoBuffet'){
+      $query = mysqli_query($mysqli, "UPDATE listaalimentos SET
+        Situacao = '$postjson[situacao]' WHERE idListaAlimentos='$postjson[id]'
+      ");
+      if($query) $result = json_encode(array('success' => true));
+      else $result = json_encode(array('success'=>false, 'msg'=>'Erro!'));
+      echo $result;
+    }
+
+    //método para alterar Buffet
+    elseif($postjson['aksi']=='alterarBuffet'){
+      $query = mysqli_query($mysqli, "UPDATE listaalimentos SET
+        Nome = '$postjson[nome]',
+        Tipo= '$postjson[tipo]',
+        Quantidade = '$postjson[quantidade]',
+        Unidade = '$postjson[unidade]' WHERE idListaAlimentos='$postjson[id]'
+      ");
+      if($query) $result = json_encode(array('success' => true));
+      else $result = json_encode(array('success'=>false, 'msg'=>'Erro!'));
+      echo $result;
+    }
+
+
+    //método getBuffet
+    elseif($postjson['aksi']=='getBuffet'){
+      $data = array();
+      $query = mysqli_query($mysqli, "SELECT * FROM listaalimentos where idListaAlimentos='$postjson[id]'");
+
+      $data = mysqli_fetch_array($query);
+      $datauser = array(
+        'idEvento' => $data['idEvento'],
+        'Nome' => $data['Nome'],
+        'Tipo' => $data['Tipo'],
+        'Quantidade' => $data['Quantidade'],
+        'Unidade' => $data['Unidade'],
+      );
+      $result = json_encode(array('success'=>true, 'result'=>$datauser));
+      echo $result;
+    }
+
+    //deletar Buffet
+    elseif($postjson['aksi']=='delBuffet'){
+      $query = mysqli_query($mysqli, "DELETE FROM listaalimentos WHERE idListaAlimentos='$postjson[id]'");
+      if($query) $result = json_encode(array('success'=>true, 'result'=>'success', 'msg'=>'Deletado com sucesso'));
+      else $result = json_encode(array('success'=>false, 'result'=>'error', 'msg'=>'Erro ao deletar'));
+      echo $result;
+    }
+
     //método de selecionar serviço para meus serviços
     elseif($postjson['aksi']=='getservico'){
       $data = array();
@@ -374,13 +424,15 @@
 
   }
 
+  //método para adicionar Buffet
   elseif($postjson['aksi']=='addBuffet'){
     $query = mysqli_query($mysqli, "INSERT INTO listaalimentos SET
       Nome = '$postjson[nome]',
       Tipo = '$postjson[tipo]',
       Quantidade = '$postjson[Quantidade]',
       Unidade = '$postjson[Unidade]',
-      idEvento = '$postjson[IdEvento]';
+      idEvento = '$postjson[IdEvento]',
+      Situacao = 'false'
     ");
 
     if($query) $result = json_encode(array('success'=>true));
@@ -393,9 +445,9 @@
   //metodo adicionar convidados
   elseif($postjson['aksi']=='adicionarConvidados'){
     $query = mysqli_query($mysqli, "INSERT INTO listaconvidados SET
-      idEvento = '$postjson[id_evento]',
-      Nome = '$postjson[nome_convidado]',
-      Tipo = '$postjson[tipo_convidado]'
+      idEvento = '$postjson[idEvento]',
+      Nome = '$postjson[nome]',
+      Tipo = '$postjson[tipo]'
     ");
 
     if($query) $result = json_encode(array('success'=>true));
@@ -419,6 +471,7 @@
     else $result = json_encode(array('success'=>false));
     echo $result;
   }
+
   //metodo selecionar convidados
   elseif($postjson['aksi']=='selectConvidados'){
     $data = array();
@@ -432,11 +485,35 @@
     $result = json_encode(array('success'=>true, 'result'=>$datauser));
     echo $result;
   }
+
   //metodo deletar convidados
   elseif($postjson['aksi']=='delConvidado'){
     $query = mysqli_query($mysqli, "DELETE FROM convidados WHERE idConvidados='$postjson[id_convidado]'");
     if($query) $result = json_encode(array('success'=>true, 'result'=>'success', 'msg'=>'Deletado com sucesso'));
     else $result = json_encode(array('success'=>false, 'result'=>'error', 'msg'=>'Erro ao deletar'));
+    echo $result;
+  }
+
+  //método para selecionar Buffet
+  elseif($postjson['aksi']=='selectBuffet'){
+    $data = array();
+    $query = mysqli_query($mysqli, "SELECT * FROM listaalimentos where idEvento='$postjson[idEvento]' AND Tipo='$postjson[filtro]' ORDER BY Nome");
+
+    while($row = mysqli_fetch_array($query)){
+
+      $data[] = array(
+        'idListaAlimentos' => $row['idListaAlimentos'],
+        'Nome' => $row['Nome'],
+        'Tipo' => $row['Tipo'],
+        'Quantidade' => $row['Quantidade'],
+        'Unidade' => $row['Unidade'],
+        'Situacao' => $row['Situacao']
+      );
+    }
+
+    if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
+    else $result = json_encode(array('success'=>false, 'mgs'=>'Erro'));
+
     echo $result;
   }
 ?>

@@ -1,42 +1,30 @@
 <ion-header>
   <ion-toolbar color="light">
       <ion-buttons slot="start">
-          <ion-menu-button></ion-menu-button>
+          <ion-back-button icon="md-arrow-back" ></ion-back-button>
         </ion-buttons>
-    <ion-title>Buffet {{idEvento}}</ion-title>
+    <ion-title>Buffet</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
 
-    <!--<ion-item-sliding *ngFor="let evento of eventos">
-        <ion-card>
-          <ion-item>
-          <ion-card-title (click)="perfilEvento(evento.idEvento)">{{evento.NomeEvento}}</ion-card-title>
-          <ion-icon (click)="confirmar(evento.idEvento, evento.NomeEvento)" color="danger" name="trash" slot="end"></ion-icon>
-        </ion-item>
-          
-          <ion-card-content (click)="perfilEvento(evento.idEvento)">{{evento.TipoEvento}}</ion-card-content>
-          <ion-card-content (click)="perfilEvento(evento.idEvento)">Início: {{evento.day1}}/{{evento.month1}}/{{evento.year1}} às {{evento.hour1}}:{{evento.minute1}}</ion-card-content>
-          <ion-card-content (click)="perfilEvento(evento.idEvento)">Término: {{evento.day2}}/{{evento.month2}}/{{evento.year2}} às {{evento.hour2}}:{{evento.minute2}}</ion-card-content>     
-        </ion-card>
-    </ion-item-sliding>
-    -->
+
     <ion-grid  no-padding>     
     
 
         <ion-row>
             <ion-col size="7">
-              <div align="start"><ion-text color="light"><b>Alimentos</b></ion-text></div>
+              <div align="start"><ion-text [color]="cor1"><b>Alimentos</b></ion-text></div>
             </ion-col>
             <ion-col>
-              <div align="start"><ion-text color="light"><b>Quant.</b></ion-text></div>
+              <div align="start"><ion-text [color]="cor1"><b>Quant.</b></ion-text></div>
             </ion-col>
           </ion-row>
   
         <ion-item-sliding *ngFor="let alimento of alimentos">
           <ion-row class="ion-align-items-center">
-            <ion-col size="6">
+            <ion-col (click)="formAlterarBuffet(alimento.idListaAlimentos)" size="6">
               <div>{{alimento.Nome}}</div>
             </ion-col>
             <ion-col no-padding>
@@ -46,7 +34,7 @@
               <div>{{alimento.Unidade}}</div>
             </ion-col>
             <ion-col no-padding>
-              <div align="center"><ion-checkbox color="light"></ion-checkbox></div>
+              <div align="center"><ion-checkbox color="light" (click)="Situacao(alimento.idListaAlimentos, alimento.Situacao)" [checked]="alimento.Situacao"></ion-checkbox></div>
             </ion-col>
           </ion-row>
         </ion-item-sliding>
@@ -55,139 +43,88 @@
           <!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
           <ion-row>
           <ion-col size="7">
-              <div><ion-text color="light"><b>Churrasco</b></ion-text></div>
+              <div><ion-text [color]="cor2"><b>Bebidas</b></ion-text></div>
             </ion-col>
             <ion-col>
-              <div><ion-text color="light"><b>Quant.</b></ion-text></div>
+              <div><ion-text [color]="cor2"><b>Quant.</b></ion-text></div>
             </ion-col>
           </ion-row>
   
-          <ion-row class="ion-align-items-center">
-              <ion-col size="6">
-                <div>Coca</div>
-              </ion-col>
-              <ion-col no-padding>
-                <div align="right">5</div>
-              </ion-col>
-              <ion-col no-padding>
-                <div>L</div>
-              </ion-col>
-              <ion-col no-padding>
-                <div align="center"><ion-checkbox color="light"></ion-checkbox></div>
-              </ion-col>
-            </ion-row>
+          <ion-item-sliding *ngFor="let bebida of bebidas">
+              <ion-row class="ion-align-items-center">
+                <ion-col (click)="formAlterarBuffet(bebida.idListaAlimentos)" size="6">
+                  <div>{{bebida.Nome}}</div>
+                </ion-col>
+                <ion-col no-padding>
+                  <div align="right">{{bebida.Quantidade}}</div>
+                </ion-col>
+                <ion-col no-padding>
+                  <div>{{bebida.Unidade}}</div>
+                </ion-col>
+                <ion-col no-padding>
+                  <div align="center"><ion-checkbox (click)="Situacao(bebida.idListaAlimentos, bebida.Situacao)" [checked]="bebida.Situacao" color="light"></ion-checkbox></div>
+                </ion-col>
+              </ion-row>
+            </ion-item-sliding>
+        
   
             <!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
             <ion-row>
               <ion-col size="7">
-                  <div><ion-text color="light"><b>Porções</b></ion-text></div>
+                  <div><ion-text [color]="cor3"><b>Doces</b></ion-text></div>
                 </ion-col>
                 <ion-col>
-                  <div><ion-text color="light"><b>Quant.</b></ion-text></div>
+                  <div><ion-text [color]="cor3"><b>Quant.</b></ion-text></div>
                 </ion-col>
               </ion-row>
-  
-  
-            <ion-row class="ion-align-items-center">
-              <ion-col size="6">
-                <div>Brigadeiro</div>
-              </ion-col>
-              <ion-col no-padding>
-                <div align="right">40</div>
-              </ion-col>
-              <ion-col no-padding>
-                <div>Unid.</div>
-              </ion-col>
-              <ion-col no-padding>
-                <div align="center"><ion-checkbox color="light"></ion-checkbox></div>
-              </ion-col>
-            </ion-row>
+              
+              <ion-item-sliding *ngFor="let doce of doces">
+                  <ion-row class="ion-align-items-center">
+                    <ion-col (click)="formAlterarBuffet(doce.idListaAlimentos)" size="6">
+                      <div>{{doce.Nome}}</div>
+                    </ion-col>
+                    <ion-col no-padding>
+                      <div align="right">{{doce.Quantidade}}</div>
+                    </ion-col>
+                    <ion-col no-padding>
+                      <div>{{doce.Unidade}}</div>
+                    </ion-col>
+                    <ion-col no-padding>
+                      <div align="center"><ion-checkbox (click)="Situacao(doce.idListaAlimentos, doce.Situacao)" [checked]="doce.Situacao" color="light"></ion-checkbox></div>
+                    </ion-col>
+                  </ion-row>
+                </ion-item-sliding>
   
             <!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
             <ion-row>
                 <ion-col size="7">
-                    <div><ion-text color="light"><b>Bebidas</b></ion-text></div>
+                    <div><ion-text [color]="cor4"><b>Outros</b></ion-text></div>
                   </ion-col>
                   <ion-col>
-                    <div><ion-text color="light"><b>Quant.</b></ion-text></div>
+                    <div><ion-text [color]="cor4"><b>Quant.</b></ion-text></div>
                   </ion-col>
                 </ion-row>
     
-    
-              <ion-row class="ion-align-items-center">
-                <ion-col size="6">
-                  <div>Brigadeiro</div>
-                </ion-col>
-                <ion-col no-padding>
-                  <div align="right">40</div>
-                </ion-col>
-                <ion-col no-padding>
-                  <div>Unid.</div>
-                </ion-col>
-                <ion-col no-padding>
-                  <div align="center"><ion-checkbox color="light"></ion-checkbox></div>
-                </ion-col>
-              </ion-row>
-    
-              <!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
-              <ion-row>
-                  <ion-col size="7">
-                      <div><ion-text color="light"><b>Doces</b></ion-text></div>
-                    </ion-col>
-                    <ion-col>
-                      <div><ion-text color="light"><b>Quant.</b></ion-text></div>
-                    </ion-col>
-                  </ion-row>
-      
-      
-                <ion-row class="ion-align-items-center">
-                  <ion-col size="6">
-                    <div>Brigadeiro</div>
-                  </ion-col>
-                  <ion-col no-padding>
-                    <div align="right">40</div>
-                  </ion-col>
-                  <ion-col no-padding>
-                    <div>Unid.</div>
-                  </ion-col>
-                  <ion-col no-padding>
-                    <div align="center"><ion-checkbox color="light"></ion-checkbox></div>
-                  </ion-col>
-                </ion-row>
-  
-                <!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
-                <ion-row>
-                    <ion-col size="7">
-                        <div><ion-text color="light"><b>Suprimentos</b></ion-text></div>
+                <ion-item-sliding *ngFor="let outros of outross">
+                    <ion-row class="ion-align-items-center">
+                      <ion-col (click)="formAlterarBuffet(outros.idListaAlimentos)" size="6">
+                        <div>{{outros.Nome}}</div>
                       </ion-col>
-                      <ion-col>
-                        <div><ion-text color="light"><b>Quant.</b></ion-text></div>
+                      <ion-col no-padding>
+                        <div align="right">{{outros.Quantidade}}</div>
+                      </ion-col>
+                      <ion-col no-padding>
+                        <div>{{outros.Unidade}}</div>
+                      </ion-col>
+                      <ion-col no-padding>
+                        <div align="center"><ion-checkbox (click)="Situacao(outros.idListaAlimentos, outros.Situacao)" [checked]="outros.Situacao" color="light"></ion-checkbox></div>
                       </ion-col>
                     </ion-row>
-        
-        
-                  <ion-row class="ion-align-items-center">
-                    <ion-col size="6">
-                      <div>Brigadeiro</div>
-                    </ion-col>
-                    <ion-col no-padding>
-                      <div align="right">40</div>
-                    </ion-col>
-                    <ion-col no-padding>
-                      <div>Unid.</div>
-                    </ion-col>
-                    <ion-col no-padding>
-                      <div align="center"><ion-checkbox color="light"></ion-checkbox></div>
-                    </ion-col>
-                  </ion-row>
-        
-                  <!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
-      </ion-grid>
+                  </ion-item-sliding>
+          </ion-grid>
 
 </ion-content>
 
 <ion-footer class="ion-padding-bottom">
-	<div class="ion-padding-bottom">
-	  <ion-button expand="block" padding color="light" (click)="formAdicionarBuffet()">Adicionar</ion-button>
-	</div>
+	  <ion-button class="ion-button" color="light" expand="block"  (click)="formAdicionarBuffet()">Adicionar</ion-button>
 </ion-footer>
