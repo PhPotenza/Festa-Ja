@@ -15,10 +15,6 @@ export class CadastrarServicoPage implements OnInit {
   nome_servico: string = "";
   descricao_servico: string = "";
   tipo_servico: string = "";
-  uf_servico: string = "";
-  cidade_servico: string="";
-  celular_servico: string="";
-  telefone_servico: string="";
   anggota: any;
   
   constructor (
@@ -54,24 +50,6 @@ export class CadastrarServicoPage implements OnInit {
         duration: 3000
       });
       toast.present();
-    }else if(this.uf_servico==""){
-      const toast = await this.toastCtrl.create({
-        message: 'Estado Obrigatório',
-        duration: 3000
-      });
-      toast.present();
-    }else if(this.cidade_servico==""){
-      const toast = await this.toastCtrl.create({
-        message: 'Cidade Obrigatória',
-        duration: 3000
-      });
-      toast.present();
-    }else if(this.celular_servico==""){
-      const toast = await this.toastCtrl.create({
-        message: 'Celular de Serviço Obrigatório',
-        duration: 3000
-      });
-      toast.present();
     }else{
 
       let body = {
@@ -79,10 +57,6 @@ export class CadastrarServicoPage implements OnInit {
         nome: this.nome_servico,
         descricao: this.descricao_servico,
         tipo: this.tipo_servico,
-        estado: this.uf_servico,
-        cidade: this.cidade_servico,
-        celular: this.celular_servico,
-        telefone: this.telefone_servico,
         aksi: 'cadastrarServico'
       };
 
