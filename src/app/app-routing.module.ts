@@ -42,6 +42,8 @@ const routes: Routes = [
   { path: 'pesquisa', loadChildren: './pesquisa/pesquisa.module#PesquisaPageModule' },
   { path: 'perfil-servico/:id', loadChildren: './perfil-servico/perfil-servico.module#PerfilServicoPageModule' },
   { path: 'alterar-buffet/:id', loadChildren: './alterar-buffet/alterar-buffet.module#AlterarBuffetPageModule' },
+  { path: 'alterar-convidados/:id', loadChildren: './alterar-convidados/alterar-convidados.module#AlterarConvidadosPageModule' },
+
 
 
 ];

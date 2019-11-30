@@ -4,11 +4,6 @@
           <ion-menu-button></ion-menu-button>
         </ion-buttons>
     <ion-title>Evento</ion-title>
-    <ion-buttons slot="primary">
-      <ion-button (click)=EditarEvento()>
-      <ion-icon slot="icon-only" name="create"></ion-icon>
-      </ion-button>
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -16,6 +11,7 @@
   <ion-card>
     <ion-item>
     <ion-card-title >{{NomeEvento}}</ion-card-title>
+    <ion-icon color="light" name="create" slot="end" (click) ="EditarEvento()"></ion-icon>
     <ion-icon color="danger" name="trash" slot="end" (click)="confirmar()"></ion-icon>
   </ion-item>
   <ion-item lines="none">

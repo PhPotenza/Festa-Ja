@@ -447,7 +447,8 @@
     $query = mysqli_query($mysqli, "INSERT INTO listaconvidados SET
       idEvento = '$postjson[idEvento]',
       Nome = '$postjson[nome]',
-      Tipo = '$postjson[tipo]'
+      Tipo = '$postjson[tipo]',
+      Situacao = 'false'
     ");
 
     if($query) $result = json_encode(array('success'=>true));
@@ -457,38 +458,71 @@
   }
 
   //getconvidados
-  elseif($postjson['aksi']=='getconvidado'){
+  elseif($postjson['aksi']=='getConvidados'){
     $data = array();
-    $query = mysqli_query($mysqli, "SELECT * FROM service WHERE idEvento='$postjson[idEvento]' ORDER BY Nome");
+    $query = mysqli_query($mysqli, "SELECT * FROM listaconvidados WHERE idEvento='$postjson[idEvento]' ORDER BY Nome");
     while($row = mysqli_fetch_array($query)){
       $data[] = array(
-        'idConvidados' => $row['idConvidados'],
-        'nome_convidado' => $row['Nome'],
-        'tipo_convidado' => $row['Tipo'],
+        'idListaConvidados' => $row['idListaConvidados'],
+        'Nome' => $row['Nome'],
+        'Tipo' => $row['Tipo'],
+        'Situacao' => $row['Situacao'],
       );
     }
     if($query) $result = json_encode(array('success'=>true, 'result'=>$data));
     else $result = json_encode(array('success'=>false));
     echo $result;
   }
-
-  //metodo selecionar convidados
-  elseif($postjson['aksi']=='selectConvidados'){
+  //contaiza quantos convidados há
+  elseif($postjson['aksi']=='total'){
     $data = array();
-    $query = mysqli_query($mysqli, "SELECT * FROM convidados where idEvento='$postjson[id_evento]'");
+    $query = mysqli_query($mysqli, "SELECT count(*) FROM listaconvidados where idEvento='$postjson[idEvento]'");
     $data = mysqli_fetch_array($query);
     $datauser = array(
-      'id_evento' => $data['idEvento'],
-      'nome_convidado' => $data['Nome'],
-      'tipo_convidado' => $data['Tipo'],
+      'Total' => $data['count(*)'],
     );
     $result = json_encode(array('success'=>true, 'result'=>$datauser));
     echo $result;
   }
 
+  //alterar situacao dos convidados
+  elseif($postjson['aksi']=='situacaoConvidados'){
+    $query = mysqli_query($mysqli, "UPDATE listaconvidados SET
+      Situacao = '$postjson[situacao]' WHERE idListaConvidados='$postjson[id]'
+    ");
+    if($query) $result = json_encode(array('success' => true));
+    else $result = json_encode(array('success'=>false, 'msg'=>'Erro!'));
+    echo $result;
+  }
+
+  //metodo selecionar convidados
+  elseif($postjson['aksi']=='selectConvidados'){
+    $data = array();
+    $query = mysqli_query($mysqli, "SELECT * FROM listaconvidados where idListaConvidados='$postjson[id]'");
+    $data = mysqli_fetch_array($query);
+    $datauser = array(
+      'idlistaConvidados' => $data['idListaConvidados'],
+      'Nome' => $data['Nome'],
+      'Tipo' => $data['Tipo'],
+    );
+    $result = json_encode(array('success'=>true, 'result'=>$datauser));
+    echo $result;
+  }
+
+  //método para alterar Convidado
+  elseif($postjson['aksi']=='alterarConvidado'){
+    $query = mysqli_query($mysqli, "UPDATE listaconvidados SET
+      Nome = '$postjson[nome]',
+      Tipo= '$postjson[tipo]' WHERE idListaConvidados='$postjson[id]'
+    ");
+    if($query) $result = json_encode(array('success' => true));
+    else $result = json_encode(array('success'=>false, 'msg'=>'Erro!'));
+    echo $result;
+  }
+
   //metodo deletar convidados
   elseif($postjson['aksi']=='delConvidado'){
-    $query = mysqli_query($mysqli, "DELETE FROM convidados WHERE idConvidados='$postjson[id_convidado]'");
+    $query = mysqli_query($mysqli, "DELETE FROM listaconvidados WHERE idListaConvidados='$postjson[id]'");
     if($query) $result = json_encode(array('success'=>true, 'result'=>'success', 'msg'=>'Deletado com sucesso'));
     else $result = json_encode(array('success'=>false, 'result'=>'error', 'msg'=>'Erro ao deletar'));
     echo $result;
