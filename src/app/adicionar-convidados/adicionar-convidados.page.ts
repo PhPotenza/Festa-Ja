@@ -47,9 +47,9 @@ export class AdicionarConvidadosPage implements OnInit {
         } else {
 
           let body = {
-            idEvento: this.id_evento,
-            nome: this.nome_convidado,
-            tipo: this.tipo_convidado,
+            id_evento: this.id_evento,
+            nome_convidado: this.nome_convidado,
+            tipo_convidado: this.tipo_convidado,
             aksi: 'adicionarConvidados'
           };
 

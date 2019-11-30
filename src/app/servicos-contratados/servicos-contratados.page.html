@@ -3,7 +3,7 @@
       <ion-buttons slot="start">
           <ion-menu-button></ion-menu-button>
         </ion-buttons>
-    <ion-title>Meus Serviços</ion-title>
+    <ion-title>Serviços Contratados</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
@@ -12,8 +12,7 @@
     <ion-item-sliding *ngFor="let servico of servicos">
         <ion-card>
           <ion-item>
-          <ion-card-title (click)="goToPerfilServico(servico.idService)">{{servico.Nome}}</ion-card-title>
-          <ion-icon (click)="goToEditarServico(servico.idService)" slot="end" name="create" color="primary" ></ion-icon> 
+          <ion-card-title (click)="goToPerfilServico(servico.idService)">{{servico.idService}} {{servico.Nome}}</ion-card-title>
           <ion-icon  (click)="confirmar(servico.idService, servico.Nome)" color="danger" name="trash" slot="end"></ion-icon>
         </ion-item>
           
@@ -33,6 +32,6 @@
 </ion-content>
 
 <ion-footer 	translucent="true" class="ion-padding-bottom">
-  <ion-button class="ion-button" color="light" expand="block" (click)="goToCadastrarServico()">Cadastrar Serviços
+  <ion-button class="ion-button" color="light" expand="block" (click)="goToCadastrarServico()">Contratar novo Serviço
   </ion-button>
 </ion-footer>

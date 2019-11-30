@@ -15,7 +15,7 @@ export class AdicionarBuffetPage implements OnInit {
   tipo: string="";
   quant: number;
   unid: string ="";
-  idEvento: number= 0;
+  idEvento: number;
   anggota: any;
 
   constructor(

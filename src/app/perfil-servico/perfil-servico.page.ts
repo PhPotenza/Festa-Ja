@@ -14,11 +14,11 @@ import { AlertController } from '@ionic/angular';
 })
 export class PerfilServicoPage implements OnInit {
 
-  id_servico: number = 0;
-  nome_servico: string = "";
-  tipo_servico: string= "";
-  descricao_servico: string = "";
-  comentarios: string = "";
+  idService: number = 0;
+  Nome: string = "";
+  Tipo: string= "";
+  Descricao: string = "";
+  /*comentarios: string = "";*/
   anggota: any;
 
   constructor(
@@ -33,19 +33,19 @@ export class PerfilServicoPage implements OnInit {
 
   ngOnInit() {
     this.actRoute.params.subscribe((data: any) => {
-      this.id_servico = data.id;
+      this.idService = data.id;
       let body = {
-        idService: this.id_servico,
+        idService: this.idService,
         aksi: 'selectServico',
       };
       this.postPvdr.postData(body, 'proses-api.php').subscribe(data => {
         if (data.success) {
-          this.storage.set('session_storage3', data.result);
-              this.storage.get('session_storage3').then((res)=>{
+          this.storage.set('session_storage_servico', data.result);
+              this.storage.get('session_storage_servico').then((res)=>{
             this.anggota = res;
-            this.nome_servico = this.anggota.Nome;
-            this.tipo_servico = this.anggota.Tipo;
-            this.descricao_servico = this.anggota.Descricao;
+            this.Nome = this.anggota.Nome;
+            this.Tipo = this.anggota.Tipo;
+            this.Descricao = this.anggota.Descricao;
             console.log(res);
           });
         }
@@ -55,19 +55,19 @@ export class PerfilServicoPage implements OnInit {
 
   ionViewWillEnter(){
     this.actRoute.params.subscribe((data: any) =>{
-      this.id_servico = data.id;
+      this.idService = data.id;
       let body = {
-        idService: this.id_servico,
+        idService: this.idService,
         aksi : 'selectServico',
       };
       this.postPvdr.postData(body, 'proses-api.php').subscribe(data => {
         if(data.success){
-          this.storage.set('session_storage3', data.result);
-          this.storage.get('session_storage3').then((res)=>{
+          this.storage.set('session_storage_servico', data.result);
+          this.storage.get('session_storage_servico').then((res)=>{
             this.anggota = res;
-            this.nome_servico = this.anggota.Nome;
-            this.tipo_servico = this.anggota.Tipo;
-            this.descricao_servico = this.anggota.Descricao;
+            this.Nome = this.anggota.Nome;
+            this.Tipo = this.anggota.Tipo;
+            this.Descricao = this.anggota.Descricao;
             console.log(res);
           });
         }

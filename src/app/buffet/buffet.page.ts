@@ -13,7 +13,12 @@ import { AlertController } from '@ionic/angular';
 })
 export class BuffetPage implements OnInit {
 
+  idListaAlimentos: number;
   idEvento: number;
+  Nome: string;
+  Tipo: string;
+  Quantidade: number;
+  Unidade: string;
   anggota: any;
   alimentos: any = [];
   bebidas: any = [];
@@ -23,6 +28,7 @@ export class BuffetPage implements OnInit {
   cor2: string = "light";
   cor3: string = "light";
   cor4: string = "light";
+
 
   constructor(
   	private router: Router,
@@ -34,8 +40,7 @@ export class BuffetPage implements OnInit {
     public loadingController: LoadingController
   ) { }
 
-  ngOnInit() {
-    
+  ngOnInit() {  
   }
 
   async ionViewWillEnter(){
@@ -115,7 +120,32 @@ export class BuffetPage implements OnInit {
       });
     });
   }
+  
+  /*
+  loadBuffet() {
+    return new Promise(resolve => {
+      this.storage.get('session_storage6').then((res)=>{
+        this.anggota = res;
+        this.Nome = this.anggota.Nome;
+        this.Tipo = this.anggota.Tipo;
+        this.Quantidade = this.anggota.Quantidade;
+        this.Unidade= this.anggota.Unidade;
+        this.idListaAlimentos = this.anggota.idListaAlimentos;
+        let body = {
+          idUsuario: this.idUsuario,
+          aksi : 'selectBuffet',
+        };
 
+        this.postPvdr.postData(body, 'proses-api.php').subscribe(data => {
+          for (let buffet_list of data.result) {
+            this.buffet_lists.push(buffet_list);
+          }
+          resolve(true);
+        });
+      });
+    });
+  }
+  */
  formAdicionarBuffet(){
     this.router.navigate(['/adicionar-buffet']);
   }
