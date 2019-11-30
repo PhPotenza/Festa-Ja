@@ -27,9 +27,9 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
-  ionViewWillEnter() {
-    this.menuCtrl.enable(false);
-   }
+  // ionViewWillEnter() {
+  //   this.menuCtrl.enable(false);
+  //  }
 
   async prosesLogin(){
     if(this.username == "" || this.password == ""){

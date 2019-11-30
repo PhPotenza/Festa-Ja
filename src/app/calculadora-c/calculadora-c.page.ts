@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
-import { PostProvider } from '../../providers/post-provider';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { Storage } from '@ionic/Storage';
 import { AlertController } from '@ionic/angular';
 
@@ -12,7 +11,7 @@ import { AlertController } from '@ionic/angular';
 })
 export class CalculadoraCPage implements OnInit {
 
-  coxinha_frango: boolean=false;
+  coxinha: boolean=false;
   bolinha_queijo: boolean=false;
   quibe: boolean=false;
   croquete: boolean=false;
@@ -28,14 +27,13 @@ export class CalculadoraCPage implements OnInit {
   trouxinha: boolean=false;
   esfiha: boolean=false;
   pizza: boolean=false;
-  festas: any = [];
+  festas: any;
+  item_festas: number=0;
 
   constructor(
     private router: Router,
-    private postPvdr: PostProvider,
     private storage: Storage,
     public toastCtrl: ToastController,
-    private actRoute: ActivatedRoute,
     public alertController: AlertController
  ) { }
 
@@ -43,11 +41,17 @@ export class CalculadoraCPage implements OnInit {
   }
 
   formCalculadorad(){
-    this.festas = [(this.coxinha_frango, this.bolinha_queijo, this.quibe, this.croquete, this.enroladinho_salsicha, this.enroladinho_pq, this.pao_queijo, this.risole_pq, this.risole_camarao, this.pastel, this.empadinha, this.nuggets, this.croissant, this.trouxinha, this.esfiha, this.pizza)];
+    this.festas = [this.coxinha, this.bolinha_queijo, this.quibe, this.croquete, this.enroladinho_salsicha, this.enroladinho_pq, this.pao_queijo, this.risole_pq, this.risole_camarao, this.pastel, this.empadinha, this.nuggets, this.croissant, this.trouxinha, this.esfiha, this.pizza];
+    
+    this.festas.forEach(element => {
+      if(element == true){
+        this.item_festas ++;
+      }
+    });
+
     this.storage.set('session_festas', this.festas);
+    this.storage.set('session_item_festas', this.item_festas);
     this.router.navigate(['/calculadora-d']);
-    console.log(this.festas);
-    }
+    console.log(this.item_festas, this.festas);
+  }
 }
-
-

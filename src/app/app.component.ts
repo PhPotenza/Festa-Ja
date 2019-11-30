@@ -30,7 +30,7 @@ export class AppComponent {
     },
     {
       title: 'Calculadora',
-      url: '/calculadora-a',
+      url: '/calculadora-b',
       icon: 'calculator'
     },
     {

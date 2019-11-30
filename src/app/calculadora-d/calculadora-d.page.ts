@@ -25,19 +25,16 @@ export class CalculadoraDPage implements OnInit {
   coxinha_asa: boolean=false;
   asinha: boolean=false;
   coracao: boolean=false;
-  coxinha_frango: boolean=false;
   salsichao: boolean=false;
   linguica_toscana: boolean=false;
-  queijo_coalho: boolean=false;
   pao_alho: boolean=false;
-  churrasco: any=[];
+  churrasco: any;
+  item_churrasco: number=0;
 
   constructor(
     private router: Router,
-    private postPvdr: PostProvider,
     private storage: Storage,
     public toastCtrl: ToastController,
-    private actRoute: ActivatedRoute,
     public alertController: AlertController
  ) { }
 
@@ -45,10 +42,18 @@ export class CalculadoraDPage implements OnInit {
   }
 
   formCalculadorae(){
-    this.churrasco = [(this.maminha, this.picanha, this.contrafile, this.fraldinha, this.pernil, this.picanha_suina, this.lombo, this.costelinha, this.panceta, this.coxinha_asa, this.asinha, this.coracao, this.coxinha_frango, this.salsichao, this.linguica_toscana, this.queijo_coalho, this.pao_alho)];
+    this.churrasco = [this.maminha, this.picanha, this.contrafile, this.fraldinha, this.pernil, this.picanha_suina, this.lombo, this.costelinha, this.panceta, this.coxinha_asa, this.asinha, this.coracao, this.salsichao, this.linguica_toscana, this.pao_alho];
+    
+    this.churrasco.forEach(element => {
+      if(element == true){
+        this.item_churrasco ++;
+      }
+    });
+
     this.storage.set('session_churrasco', this.churrasco);
+    this.storage.set('session_item_churrasco', this.item_churrasco);
     this.router.navigate(['/calculadora-e']);
-    console.log(this.churrasco);
+    console.log(this.item_churrasco, this.churrasco);
   }
 }
 
