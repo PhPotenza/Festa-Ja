@@ -78,7 +78,9 @@
         "plugins": {
             "cordova-plugin-facebook4": {
                 "APP_ID": "2504397236324525",
-                "APP_NAME": "FestaJa"
+                "APP_NAME": "FestaJa",
+                "FACEBOOK_HYBRID_APP_EVENTS": "false",
+                "FACEBOOK_ANDROID_SDK_VERSION": "5.5.2"
             },
             "cordova-plugin-whitelist": {},
             "cordova-plugin-statusbar": {},

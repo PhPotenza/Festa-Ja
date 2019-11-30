@@ -8,15 +8,18 @@ import { LoadingController } from '@ionic/angular';
 
 
 @Component({
-  selector: 'app-meus-servicos',
-  templateUrl: './meus-servicos.page.html',
-  styleUrls: ['./meus-servicos.page.scss'],
+  selector: 'app-servicos-contratados',
+  templateUrl: './servicos-contratados.page.html',
+  styleUrls: ['./servicos-contratados.page.scss'],
 })
+export class ServicosContratadosPage implements OnInit {
 
-export class MeusServicosPage implements OnInit {
-
-  idUsuario: number;
+  idListaService: number;
+  idEvento: number;
   idService: number;
+  Nome: string = "";
+  Tipo: string= "";
+  Descricao: string = "";
   anggota: any;
   servicos: any = [];
   limit: number = 13;
@@ -24,46 +27,81 @@ export class MeusServicosPage implements OnInit {
 
   constructor(
     private router: Router,
-    private actRoute: ActivatedRoute,
     private storage: Storage,
     public toastCtrl: ToastController,
+    private actRoute: ActivatedRoute,
     public alertController: AlertController,
     public loadingController: LoadingController,
     private postPvdr: PostProvider
   ) { }
 
   ngOnInit() {
-     this.storage.get('session_storage').then((res)=>{
+    this.actRoute.params.subscribe((data: any) =>{
+      this.idEvento = data.id;
+      let body = {
+        idEvento: this.idEvento,
+        aksi : 'selectServicosContratados'
+      };
+      this.postPvdr.postData(body, 'proses-api.php').subscribe(data => {
+        if(data.success){
+          this.storage.set('session_storage_lista_servicos', data.result);
+        }
+      });
+  });
+}
+  
+  ionViewWillEnter(){
+    this.actRoute.params.subscribe((data: any) =>{
+      this.idEvento = data.id;
+      let body = {
+        idEvento: this.idEvento,
+        aksi : 'selectServicosContratados'
+      };
+      this.postPvdr.postData(body, 'proses-api.php').subscribe(data => {
+        if(data.success){
+          this.storage.set('session_storage_lista_servicos', data.result);
+          this.storage.get('session_storage_lista_servicos').then((res)=>{
       this.anggota = res;
-      this.idUsuario = this.anggota.idUsuario;
+      this.idEvento = this.anggota.idEvento;
+      this.idService = this.anggota.idService;
+      this.idListaService = this.anggota.idListaService; 
+      this.Nome = this.anggota.Nome;
+      this.Tipo = this.anggota.Tipo;
+      this.Descricao = this.anggota.Descricao;
       console.log(res);
-    });
-  }
-
-ionViewWillEnter(){
-    this.storage.get('session_storage').then((res)=>{
-      this.anggota = res;
-      this.idUsuario = this.anggota.idUsuario;
-      console.log(res);
+         });
+       }
+      });
     });
     this.servicos = [];
     this.start = 0;
-    this.loadServico();
+    this.loadIdServico();
   }  
 
-  loadServico() {
+  loadIdServico() {
     return new Promise(resolve => {
-      this.storage.get('session_storage').then((res)=>{
+      this.storage.get('session_storage_lista_servicos').then((res)=>{
         this.anggota = res;
-        this.idUsuario = this.anggota.idUsuario;
+        this.idEvento = this.anggota.idEvento;
         let body = {
-          idUsuario: this.idUsuario,
+          idEvento: this.idEvento,
           limit : this.limit,
           start : this.start,
-          aksi : 'getservico',
+          aksi : 'getServicosContratados',
         };
 
         this.postPvdr.postData(body, 'proses-api.php').subscribe(data => {
+          console.log(data);
+          for (let servico of data.result) {
+            this.servicos.push(servico);
+          }
+          resolve(true);
+        });
+
+        // this.loadDadosServico();
+
+        this.postPvdr.postData(body, 'proses-api.php').subscribe(data => {
+          console.log(data);
           for (let servico of data.result) {
             this.servicos.push(servico);
           }
@@ -73,10 +111,32 @@ ionViewWillEnter(){
     });
   }
 
+  /*
+  loadDadosServico(){
+    return new Promise(resolve => {
+    this.storage.get('session_storage_lista_servicos').then((res)=>{
+      this.anggota = res;
+      this.idService = this.anggota.idService;
+      let body = {
+        idService: this.idService,
+        aksi : 'getDadosServicosContratados',
+      };
+
+      this.postPvdr.postData(body, 'proses-api.php').subscribe(data => {
+        console.log(data);
+        for (let servico of data.result) {
+          this.servicos.push(servico);
+        }
+        resolve(true);
+      });
+    });
+    });
+  }
+*/
   loadData(event:any){
     this.start += this.limit;
   	setTimeout(() =>{
-  	this.loadServico().then(()=>{
+  	this.loadIdServico().then(()=>{
   		event.target.complete();
   	});
   	}, 500);
@@ -93,20 +153,14 @@ ionViewWillEnter(){
   	this.router.navigate(['/perfil-servico/' + id]);
   }
 
-  goToEditarServico(id){
-    this.router.navigate(['/editar-servico/' + id]);
-}
-  
-
   goToCadastrarServico(){
-    this.router.navigate(['/cadastrar-servico']);
+    this.router.navigate(['/pesquisar-servico']);
   }
   
-  async delEvento(id){
-
+  async delListaService(id){
   	let body = {
-  			aksi : 'delServico',
-  			idService : id
+  			aksi : 'delListaService',
+  			idListaService : id
   		};
 
   		this.postPvdr.postData(body, 'proses-api.php').subscribe(async data => {
@@ -132,10 +186,10 @@ ionViewWillEnter(){
       
   }
 
-  async confirmar(id,nome) {
+  async confirmar(id) {
     const alert = await this.alertController.create({
       header: 'Deletar',
-      message: '<strong>Deseja deletar o serviço ' + nome + '?</strong>',
+      message: '<strong>Deseja deletar esse serviço?</strong>',
       buttons: [
         {
           text: 'Não',
@@ -147,7 +201,7 @@ ionViewWillEnter(){
         }, {
           text: 'Sim',
           handler: () => {
-            this.delEvento(id);
+            this.delListaService(id);
             console.log('Deletado');
           }
         }
@@ -156,8 +210,6 @@ ionViewWillEnter(){
 
     await alert.present();
   }
-
-  
 
   async presentLoadingWithOptions() {
     const loading = await this.loadingController.create({
