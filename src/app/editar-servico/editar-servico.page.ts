@@ -34,7 +34,7 @@ export class EditarServicoPage implements OnInit {
         };
         this.postPvdr.postData(body, 'proses-api.php').subscribe(data => {
           if(data.success){
-            this.storage.set('session_storage_editar_servico', data.result);
+            this.storage.set('session_storage_servico', data.result);
           }
         });
     });
@@ -49,8 +49,8 @@ export class EditarServicoPage implements OnInit {
         };
         this.postPvdr.postData(body, 'proses-api.php').subscribe(data => {
           if(data.success){
-            this.storage.set('session_storage_editar_servico', data.result);
-      this.storage.get('session_storage_editar_servico').then((res)=>{
+            this.storage.set('session_storage_servico', data.result);
+      this.storage.get('session_storage_servico').then((res)=>{
         this.anggota = res;
         this.Nome = this.anggota.Nome;
         this.Tipo = this.anggota.Tipo;
@@ -63,7 +63,7 @@ export class EditarServicoPage implements OnInit {
 
     async updateService(){
       return new Promise(resolve => {
-        this.storage.get('session_storage_editar_servico').then(async (res)=>{ 
+        this.storage.get('session_storage_servico').then(async (res)=>{ 
           this.anggota = res;
           this.idService = this.anggota.idServico;
           console.log(res);

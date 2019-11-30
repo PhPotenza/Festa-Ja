@@ -17,6 +17,9 @@ export class ServicosContratadosPage implements OnInit {
   idListaService: number;
   idEvento: number;
   idService: number;
+  Nome: string = "";
+  Tipo: string= "";
+  Descricao: string = "";
   anggota: any;
   servicos: any = [];
   limit: number = 13;
@@ -62,6 +65,9 @@ export class ServicosContratadosPage implements OnInit {
       this.idEvento = this.anggota.idEvento;
       this.idService = this.anggota.idService;
       this.idListaService = this.anggota.idListaService; 
+      this.Nome = this.anggota.Nome;
+      this.Tipo = this.anggota.Tipo;
+      this.Descricao = this.anggota.Descricao;
       console.log(res);
          });
        }
@@ -92,11 +98,20 @@ export class ServicosContratadosPage implements OnInit {
           resolve(true);
         });
 
-        this.loadDadosServico();
+        // this.loadDadosServico();
+
+        this.postPvdr.postData(body, 'proses-api.php').subscribe(data => {
+          console.log(data);
+          for (let servico of data.result) {
+            this.servicos.push(servico);
+          }
+          resolve(true);
+        });
       });
     });
   }
 
+  /*
   loadDadosServico(){
     return new Promise(resolve => {
     this.storage.get('session_storage_lista_servicos').then((res)=>{
@@ -117,7 +132,7 @@ export class ServicosContratadosPage implements OnInit {
     });
     });
   }
-
+*/
   loadData(event:any){
     this.start += this.limit;
   	setTimeout(() =>{

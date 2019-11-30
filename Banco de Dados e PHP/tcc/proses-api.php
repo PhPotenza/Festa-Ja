@@ -396,7 +396,7 @@
   //metodo para selecionar servicos para serviços contratados
   elseif($postjson['aksi']=='selectServicosContratados'){
     $data = array();
-    $query = mysqli_query($mysqli, "SELECT * FROM listaservice WHERE idEvento='$postjson[idEvento]'");
+    $query = mysqli_query($mysqli, "SELECT * FROM listaservice  INNER JOIN  service ON listaservice.idService = service.idService WHERE listaservice.idEvento='$postjson[idEvento]'");
 
     $data = mysqli_fetch_array($query);
     $datauser = array(

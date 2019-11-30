@@ -4,18 +4,13 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>Perfil Serviço</ion-title>
-    <ion-buttons slot="primary">
-      <ion-button (click)="goToEditarServico()">
-        <ion-icon slot="icon-only" name="create"></ion-icon>
-      </ion-button>
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding="true">
   <ion-card>
     <ion-item>
-      <h4>{{ nome_servico }}</h4>
+      <h4>{{ Nome }}</h4>
     </ion-item>
     <ion-slides pager style="width:100%;height:300px;">
       <ion-slide style="background-color: rgb(255, 255, 255)">
@@ -29,7 +24,7 @@
       </ion-slide>
     </ion-slides>
     <ion-card-content>
-      <p>{{ descricao_servico }}</p>
+      <p>{{ Descricao }}</p>
     </ion-card-content>
     <!-- <ion-item>
       <label>{{ cidade_servico }} - {{ uf_servico }}UF</label>
@@ -47,15 +42,7 @@
   <!--<ion-slide style="background:url(assets\imagens\perfil.jpg) no-repeat center;background-size:cover;"></ion-slide>-->
   <ion-button class="ion-button" expand="block" padding color="light">Adicionar ao evento...</ion-button>
   <br>
-  <ion-card padding="true">
-    <ion-item>
-      <ion-label position="floating">Deixe seu comentario</ion-label>
-      <ion-textarea></ion-textarea>
-    </ion-item>
-    <ion-row>
-      <ion-button class="ion-button" padding color="light" slot="end">Enviar</ion-button>
-    </ion-row>
-  </ion-card>
+  
   <h3 style="color:#ff6600;text-align:center;"><b>Comentários</b></h3>
   <ion-card>
     <!--*ngFor=""-->
@@ -66,8 +53,18 @@
       <p>{{ comentarios }} muito bom!</p>
     </ion-card-content>
   </ion-card>
+
+  <ion-card padding="true">
+    <ion-item>
+      <ion-label position="floating">Deixe seu comentario</ion-label>
+      <ion-textarea></ion-textarea>
+    </ion-item>
+    <ion-row>
+      <ion-button class="ion-button" padding color="light" slot="end">Enviar</ion-button>
+    </ion-row>
+  </ion-card>
   
-  <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+  <!-- <ion-fab horizontal="end" vertical="bottom" slot="fixed">
     <ion-fab-button color="light">
       <ion-icon name="arrow-dropleft"></ion-icon>
     </ion-fab-button>
@@ -83,6 +80,8 @@
       </ion-fab-button>
     </ion-fab-list>
   </ion-fab>
+
+-->
 
 </ion-content>
 
