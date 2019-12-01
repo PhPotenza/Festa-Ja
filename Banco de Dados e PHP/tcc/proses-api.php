@@ -251,11 +251,16 @@
     elseif($postjson['aksi']=='updateServico'){
       $query = mysqli_query($mysqli, "UPDATE service SET
         Nome = '$postjson[Nome]',
+        Tipo =  '$postjson[Tipo]',
         Descricao = '$postjson[Descricao]',
-        Tipo =  '$postjson[Tipo]' WHERE idService='$postjson[idService]'");
+        Estado = '$postjson[Estado]',
+        Cidade = '$postjson[Cidade]',
+        Celular = '$postjson[Celular]',
+        Telefone = '$postjson[Telefone]' 
+        WHERE idService='$postjson[idService]'");
 
-      if($query) $result = json_encode(array('success'=>true, 'msg'=>'Atualizado com sucesso'));
-      else $result = json_encode(array('success'=>false, 'msg'=>'Erro! Por favor tente novamente'));
+      if($query) $result = json_encode(array('success'=>true, 'result'=>'success'));
+      else $result = json_encode(array('success'=>false, 'result'=>'error'));
 
       echo $result;
     }
@@ -306,7 +311,11 @@
         idUsuario = '$postjson[IdUsuario]',
         Nome = '$postjson[nome]',
         Descricao = '$postjson[descricao]',
-        Tipo = '$postjson[tipo]'
+        Tipo = '$postjson[tipo]',
+        Estado = '$postjson[estado]',
+        Cidade = '$postjson[cidade]',
+        Celular = '$postjson[celular]',
+        Telefone = '$postjson[telefone]'
       ");
 
       if($query) $result = json_encode(array('success'=>true));
@@ -438,6 +447,10 @@
       'Nome' => $data['Nome'],
       'Tipo' => $data['Tipo'],
       'Descricao' => $data['Descricao'],
+      'Estado' => $data['Estado'],
+      'Cidade' => $data['Cidade'],
+      'Celular' => $data['Celular'],
+      'Telefone' => $data['Telefone'],
     );
     $result = json_encode(array('success'=>true, 'result'=>$datauser));
     echo $result;

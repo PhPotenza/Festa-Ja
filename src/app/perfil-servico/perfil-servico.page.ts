@@ -18,6 +18,10 @@ export class PerfilServicoPage implements OnInit {
   Nome: string = "";
   Tipo: string= "";
   Descricao: string = "";
+  Estado: string = "";
+  Cidade: string = "";
+  Celular: string = "";
+  Telefone: string = "";
   /*comentarios: string = "";*/
   anggota: any;
 
@@ -46,6 +50,10 @@ export class PerfilServicoPage implements OnInit {
             this.Nome = this.anggota.Nome;
             this.Tipo = this.anggota.Tipo;
             this.Descricao = this.anggota.Descricao;
+            this.Estado = this.anggota.Estado;
+            this.Cidade = this.anggota.Cidade;
+            this.Celular = this.anggota.Celular;
+            this.Telefone = this.anggota.Telefone;
             console.log(res);
           });
         }
@@ -68,6 +76,10 @@ export class PerfilServicoPage implements OnInit {
             this.Nome = this.anggota.Nome;
             this.Tipo = this.anggota.Tipo;
             this.Descricao = this.anggota.Descricao;
+            this.Estado = this.anggota.Estado;
+            this.Cidade = this.anggota.Cidade;
+            this.Celular = this.anggota.Celular;
+            this.Telefone = this.anggota.Telefone;
             console.log(res);
           });
         }

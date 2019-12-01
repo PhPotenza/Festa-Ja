@@ -15,6 +15,10 @@ export class EditarServicoPage implements OnInit {
   Nome: string = "";
   Descricao: string = "";
   Tipo: string = "";
+  Estado: string = "";
+  Cidade: string = "";
+  Celular: string = "";
+  Telefone: string = "";
   anggota: any;
 
     constructor( 
@@ -55,6 +59,10 @@ export class EditarServicoPage implements OnInit {
         this.Nome = this.anggota.Nome;
         this.Tipo = this.anggota.Tipo;
         this.Descricao = this.anggota.Descricao;
+        this.Estado = this.anggota.Estado;
+        this.Cidade = this.anggota.Cidade;
+        this.Celular = this.anggota.Celular;
+        this.Telefone = this.anggota.Telefone;
            });
          }
         });
@@ -65,7 +73,7 @@ export class EditarServicoPage implements OnInit {
       return new Promise(resolve => {
         this.storage.get('session_storage_servico').then(async (res)=>{ 
           this.anggota = res;
-          this.idService = this.anggota.idServico;
+          this.idService = this.anggota.idService;
           console.log(res);
       
       if(this.Nome==""){
@@ -86,21 +94,43 @@ export class EditarServicoPage implements OnInit {
           duration: 3000
         });
         toast.present();
-      }else{
+      }else  if(this.Estado==""){
+        const toast = await this.toastCtrl.create({
+          message: 'Estado Obrigatório',
+          duration: 3000
+        });
+        toast.present();
+      }else if(this.Cidade==""){
+        const toast = await this.toastCtrl.create({
+          message: 'Cidade Obrigatória',
+          duration: 3000
+        });
+        toast.present();
+      }else if(this.Celular==""){
+        const toast = await this.toastCtrl.create({
+          message: 'Celular de Serviço Obrigatório',
+          duration: 3000
+        });
+        toast.present();
+      }else {
   
         let body = {
           idService: this.idService,
           Nome: this.Nome,
           Descricao: this.Descricao,
           Tipo: this.Tipo,
-          aksi: 'updateServico',
+          Estado: this.Estado,
+          Cidade: this.Cidade,
+          Celular: this.Celular,
+          Telefone: this.Telefone,
+          aksi: 'updateServico'
         };
   
         this.postPvdr.postData(body, 'proses-api.php').subscribe(async data =>{
           console.log(data);
           var alertpesan = data.msg;
           if(data.success){
-            this.router.navigate(['/perfil-servico']);
+            this.router.navigate(['/perfil-servico/' + this.idService]);
             const toast = await this.toastCtrl.create({
               message: 'Alterado com Sucesso',
               duration: 3000
