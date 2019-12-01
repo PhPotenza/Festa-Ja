@@ -75,7 +75,6 @@ CREATE TABLE `evento` (
   `Endereco` varchar(100) NOT NULL,
   `Numero` int(11) NOT NULL,
   `Complemento` varchar(50) default NULL,
-  `Cor` varchar(50) default NULL,
   PRIMARY KEY  (`idEvento`),
   KEY `FK_Usuario2_idx` (`idUsuario`),
   CONSTRAINT `FK_Usuario2` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -132,7 +131,7 @@ CREATE TABLE `listaalimentos` (
   `Tipo` varchar(85) NOT NULL,
   `Quantidade` double NOT NULL,
   `Unidade` char(10) NOT NULL,
-  `Situacao` char(2) NOT NULL,
+  `Situacao` char(5) NOT NULL,
   PRIMARY KEY  (`idListaAlimentos`),
   KEY `FK_Evento1_idx` (`idEvento`),
   CONSTRAINT `FK_Evento1` FOREIGN KEY (`idEvento`) REFERENCES `evento` (`idEvento`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -160,7 +159,7 @@ CREATE TABLE `listaconvidados` (
   `IdEvento` int(11) NOT NULL,
   `Nome` varchar(100) NOT NULL,
   `Tipo` varchar(50) NOT NULL,
-  `Situacao` char(2) NOT NULL,
+  `Situacao` char(5) NOT NULL,
   PRIMARY KEY  (`idListaConvidados`),
   KEY `FK_Evento2_idx` (`IdEvento`),
   CONSTRAINT `FK_Evento2` FOREIGN KEY (`IdEvento`) REFERENCES `evento` (`idEvento`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -187,7 +186,7 @@ CREATE TABLE `listaservice` (
   `idListaService` int(11) NOT NULL auto_increment,
   `idService` int(11) NOT NULL,
   `idEvento` int(11) NOT NULL,
-  `Situacao` char(2) NOT NULL,
+  `Situacao` char(5) NOT NULL,
   PRIMARY KEY  (`idListaService`),
   KEY `FK_Service3_idx` (`idService`),
   KEY `FK_Evento3_idx` (`idEvento`),

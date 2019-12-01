@@ -145,6 +145,7 @@
 //método para deletar evento
   elseif($postjson['aksi']=='delEvento'){
     $query = mysqli_query($mysqli, "DELETE FROM listaalimentos WHERE idEvento='$postjson[idEvento]'");
+    $query = mysqli_query($mysqli, "DELETE FROM listaconvidados WHERE idEvento='$postjson[idEvento]'");
     $query = mysqli_query($mysqli, "DELETE FROM evento WHERE idEvento='$postjson[idEvento]'");
 
     if($query) $result = json_encode(array('success'=>true, 'result'=>'success', 'msg'=>'Deletado com sucesso'));
@@ -293,7 +294,11 @@
         idUsuario = '$postjson[IdUsuario]',
         Nome = '$postjson[nome]',
         Descricao = '$postjson[descricao]',
-        Tipo = '$postjson[tipo]'
+        Tipo = '$postjson[tipo]',
+        Estado = '$postjson[estado]',
+        Cidade = '$postjson[cidade]',
+        Celular = '$postjson[celular]',
+        Telefone = '$postjson[telefone]'
       ");
 
       if($query) $result = json_encode(array('success'=>true));
