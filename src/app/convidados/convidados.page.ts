@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastController } from '@ionic/angular';
 import { PostProvider } from '../../providers/post-provider';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Storage } from '@ionic/Storage';
+import { ToastController, LoadingController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
-import { MenuController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-convidados',
@@ -13,165 +13,186 @@ import { MenuController } from '@ionic/angular';
 })
 export class ConvidadosPage implements OnInit {
 
-  id_evento: number=0;
-  id_convidado: number=0;
-  nome_convidado: string = "";
-  tipo_convidado: string = "";
-  convidados: any = [];
+  idEvento: number;
+  total: number;
   anggota: any;
-  limit: number = 13;
-  start: number = 0;
-  pesquisar: string = "";
-  tipo: string = "todos";
+  anggota2: any;
+  convidados: any = [];
+  totals: any = [];
+  cor1: string = "light";
+  cor2: string = "light";
+  cor3: string = "light";
+  cor4: string = "light";
 
   constructor(
-    private router: Router,
-    private postPvdr: PostProvider,
+  	private router: Router,
+  	private postPvdr: PostProvider,
+    private actRoute: ActivatedRoute,
     private storage: Storage,
     public toastCtrl: ToastController,
-    private actRoute: ActivatedRoute,
-    public alertController: AlertController
+    public alertController: AlertController,
+    public loadingController: LoadingController
   ) { }
 
   ngOnInit() {
-    this.actRoute.params.subscribe((data: any) => {
-      this.id_evento = data.id;
-      let body = {
-        idEvento: this.id_evento,
-        aksi: 'selectConvidados',
-      };
-      this.postPvdr.postData(body, 'proses-api.php').subscribe(data => {
-        if (data.success) {
-          this.storage.set('session_storage2', data.result);
-              this.storage.get('session_storage2').then((res)=>{
-            this.anggota = res;
-            this.nome_convidado = this.anggota.Nome;
-            this.tipo_convidado = this.anggota.Tipo;
-            console.log(res);
-          });
+    return new Promise(resolve => {
+      this.storage.get('session_storage2').then((res)=>{
+        this.anggota = res;
+        this.idEvento = this.anggota.idEvento;
+
+        let body2 = {
+          idEvento: this.idEvento,
+          aksi: 'total',
         }
+        this.postPvdr.postData(body2, 'proses-api.php').subscribe(data => {
+          if(data.success){
+            this.storage.set('session_total', data.result);
+            this.storage.get('session_total').then((res)=>{
+              this.anggota2 = res;
+              this.total = this.anggota2.Total;
+            });
+          }
+        });
+        resolve(true);
+        });
       });
-    });
   }
 
-  ionViewWillEnter(){
-    this.actRoute.params.subscribe((data: any) =>{
-      this.id_evento = data.id;
-      let body = {
-        idEvento: this.id_evento,
-        aksi : 'selectConvidados',
-      };
-      this.postPvdr.postData(body, 'proses-api.php').subscribe(data => {
+  async ionViewWillEnter(){
+    const loading = await this.loadingController.create({
+      spinner: 'crescent',
+      duration: 2500,
+      message: 'Carregando...',
+      translucent: true,
+      cssClass: 'custom-class custom-loading'
+    });
+    return new Promise(resolve => {
+      this.storage.get('session_storage2').then(async (res)=>{
+        this.anggota = res;
+        this.idEvento = this.anggota.idEvento;
+
+        let body2 = {
+          idEvento: this.idEvento,
+          aksi: 'total',
+        }
+        this.postPvdr.postData(body2, 'proses-api.php').subscribe(data => {
+          if(data.success){
+            this.storage.set('session_total', data.result);
+            this.storage.get('session_total').then((res)=>{
+              this.anggota2 = res;
+              this.total = this.anggota2.Total;
+            });
+          }
+        });
+        this.getConvidado();
+        return await loading.present();
+        });
+      });
+    
+  }
+
+  getConvidado(){
+    return new Promise(resolve => {
+      this.storage.get('session_storage2').then((res)=>{
+        this.anggota = res;
+        this.idEvento = this.anggota.idEvento;
+        console.log(res);
+      this.convidados = [];
+      this.totals = [];
+        let body = {
+          idEvento: this.idEvento,
+          aksi : 'getConvidados',
+        };
+    
+        this.postPvdr.postData(body, 'proses-api.php').subscribe(data => {
+          for(let convidado of data.result){
+            this.convidados.push(convidado);
+          }
+          
+      });
+
+      let body2 = {
+        idEvento: this.idEvento,
+        aksi: 'total',
+      }
+      this.postPvdr.postData(body2, 'proses-api.php').subscribe(data => {
         if(data.success){
-          this.storage.set('session_storage2', data.result);
-          this.storage.get('session_storage2').then((res)=>{
-            this.anggota = res;
-            this.nome_convidado = this.anggota.Nome;
-            this.tipo_convidado = this.anggota.Tipo;
-            console.log(res);
+          this.storage.set('session_total', data.result);
+          this.storage.get('session_total').then((res)=>{
+            this.anggota2 = res;
+            this.total = this.anggota2.Total;
           });
         }
       });
+      resolve(true);
+      });
     });
-    this.convidados = [];
-    this.start = 0;
-    this.loadConvidados();
   }
 
-  goToAdicionarConvidados() {
+  goToAdicionarConvidados(){
     this.router.navigate(['/adicionar-convidados']);
   }
 
-  loadConvidados() {
-    return new Promise(resolve => {
-      this.storage.get('session_storage2').then((res) => {
-        this.anggota = res;
-        this.id_evento = this.anggota.idEvento;
-        let body = {
-          idEvento: this.id_evento,
-          limit: this.limit,
-          start: this.start,
-          aksi: 'getconvidado',
-        };
-
-        this.postPvdr.postData(body, 'proses-api.php').subscribe(data => {
-          for (let convidado of data.result) {
-            this.convidados.push(convidado);
-          }
-          resolve(true);
-        });
-      });
-    });
-
+  formAlterarConvidados(id){
+      this.router.navigate(['/alterar-convidados/'+ id]);
   }
 
-  loadData(event: any) {
-    this.start += this.limit;
-    setTimeout(() => {
-      this.loadConvidados().then(() => {
-        event.target.complete();
-      });
-    }, 500);
-  }
+  async Situacao(id,situacao){
+    if(situacao=="false"){
+      let body = {
+        id: id,
+        situacao: 'true',
+        aksi : 'situacaoConvidados',
+      };
 
-  doRefresh(event) {
-    setTimeout(() => {
-      this.ionViewWillEnter();
-      event.target.complete();
-    }, 500);
-  }
-
-  async delConvidado(id) {
-
-    let body = {
-      aksi: 'delConvidado',
-      idEvento: id
-    };
-
-    this.postPvdr.postData(body, 'proses-api.php').subscribe(async data => {
-
-      var alertpesan = data.msg;
-      if (data.success) {
-        const toast = await this.toastCtrl.create({
-          message: 'Deletado com Sucesso.',
-          duration: 2000
-        });
-        toast.present();
-        this.ionViewWillEnter();
+      this.postPvdr.postData(body, 'proses-api.php').subscribe(async data =>{
+        let alertpesan = data.msg;
+        console.log(data);
+        if(data.success){
+          this.getConvidado();
       }
-      else {
-        const toast = await this.toastCtrl.create({
-          message: alertpesan,
-          duration: 2000
-        });
-        toast.present();
-      }
-    });
-
-  }
-
-  async confirmar(id,nome) {
-    const alert = await this.alertController.create({
-      header: 'Deletar',
-      message: '<strong>Deseja deletar o convidado ' + nome + '?</strong>',
-      buttons: [
-        {
-          text: 'Não',
-          role: 'cancel',
-          cssClass: 'light',
-          handler: (blah) => {
-            console.log('Deletamento Cancelado');
-          }
-        }, {
-          text: 'Sim',
-          handler: () => {
-            this.delConvidado(id);
-            console.log('Deletado');
-          }
+        else{
+          const toast = await this.toastCtrl.create({
+            message: alertpesan,
+            duration: 3000
+          });
+          toast.present();
         }
-      ]
-    });
+      });
+    }
 
-    await alert.present();
+    else{
+      let body = {
+        id: id,
+        situacao: 'false',
+        aksi : 'situacaoConvidados',
+      };
+
+      this.postPvdr.postData(body, 'proses-api.php').subscribe(async data =>{
+        let alertpesan = data.msg;
+        console.log(data);
+        if(data.success){
+          this.getConvidado();
+      }
+        else{
+          const toast = await this.toastCtrl.create({
+            message: alertpesan,
+            duration: 3000
+          });
+          toast.present();
+        }
+      });
+
+    }
+    const loading = await this.loadingController.create({
+      spinner: 'crescent',
+      duration: 1250,
+      message: 'Carregando...',
+      translucent: true,
+      cssClass: 'custom-class custom-loading'
+    });
+    return await loading.present();
+
   }
+
 }
