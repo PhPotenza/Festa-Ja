@@ -49,7 +49,7 @@ export class LoginPage implements OnInit {
       var alertpesan = data.msg;
       if(data.success){
         this.storage.set('session_storage', data.result);
-        this.router.navigate(['/home']);
+        this.router.navigate(['/welcome']);
         const toast = await this.toastCtrl.create({
       message: 'Logado com Sucesso.',
       duration: 2000
